@@ -77,10 +77,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SASSUOLO — Luxury Italian Furniture" },
+      { title: "FMANAR — Luxury Italian Furniture" },
       { name: "description", content: "Bespoke luxury furniture for living rooms, bedrooms, dining and office spaces. Crafted in Italy." },
-      { name: "author", content: "Sassuolo" },
-      { property: "og:title", content: "SASSUOLO — Luxury Italian Furniture" },
+      { name: "author", content: "Fmanar" },
+      { property: "og:title", content: "FMANAR — Luxury Italian Furniture" },
       { property: "og:description", content: "Bespoke luxury furniture for living rooms, bedrooms, dining and office spaces." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
