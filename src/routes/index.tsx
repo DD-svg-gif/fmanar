@@ -9,9 +9,9 @@ import roomLiving2 from "@/assets/room-living2.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SASSUOLO — Luxury Italian Furniture" },
+      { title: "FMANAR — Luxury Italian Furniture" },
       { name: "description", content: "Bespoke luxury furniture for living rooms, bedrooms, dining and office spaces. Crafted in Italy." },
-      { property: "og:title", content: "SASSUOLO — Luxury Italian Furniture" },
+      { property: "og:title", content: "FMANAR — Luxury Italian Furniture" },
       { property: "og:description", content: "Bespoke luxury furniture. Crafted in Italy." },
     ],
   }),
@@ -72,7 +72,7 @@ function Home() {
 
           <a href="#" className="flex flex-col items-center text-white">
             <span className="text-[10px] tracking-[0.4em] text-white/60">MORE PHILOSOPHY</span>
-            <span className="font-display text-3xl tracking-[0.35em]">SASSUOLO</span>
+            <span className="font-display text-3xl tracking-[0.35em]">FMANAR</span>
           </a>
 
           <nav className="hidden flex-1 items-center justify-end gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
@@ -143,7 +143,7 @@ function Home() {
           The Philosophy
         </p>
         <h2 className="mx-auto mt-6 max-w-4xl font-display text-4xl leading-tight text-foreground md:text-5xl">
-          More than furniture — a quiet study of proportion, material and light, hand-finished in the workshops of Sassuolo.
+          More than furniture — a quiet study of proportion, material and light, hand-finished in the workshops of Fmanar.
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           Every collection is the result of a continuous dialogue between Italian craftsmanship and contemporary architecture, designed to age with grace inside the homes that hold them.
@@ -209,9 +209,9 @@ function Home() {
       <footer className="border-t border-border/40 px-8 py-16">
         <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
           <div>
-            <p className="font-display text-2xl tracking-[0.3em]">SASSUOLO</p>
+            <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              Via dell'Artigianato 12, 41049 Sassuolo (MO), Italia
+              Via dell'Artigianato 12, 41049 Fmanar (MO), Italia
             </p>
           </div>
           {[
@@ -230,7 +230,7 @@ function Home() {
           ))}
         </div>
         <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
-          © 2026 Sassuolo Maison — All rights reserved
+          © 2026 Fmanar Maison — All rights reserved
         </p>
       </footer>
     </div>
