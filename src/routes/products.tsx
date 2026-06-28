@@ -119,14 +119,10 @@ function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Banner */}
-      <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
-        <img src={heroLiving} alt="Products banner" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
-
-        {/* Top nav */}
-        <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
-          <nav className="hidden flex-1 items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+      {/* Top nav — fixed at top */}
+      <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
+          <nav className="hidden flex-1 items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
                 <Link key={n} to="/products" className="text-[--gold]">
@@ -140,12 +136,12 @@ function ProductsPage() {
             )}
           </nav>
 
-          <Link to="/" className="flex flex-col items-center text-white">
-            <span className="text-[10px] tracking-[0.4em] text-white/60">MORE PHILOSOPHY</span>
-            <span className="font-display text-3xl tracking-[0.35em]">FMANAR</span>
+          <Link to="/" className="flex flex-col items-center text-foreground">
+            <span className="text-[10px] tracking-[0.4em] text-muted-foreground">MORE PHILOSOPHY</span>
+            <span className="font-display text-2xl tracking-[0.35em]">FMANAR</span>
           </Link>
 
-          <nav className="hidden flex-1 items-center justify-end gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 items-center justify-end gap-8 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navRight.map((n) => (
               <a key={n} href="/" className="transition-colors hover:text-[--gold]">
                 {n}
@@ -153,7 +149,7 @@ function ProductsPage() {
             ))}
           </nav>
 
-          <div className="ml-6 flex items-center gap-4 text-white/80 md:ml-8">
+          <div className="ml-6 flex items-center gap-4 text-foreground/80 md:ml-8">
             <button aria-label="Search" className="transition hover:text-[--gold]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="11" cy="11" r="7" />
@@ -161,9 +157,16 @@ function ProductsPage() {
               </svg>
             </button>
             <span className="text-[11px] tracking-widest">EN</span>
-            <span className="text-[11px] tracking-widest text-white/40">AR</span>
+            <span className="text-[11px] tracking-widest text-muted-foreground">AR</span>
           </div>
-        </header>
+        </div>
+      </header>
+
+      {/* Banner */}
+      <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden pt-[72px]">
+        <img src={heroLiving} alt="Products banner" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+
 
         {/* Caption */}
         <div className="absolute inset-x-0 bottom-20 z-10 flex flex-col items-center text-center">
