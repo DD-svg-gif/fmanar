@@ -20,20 +20,69 @@ export const Route = createFileRoute("/products")({
 
 type Product = { name: string; img: string };
 
-const products: Product[] = [
-  { name: "07-04 Lounge chair", img: roomLiving2 },
-  { name: "12-09A TV cabinet", img: roomOffice },
-  { name: "07-02 Single chair", img: roomBedroom },
-  { name: "12-102 Console", img: roomDining },
-  { name: "12-12 TV cabinet", img: roomOffice },
-  { name: "12-08 Sideboard", img: roomLiving2 },
-  { name: "12-06 Media unit", img: roomDining },
-  { name: "12-05 Sideboard", img: heroLiving },
-  { name: "12-03 Console", img: roomBedroom },
-  { name: "12-02 TV cabinet", img: roomOffice },
-  { name: "10-02 Entryway", img: roomLiving2 },
-  { name: "10-01B Entryway", img: roomDining },
-];
+const productsByCategory: Record<string, Product[]> = {
+  "Dining Room": [
+    { name: "08-01 Dining table", img: roomDining },
+    { name: "08-02 Dining chair", img: roomLiving2 },
+    { name: "08-03 Sideboard", img: roomBedroom },
+    { name: "08-04 Display cabinet", img: heroLiving },
+    { name: "08-05 Bar cart", img: roomOffice },
+    { name: "08-06 Round table", img: roomDining },
+    { name: "08-07 Wine console", img: roomLiving2 },
+    { name: "08-08 Buffet", img: roomBedroom },
+  ],
+  "Living Room": [
+    { name: "07-04 Lounge chair", img: roomLiving2 },
+    { name: "12-09A TV cabinet", img: roomOffice },
+    { name: "07-02 Single chair", img: roomBedroom },
+    { name: "12-102 Console", img: roomDining },
+    { name: "12-12 TV cabinet", img: roomOffice },
+    { name: "12-08 Sideboard", img: roomLiving2 },
+    { name: "12-06 Media unit", img: roomDining },
+    { name: "12-05 Sideboard", img: heroLiving },
+    { name: "12-03 Console", img: roomBedroom },
+    { name: "12-02 TV cabinet", img: roomOffice },
+    { name: "10-02 Entryway", img: roomLiving2 },
+    { name: "10-01B Entryway", img: roomDining },
+  ],
+  "Office Room": [
+    { name: "05-01 Executive desk", img: roomOffice },
+    { name: "05-02 Office chair", img: roomLiving2 },
+    { name: "05-03 Bookshelf", img: roomBedroom },
+    { name: "05-04 Filing cabinet", img: roomDining },
+    { name: "05-05 Reading lamp", img: heroLiving },
+    { name: "05-06 Side table", img: roomOffice },
+  ],
+  Bedroom: [
+    { name: "03-01 King bed", img: roomBedroom },
+    { name: "03-02 Nightstand", img: roomLiving2 },
+    { name: "03-03 Wardrobe", img: roomOffice },
+    { name: "03-04 Dresser", img: roomDining },
+    { name: "03-05 Bench", img: heroLiving },
+    { name: "03-06 Mirror", img: roomBedroom },
+    { name: "03-07 Lounge chair", img: roomLiving2 },
+    { name: "03-08 Vanity", img: roomOffice },
+  ],
+  "Movie & TV room": [
+    { name: "15-01 Cinema sofa", img: roomLiving2 },
+    { name: "15-02 Recliner", img: roomOffice },
+    { name: "15-03 Media console", img: roomBedroom },
+    { name: "15-04 Side table", img: roomDining },
+  ],
+  Kitchen: [
+    { name: "20-01 Kitchen island", img: heroLiving },
+    { name: "20-02 Bar stool", img: roomDining },
+    { name: "20-03 Pantry cabinet", img: roomOffice },
+    { name: "20-04 Breakfast table", img: roomLiving2 },
+    { name: "20-05 Wall unit", img: roomBedroom },
+  ],
+  "Full-Service Design-Build": [
+    { name: "Project — Villa Como", img: heroLiving },
+    { name: "Project — Penthouse Milano", img: roomLiving2 },
+    { name: "Project — Riad Marrakech", img: roomDining },
+    { name: "Project — Hôtel Particulier", img: roomBedroom },
+  ],
+};
 
 const navLeft = ["Products", "Categories", "Stores", "About"];
 const navRight = ["Materials", "Cases", "News", "Contact"];
@@ -42,7 +91,6 @@ const categories = [
   {
     title: "FMANAR",
     items: ["Dining Room", "Living Room", "Office Room", "Bedroom", "Movie & TV room", "Kitchen", "Full-Service Design-Build"],
-    active: "Living Room",
     open: true,
   },
   {
@@ -57,12 +105,17 @@ const categories = [
   },
 ];
 
+
 function ProductsPage() {
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
     Object.fromEntries(categories.map((c) => [c.title, !!c.open])),
   );
+  const [activeCategory, setActiveCategory] = useState<string>("Living Room");
   const [page, setPage] = useState(1);
-  const totalPages = 8;
+  const products = productsByCategory[activeCategory] ?? [];
+  const pageSize = 12;
+  const totalPages = Math.max(1, Math.ceil(products.length / pageSize));
+  const pageProducts = products.slice((page - 1) * pageSize, page * pageSize);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -141,19 +194,25 @@ function ProductsPage() {
                 {openGroups[c.title] && c.items.length > 0 && (
                   <ul className="mt-4 space-y-3 border-l border-border/40 pl-4 text-sm">
                     {c.items.map((it) => {
-                      const isActive = "active" in c && c.active === it;
+                      const isActive = activeCategory === it && c.title === "FMANAR";
                       return (
                         <li key={it}>
-                          <a
-                            href="#"
-                            className={`transition ${
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (c.title === "FMANAR") {
+                                setActiveCategory(it);
+                                setPage(1);
+                              }
+                            }}
+                            className={`block w-full text-left transition ${
                               isActive
                                 ? "text-[--gold]"
                                 : "text-muted-foreground hover:text-foreground"
                             }`}
                           >
                             {it}
-                          </a>
+                          </button>
                         </li>
                       );
                     })}
@@ -166,8 +225,14 @@ function ProductsPage() {
 
         {/* Product grid */}
         <div>
+          <div className="mb-8 flex items-baseline justify-between border-b border-border/30 pb-4">
+            <h2 className="font-display text-3xl text-foreground">{activeCategory}</h2>
+            <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              {products.length} pieces
+            </span>
+          </div>
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((p) => (
+            {pageProducts.map((p) => (
               <a key={p.name} href="#" className="group block">
                 <div className="relative aspect-[4/3] overflow-hidden bg-black/40">
                   <img
