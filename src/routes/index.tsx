@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import heroLiving from "@/assets/hero-living.jpg";
 import roomBedroom from "@/assets/room-bedroom.jpg";
@@ -63,11 +63,17 @@ function Home() {
         {/* Top nav */}
         <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
           <nav className="hidden flex-1 items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
-            {navLeft.map((n) => (
-              <a key={n} href="#" className="transition-colors hover:text-[--gold]">
-                {n}
-              </a>
-            ))}
+            {navLeft.map((n) =>
+              n === "Products" ? (
+                <Link key={n} to="/products" className="transition-colors hover:text-[--gold]">
+                  {n}
+                </Link>
+              ) : (
+                <a key={n} href="#" className="transition-colors hover:text-[--gold]">
+                  {n}
+                </a>
+              ),
+            )}
           </nav>
 
           <a href="#" className="flex flex-col items-center text-white">
