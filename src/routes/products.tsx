@@ -110,8 +110,12 @@ function ProductsPage() {
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
     Object.fromEntries(categories.map((c) => [c.title, !!c.open])),
   );
+  const [activeCategory, setActiveCategory] = useState<string>("Living Room");
   const [page, setPage] = useState(1);
-  const totalPages = 8;
+  const products = productsByCategory[activeCategory] ?? [];
+  const pageSize = 12;
+  const totalPages = Math.max(1, Math.ceil(products.length / pageSize));
+  const pageProducts = products.slice((page - 1) * pageSize, page * pageSize);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -190,19 +194,25 @@ function ProductsPage() {
                 {openGroups[c.title] && c.items.length > 0 && (
                   <ul className="mt-4 space-y-3 border-l border-border/40 pl-4 text-sm">
                     {c.items.map((it) => {
-                      const isActive = "active" in c && c.active === it;
+                      const isActive = activeCategory === it && c.title === "FMANAR";
                       return (
                         <li key={it}>
-                          <a
-                            href="#"
-                            className={`transition ${
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (c.title === "FMANAR") {
+                                setActiveCategory(it);
+                                setPage(1);
+                              }
+                            }}
+                            className={`block w-full text-left transition ${
                               isActive
                                 ? "text-[--gold]"
                                 : "text-muted-foreground hover:text-foreground"
                             }`}
                           >
                             {it}
-                          </a>
+                          </button>
                         </li>
                       );
                     })}
@@ -215,8 +225,14 @@ function ProductsPage() {
 
         {/* Product grid */}
         <div>
+          <div className="mb-8 flex items-baseline justify-between border-b border-border/30 pb-4">
+            <h2 className="font-display text-3xl text-foreground">{activeCategory}</h2>
+            <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              {products.length} pieces
+            </span>
+          </div>
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((p) => (
+            {pageProducts.map((p) => (
               <a key={p.name} href="#" className="group block">
                 <div className="relative aspect-[4/3] overflow-hidden bg-black/40">
                   <img
