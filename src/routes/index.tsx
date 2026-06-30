@@ -78,7 +78,7 @@ function Home() {
 
           <a href="#" className="flex flex-col items-center text-white">
             <span className="text-[10px] tracking-[0.4em] text-white/60">MORE PHILOSOPHY</span>
-            <span className="font-display text-3xl tracking-[0.35em]">FMANAR</span>
+            <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
           </a>
 
           <nav className="hidden flex-1 items-center justify-end gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
