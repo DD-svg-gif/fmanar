@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import heroLiving from "@/assets/hero-living.jpg";
-import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
-import roomOffice from "@/assets/room-office.jpg";
 import roomLiving2 from "@/assets/room-living2.jpg";
+import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
+import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
+import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
 import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
 import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
 import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
@@ -28,11 +28,11 @@ export const Route = createFileRoute("/")({
 type Slide = { src: string; label: string; w: number; h: number };
 
 const slides: Slide[] = [
-  { src: heroLiving, label: "Living room", w: 1920, h: 1280 },
-  { src: roomLiving2, label: "Living room", w: 1200, h: 1500 },
-  { src: roomBedroom, label: "Bedroom", w: 1200, h: 1500 },
+  { src: livingNew, label: "Living room", w: 1920, h: 1280 },
+  { src: livingNew, label: "Living room", w: 1200, h: 1500 },
+  { src: bedroomNew, label: "Bedroom", w: 1200, h: 1500 },
   { src: roomDining, label: "Dining room", w: 1200, h: 1500 },
-  { src: roomOffice, label: "Office room", w: 1200, h: 1500 },
+  { src: officeNew, label: "Office room", w: 1200, h: 1500 },
 ];
 
 const navLeft = ["Products", "Categories", "Stores", "About"];
