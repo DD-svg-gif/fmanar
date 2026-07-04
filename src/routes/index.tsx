@@ -5,9 +5,6 @@ import roomLiving2 from "@/assets/room-living2.jpg";
 import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
 import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
 import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
-import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
-import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
-import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
 
 const livingNew = livingNewAsset.url;
 const bedroomNew = bedroomNewAsset.url;
