@@ -5,6 +5,13 @@ import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
 import roomOffice from "@/assets/room-office.jpg";
 import roomLiving2 from "@/assets/room-living2.jpg";
+import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
+import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
+import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
+
+const livingNew = livingNewAsset.url;
+const bedroomNew = bedroomNewAsset.url;
+const officeNew = officeNewAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
