@@ -167,10 +167,10 @@ function Home() {
       <section id="categories" className="mx-auto max-w-[1600px] px-8 pb-28">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { src: heroLiving, label: "Living", count: "24 pieces" },
-            { src: roomBedroom, label: "Bedroom", count: "18 pieces" },
+            { src: livingNew, label: "Living", count: "24 pieces" },
+            { src: bedroomNew, label: "Bedroom", count: "18 pieces" },
             { src: roomDining, label: "Dining", count: "21 pieces" },
-            { src: roomOffice, label: "Office", count: "12 pieces" },
+            { src: officeNew, label: "Office", count: "12 pieces" },
           ].map((c) => (
             <a key={c.label} href="#" className="group relative block aspect-[3/4] overflow-hidden">
               <img
