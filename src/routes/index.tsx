@@ -5,6 +5,13 @@ import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
 import roomOffice from "@/assets/room-office.jpg";
 import roomLiving2 from "@/assets/room-living2.jpg";
+import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
+import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
+import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
+
+const livingNew = livingNewAsset.url;
+const bedroomNew = bedroomNewAsset.url;
+const officeNew = officeNewAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -160,10 +167,10 @@ function Home() {
       <section id="categories" className="mx-auto max-w-[1600px] px-8 pb-28">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { src: heroLiving, label: "Living", count: "24 pieces" },
-            { src: roomBedroom, label: "Bedroom", count: "18 pieces" },
+            { src: livingNew, label: "Living", count: "24 pieces" },
+            { src: bedroomNew, label: "Bedroom", count: "18 pieces" },
             { src: roomDining, label: "Dining", count: "21 pieces" },
-            { src: roomOffice, label: "Office", count: "12 pieces" },
+            { src: officeNew, label: "Office", count: "12 pieces" },
           ].map((c) => (
             <a key={c.label} href="#" className="group relative block aspect-[3/4] overflow-hidden">
               <img
