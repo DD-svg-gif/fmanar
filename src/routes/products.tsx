@@ -78,6 +78,8 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "11-08 Modular sofa", img: lp20.url },
     { name: "11-09 Velvet lounge", img: lp21.url },
     { name: "11-10 Signature sofa", img: lp22.url },
+    { name: "11-11 Marble lounge suite", img: lp23.url },
+    { name: "11-12 Velvet chesterfield", img: lp24.url },
   ],
   "Office Room": [
     { name: "05-01 Executive desk", img: roomOffice },
