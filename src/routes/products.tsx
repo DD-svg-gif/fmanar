@@ -5,6 +5,16 @@ import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
 import roomOffice from "@/assets/room-office.jpg";
 import roomLiving2 from "@/assets/room-living2.jpg";
+import lp1 from "@/assets/living-p1.jpg.asset.json";
+import lp2 from "@/assets/living-p2.jpg.asset.json";
+import lp3 from "@/assets/living-p3.jpg.asset.json";
+import lp4 from "@/assets/living-p4.jpg.asset.json";
+import lp5 from "@/assets/living-p5.jpg.asset.json";
+import lp6 from "@/assets/living-p6.jpg.asset.json";
+import lp7 from "@/assets/living-p7.jpg.asset.json";
+import lp8 from "@/assets/living-p8.jpg.asset.json";
+import lp9 from "@/assets/living-p9.jpg.asset.json";
+import lp10 from "@/assets/living-p10.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -32,16 +42,16 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "08-08 Buffet", img: roomBedroom },
   ],
   "Living Room": [
-    { name: "07-04 Lounge chair", img: roomLiving2 },
-    { name: "12-09A TV cabinet", img: roomOffice },
-    { name: "07-02 Single chair", img: roomBedroom },
-    { name: "12-102 Console", img: roomDining },
-    { name: "12-12 TV cabinet", img: roomOffice },
-    { name: "12-08 Sideboard", img: roomLiving2 },
-    { name: "12-06 Media unit", img: roomDining },
-    { name: "12-05 Sideboard", img: heroLiving },
-    { name: "12-03 Console", img: roomBedroom },
-    { name: "12-02 TV cabinet", img: roomOffice },
+    { name: "07-04 Lounge chair", img: lp1.url },
+    { name: "12-09A TV cabinet", img: lp2.url },
+    { name: "07-02 Single chair", img: lp3.url },
+    { name: "12-102 Console", img: lp4.url },
+    { name: "12-12 TV cabinet", img: lp5.url },
+    { name: "12-08 Sideboard", img: lp6.url },
+    { name: "12-06 Media unit", img: lp7.url },
+    { name: "12-05 Sideboard", img: lp8.url },
+    { name: "12-03 Console", img: lp9.url },
+    { name: "12-02 TV cabinet", img: lp10.url },
     { name: "10-02 Entryway", img: roomLiving2 },
     { name: "10-01B Entryway", img: roomDining },
   ],
