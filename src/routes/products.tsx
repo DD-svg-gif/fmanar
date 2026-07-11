@@ -15,6 +15,8 @@ import lp7 from "@/assets/living-p7.jpg.asset.json";
 import lp8 from "@/assets/living-p8.jpg.asset.json";
 import lp9 from "@/assets/living-p9.jpg.asset.json";
 import lp10 from "@/assets/living-p10.jpg.asset.json";
+import lp11 from "@/assets/living-p11.jpg.asset.json";
+import lp12 from "@/assets/living-p12.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -52,8 +54,8 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "12-05 Sideboard", img: lp8.url },
     { name: "12-03 Console", img: lp9.url },
     { name: "12-02 TV cabinet", img: lp10.url },
-    { name: "10-02 Entryway", img: roomLiving2 },
-    { name: "10-01B Entryway", img: roomDining },
+    { name: "10-02 Entryway", img: lp11.url },
+    { name: "10-01B Entryway", img: lp12.url },
   ],
   "Office Room": [
     { name: "05-01 Executive desk", img: roomOffice },
