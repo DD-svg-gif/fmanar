@@ -5,6 +5,16 @@ import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
 import roomOffice from "@/assets/room-office.jpg";
 import roomLiving2 from "@/assets/room-living2.jpg";
+import lp1 from "@/assets/living-p1.jpg.asset.json";
+import lp2 from "@/assets/living-p2.jpg.asset.json";
+import lp3 from "@/assets/living-p3.jpg.asset.json";
+import lp4 from "@/assets/living-p4.jpg.asset.json";
+import lp5 from "@/assets/living-p5.jpg.asset.json";
+import lp6 from "@/assets/living-p6.jpg.asset.json";
+import lp7 from "@/assets/living-p7.jpg.asset.json";
+import lp8 from "@/assets/living-p8.jpg.asset.json";
+import lp9 from "@/assets/living-p9.jpg.asset.json";
+import lp10 from "@/assets/living-p10.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
