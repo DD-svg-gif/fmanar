@@ -54,8 +54,8 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "12-05 Sideboard", img: lp8.url },
     { name: "12-03 Console", img: lp9.url },
     { name: "12-02 TV cabinet", img: lp10.url },
-    { name: "10-02 Entryway", img: roomLiving2 },
-    { name: "10-01B Entryway", img: roomDining },
+    { name: "10-02 Entryway", img: lp11.url },
+    { name: "10-01B Entryway", img: lp12.url },
   ],
   "Office Room": [
     { name: "05-01 Executive desk", img: roomOffice },
