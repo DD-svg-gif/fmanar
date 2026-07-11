@@ -27,6 +27,8 @@ import lp19 from "@/assets/living-p19.jpg.asset.json";
 import lp20 from "@/assets/living-p20.jpg.asset.json";
 import lp21 from "@/assets/living-p21.jpg.asset.json";
 import lp22 from "@/assets/living-p22.jpg.asset.json";
+import lp23 from "@/assets/living-p23.jpg.asset.json";
+import lp24 from "@/assets/living-p24.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
