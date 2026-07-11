@@ -17,6 +17,16 @@ import lp9 from "@/assets/living-p9.jpg.asset.json";
 import lp10 from "@/assets/living-p10.jpg.asset.json";
 import lp11 from "@/assets/living-p11.jpg.asset.json";
 import lp12 from "@/assets/living-p12.jpg.asset.json";
+import lp13 from "@/assets/living-p13.jpg.asset.json";
+import lp14 from "@/assets/living-p14.jpg.asset.json";
+import lp15 from "@/assets/living-p15.jpg.asset.json";
+import lp16 from "@/assets/living-p16.jpg.asset.json";
+import lp17 from "@/assets/living-p17.jpg.asset.json";
+import lp18 from "@/assets/living-p18.jpg.asset.json";
+import lp19 from "@/assets/living-p19.jpg.asset.json";
+import lp20 from "@/assets/living-p20.jpg.asset.json";
+import lp21 from "@/assets/living-p21.jpg.asset.json";
+import lp22 from "@/assets/living-p22.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
