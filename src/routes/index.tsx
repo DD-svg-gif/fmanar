@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import roomDining from "@/assets/room-dining.jpg";
 import roomLiving2 from "@/assets/room-living2.jpg";
 import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
-import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
+import bedroomNewAsset from "@/assets/category-bedroom-v2.png.asset.json";
 import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
 import heroLivingV2Asset from "@/assets/hero-living-v2.jpg.asset.json";
 import heroDiningV2Asset from "@/assets/hero-dining-v2.jpg.asset.json";
