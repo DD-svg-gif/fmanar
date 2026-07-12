@@ -29,6 +29,16 @@ import lp21 from "@/assets/living-p21.jpg.asset.json";
 import lp22 from "@/assets/living-p22.jpg.asset.json";
 import lp23 from "@/assets/living-p23.jpg.asset.json";
 import lp24 from "@/assets/living-p24.jpg.asset.json";
+import lp25 from "@/assets/living-p25.jpg.asset.json";
+import lp26 from "@/assets/living-p26.jpg.asset.json";
+import lp27 from "@/assets/living-p27.jpg.asset.json";
+import lp28 from "@/assets/living-p28.jpg.asset.json";
+import lp29 from "@/assets/living-p29.jpg.asset.json";
+import lp30 from "@/assets/living-p30.jpg.asset.json";
+import lp31 from "@/assets/living-p31.jpg.asset.json";
+import lp32 from "@/assets/living-p32.jpg.asset.json";
+import lp33 from "@/assets/living-p33.jpg.asset.json";
+import lp34 from "@/assets/living-p34.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -80,6 +90,16 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "11-10 Signature sofa", img: lp22.url },
     { name: "11-11 Marble lounge suite", img: lp23.url },
     { name: "11-12 Velvet chesterfield", img: lp24.url },
+    { name: "12-01 Curved suite", img: lp25.url },
+    { name: "12-02 Modular lounge", img: lp26.url },
+    { name: "12-03 Chesterfield pair", img: lp27.url },
+    { name: "12-04 Pink salon", img: lp28.url },
+    { name: "12-05 Striped ensemble", img: lp29.url },
+    { name: "12-06 Butterfly lounge", img: lp30.url },
+    { name: "12-07 Teal accent suite", img: lp31.url },
+    { name: "12-08 Curved sofa set", img: lp32.url },
+    { name: "12-09 Tufted living set", img: lp33.url },
+    { name: "12-10 Grand sectional", img: lp34.url },
   ],
   "Office Room": [
     { name: "05-01 Executive desk", img: roomOffice },
