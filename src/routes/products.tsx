@@ -102,6 +102,8 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "12-08 Curved sofa set", img: lp32.url },
     { name: "12-09 Tufted living set", img: lp33.url },
     { name: "12-10 Grand sectional", img: lp34.url },
+    { name: "12-11 Leopard salon", img: lp35.url },
+    { name: "12-12 Fringe & noir suite", img: lp36.url },
   ],
   "Office Room": [
     { name: "05-01 Executive desk", img: roomOffice },
