@@ -5,10 +5,18 @@ import roomLiving2 from "@/assets/room-living2.jpg";
 import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
 import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
 import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
+import heroLivingV2Asset from "@/assets/hero-living-v2.jpg.asset.json";
+import heroDiningV2Asset from "@/assets/hero-dining-v2.jpg.asset.json";
+import heroBedroomV2Asset from "@/assets/hero-bedroom-v2.jpg.asset.json";
+import heroOfficeV2Asset from "@/assets/hero-office-v2.jpg.asset.json";
 
 const livingNew = livingNewAsset.url;
 const bedroomNew = bedroomNewAsset.url;
 const officeNew = officeNewAsset.url;
+const heroLiving = heroLivingV2Asset.url;
+const heroDining = heroDiningV2Asset.url;
+const heroBedroom = heroBedroomV2Asset.url;
+const heroOffice = heroOfficeV2Asset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
