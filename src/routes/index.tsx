@@ -33,11 +33,10 @@ export const Route = createFileRoute("/")({
 type Slide = { src: string; label: string; w: number; h: number };
 
 const slides: Slide[] = [
-  { src: livingNew, label: "Living room", w: 1920, h: 1280 },
-  { src: livingNew, label: "Living room", w: 1200, h: 1500 },
-  { src: bedroomNew, label: "Bedroom", w: 1200, h: 1500 },
-  { src: roomDining, label: "Dining room", w: 1200, h: 1500 },
-  { src: officeNew, label: "Office room", w: 1200, h: 1500 },
+  { src: heroLiving, label: "Living room", w: 1920, h: 1280 },
+  { src: heroDining, label: "Dining room", w: 1920, h: 1280 },
+  { src: heroBedroom, label: "Bedroom", w: 1920, h: 1280 },
+  { src: heroOffice, label: "Office room", w: 1920, h: 1280 },
 ];
 
 const navLeft = ["Products", "Categories", "Stores", "About"];
