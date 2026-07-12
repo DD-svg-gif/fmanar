@@ -39,6 +39,8 @@ import lp31 from "@/assets/living-p31.jpg.asset.json";
 import lp32 from "@/assets/living-p32.jpg.asset.json";
 import lp33 from "@/assets/living-p33.jpg.asset.json";
 import lp34 from "@/assets/living-p34.jpg.asset.json";
+import lp35 from "@/assets/living-p35.jpg.asset.json";
+import lp36 from "@/assets/living-p36.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -100,6 +102,8 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "12-08 Curved sofa set", img: lp32.url },
     { name: "12-09 Tufted living set", img: lp33.url },
     { name: "12-10 Grand sectional", img: lp34.url },
+    { name: "12-11 Leopard salon", img: lp35.url },
+    { name: "12-12 Fringe & noir suite", img: lp36.url },
   ],
   "Office Room": [
     { name: "05-01 Executive desk", img: roomOffice },
