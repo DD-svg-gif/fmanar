@@ -5,10 +5,18 @@ import roomLiving2 from "@/assets/room-living2.jpg";
 import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
 import bedroomNewAsset from "@/assets/room-bedroom-new.jpg.asset.json";
 import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
+import heroLivingV2Asset from "@/assets/hero-living-v2.jpg.asset.json";
+import heroDiningV2Asset from "@/assets/hero-dining-v2.jpg.asset.json";
+import heroBedroomV2Asset from "@/assets/hero-bedroom-v2.jpg.asset.json";
+import heroOfficeV2Asset from "@/assets/hero-office-v2.jpg.asset.json";
 
 const livingNew = livingNewAsset.url;
 const bedroomNew = bedroomNewAsset.url;
 const officeNew = officeNewAsset.url;
+const heroLiving = heroLivingV2Asset.url;
+const heroDining = heroDiningV2Asset.url;
+const heroBedroom = heroBedroomV2Asset.url;
+const heroOffice = heroOfficeV2Asset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,11 +33,10 @@ export const Route = createFileRoute("/")({
 type Slide = { src: string; label: string; w: number; h: number };
 
 const slides: Slide[] = [
-  { src: livingNew, label: "Living room", w: 1920, h: 1280 },
-  { src: livingNew, label: "Living room", w: 1200, h: 1500 },
-  { src: bedroomNew, label: "Bedroom", w: 1200, h: 1500 },
-  { src: roomDining, label: "Dining room", w: 1200, h: 1500 },
-  { src: officeNew, label: "Office room", w: 1200, h: 1500 },
+  { src: heroLiving, label: "Living room", w: 1920, h: 1280 },
+  { src: heroDining, label: "Dining room", w: 1920, h: 1280 },
+  { src: heroBedroom, label: "Bedroom", w: 1920, h: 1280 },
+  { src: heroOffice, label: "Office room", w: 1920, h: 1280 },
 ];
 
 const navLeft = ["Products", "Categories", "Stores", "About"];
