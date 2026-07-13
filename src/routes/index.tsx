@@ -225,7 +225,10 @@ function Home() {
         </div>
       </section>
 
+      <RequestInfo />
+
       {/* Footer */}
+
       <footer className="border-t border-border/40 px-8 py-16">
         <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
           <div>
