@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { RequestInfo } from "@/components/RequestInfo";
 import featuredSofaAsset from "@/assets/featured-sofa.png.asset.json";
 const roomLiving2 = featuredSofaAsset.url;
 import catLivingV3 from "@/assets/cat-living-v4.jpg.asset.json";
