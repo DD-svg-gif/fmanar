@@ -1,19 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import roomDining from "@/assets/room-dining.jpg";
 import featuredSofaAsset from "@/assets/featured-sofa.png.asset.json";
 const roomLiving2 = featuredSofaAsset.url;
-import livingNewAsset from "@/assets/room-living-new.jpg.asset.json";
-import bedroomNewAsset from "@/assets/category-bedroom-v2.png.asset.json";
-import officeNewAsset from "@/assets/room-office-new.jpg.asset.json";
+import catLivingV3 from "@/assets/cat-living-v3.webp.asset.json";
+import catBedroomV3 from "@/assets/cat-bedroom-v3.webp.asset.json";
+import catDiningV3 from "@/assets/cat-dining-v3.webp.asset.json";
+import catOfficeV3 from "@/assets/cat-office-v3.webp.asset.json";
 import heroLivingV2Asset from "@/assets/hero-living-v2.jpg.asset.json";
 import heroDiningV2Asset from "@/assets/hero-dining-v2.jpg.asset.json";
 import heroBedroomV2Asset from "@/assets/hero-bedroom-v2.jpg.asset.json";
 import heroOfficeV2Asset from "@/assets/hero-office-v2.jpg.asset.json";
 
-const livingNew = livingNewAsset.url;
-const bedroomNew = bedroomNewAsset.url;
-const officeNew = officeNewAsset.url;
+const livingNew = catLivingV3.url;
+const bedroomNew = catBedroomV3.url;
+const roomDining = catDiningV3.url;
+const officeNew = catOfficeV3.url;
 const heroLiving = heroLivingV2Asset.url;
 const heroDining = heroDiningV2Asset.url;
 const heroBedroom = heroBedroomV2Asset.url;
