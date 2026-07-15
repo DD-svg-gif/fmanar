@@ -163,7 +163,7 @@ function Home() {
           The Philosophy
         </p>
         <h2 className="mx-auto mt-6 max-w-4xl font-display text-4xl leading-tight text-foreground md:text-5xl">
-          More than furniture — a quiet study of proportion, material and light, hand-finished in the workshops of Fmanar.
+          In the heart of Foshan, Guangdong since 20115.We bring Italian artisanal excellence into a contemporary andinternational way of living.
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           Every collection is the result of a continuous dialogue between Italian craftsmanship and contemporary architecture, designed to age with grace inside the homes that hold them.
@@ -205,15 +205,15 @@ function Home() {
           <img src={roomLiving2} alt="Atelier sofa" loading="lazy" className="h-full w-full object-cover" />
         </div>
         <div>
-          <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">New Collection 2026</p>
-          <h2 className="mt-5 font-display text-5xl leading-tight">Atelier — the woven leather sofa</h2>
+          <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">NEW COLLECTION&nbsp;</p>
+          <h2 className="mt-5 font-display text-5xl leading-tight">Babylon Rack Circle sofa</h2>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Hand-woven nappa panels framed in brushed brass. A study in restraint, conceived for spaces where every line is intentional.
+            Curved, modular sofa with a solid and multilayer wood structure, padded in polyurethane and complemented by and goose feather cushions.
           </p>
           <ul className="mt-8 space-y-2 text-sm text-muted-foreground">
-            <li>— Full-grain Italian nappa leather</li>
+            <li>— Available in Custom Fabrics and Leathers</li>
             <li>— Solid kiln-dried hardwood frame</li>
-            <li>— Hand-finished satin brass</li>
+            <li>— Mirror Polished Stainless Steel Finish</li>
             <li>— Custom dimensions on request</li>
           </ul>
           <a
