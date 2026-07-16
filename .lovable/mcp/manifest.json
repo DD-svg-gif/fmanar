@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "sdk_version": "0.22.2",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "fmanar-mcp",
+      "version": "0.1.0",
+      "title": "FMANAR MCP"
+    },
+    "tools": [
+      {
+        "name": "list_categories",
+        "title": "List product categories",
+        "description": "List all FMANAR furniture product categories available on the site.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_products",
+        "title": "List products",
+        "description": "List FMANAR furniture products. Optionally filter by category (see list_categories for valid values).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "category": {
+              "description": "Optional category name, e.g. 'Living Room', 'Bedroom', 'Dining Room'.",
+              "type": "string"
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "submit_request_info",
+        "title": "Submit a Request Info inquiry",
+        "description": "Send a Request Info inquiry to the FMANAR team. Equivalent to submitting the public Request Info form on the site.",
+        "annotations": {
+          "readOnlyHint": false,
+          "openWorldHint": true
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "First name"
+            },
+            "lastName": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "Last name"
+            },
+            "email": {
+              "type": "string",
+              "maxLength": 255,
+              "format": "email",
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+            },
+            "telephone": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            },
+            "postalCode": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 20
+            },
+            "country": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            "topic": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "description": "Subject / topic of the inquiry"
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "name",
+            "lastName",
+            "email",
+            "telephone",
+            "postalCode",
+            "country",
+            "topic",
+            "message"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
