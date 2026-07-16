@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import heroLiving from "@/assets/hero-living.jpg";
 import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
@@ -43,6 +43,9 @@ import lp35 from "@/assets/living-p35.jpg.asset.json";
 import lp36 from "@/assets/living-p36.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    category: typeof search.category === "string" ? search.category : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Products — FMANAR Luxury Italian Furniture" },
@@ -53,6 +56,7 @@ export const Route = createFileRoute("/products")({
   }),
   component: ProductsPage,
 });
+
 
 type Product = { name: string; img: string };
 
@@ -167,11 +171,23 @@ const categories = [
 
 
 function ProductsPage() {
+  const search = Route.useSearch();
+  const initialCategory =
+    search.category && search.category in productsByCategory
+      ? search.category
+      : "Living Room";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
     Object.fromEntries(categories.map((c) => [c.title, !!c.open])),
   );
-  const [activeCategory, setActiveCategory] = useState<string>("Living Room");
+  const [activeCategory, setActiveCategory] = useState<string>(initialCategory);
   const [page, setPage] = useState(1);
+  useEffect(() => {
+    if (search.category && search.category in productsByCategory) {
+      setActiveCategory(search.category);
+      setPage(1);
+    }
+  }, [search.category]);
+
   const products = productsByCategory[activeCategory] ?? [];
   const pageSize = 12;
   const totalPages = Math.max(1, Math.ceil(products.length / pageSize));

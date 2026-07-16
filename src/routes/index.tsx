@@ -174,12 +174,17 @@ function Home() {
       <section id="categories" className="mx-auto max-w-[1600px] px-8 pb-28">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { src: livingNew, label: "Living", count: "24 pieces" },
-            { src: bedroomNew, label: "Bedroom", count: "18 pieces" },
-            { src: roomDining, label: "Dining", count: "21 pieces" },
-            { src: officeNew, label: "Office", count: "12 pieces" },
+            { src: livingNew, label: "Living", count: "24 pieces", cat: "Living Room" },
+            { src: bedroomNew, label: "Bedroom", count: "18 pieces", cat: "Bedroom" },
+            { src: roomDining, label: "Dining", count: "21 pieces", cat: "Dining Room" },
+            { src: officeNew, label: "Office", count: "12 pieces", cat: "Office Room" },
           ].map((c) => (
-            <a key={c.label} href="#" className="group relative block aspect-[3/4] overflow-hidden">
+            <Link
+              key={c.label}
+              to="/products"
+              search={{ category: c.cat }}
+              className="group relative block aspect-[3/4] overflow-hidden"
+            >
               <img
                 src={c.src}
                 alt={c.label}
@@ -194,8 +199,9 @@ function Home() {
                   Discover →
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
+
         </div>
       </section>
 
