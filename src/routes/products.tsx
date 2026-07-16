@@ -171,11 +171,23 @@ const categories = [
 
 
 function ProductsPage() {
+  const search = Route.useSearch();
+  const initialCategory =
+    search.category && search.category in productsByCategory
+      ? search.category
+      : "Living Room";
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
     Object.fromEntries(categories.map((c) => [c.title, !!c.open])),
   );
-  const [activeCategory, setActiveCategory] = useState<string>("Living Room");
+  const [activeCategory, setActiveCategory] = useState<string>(initialCategory);
   const [page, setPage] = useState(1);
+  useEffect(() => {
+    if (search.category && search.category in productsByCategory) {
+      setActiveCategory(search.category);
+      setPage(1);
+    }
+  }, [search.category]);
+
   const products = productsByCategory[activeCategory] ?? [];
   const pageSize = 12;
   const totalPages = Math.max(1, Math.ceil(products.length / pageSize));
