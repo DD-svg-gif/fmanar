@@ -43,6 +43,9 @@ import lp35 from "@/assets/living-p35.jpg.asset.json";
 import lp36 from "@/assets/living-p36.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    category: typeof search.category === "string" ? search.category : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Products — FMANAR Luxury Italian Furniture" },
@@ -53,6 +56,7 @@ export const Route = createFileRoute("/products")({
   }),
   component: ProductsPage,
 });
+
 
 type Product = { name: string; img: string };
 
