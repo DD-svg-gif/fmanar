@@ -41,6 +41,14 @@ import lp33 from "@/assets/living-p33.jpg.asset.json";
 import lp34 from "@/assets/living-p34.jpg.asset.json";
 import lp35 from "@/assets/living-p35.jpg.asset.json";
 import lp36 from "@/assets/living-p36.jpg.asset.json";
+import bed1 from "@/assets/bed-dsc06049.jpg.asset.json";
+import bed2 from "@/assets/bed-dsc06051.jpg.asset.json";
+import bed3 from "@/assets/bed-dsc06055-1.jpg.asset.json";
+import bed4 from "@/assets/bed-dsc06058-1.jpg.asset.json";
+import bed5 from "@/assets/bed-dsc06062.jpg.asset.json";
+import bed6 from "@/assets/bed-dsc06064-1.jpg.asset.json";
+import bed7 from "@/assets/bed-dsc06067.jpg.asset.json";
+import bed8 from "@/assets/bed-dsc06070.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -118,14 +126,14 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "05-06 Side table", img: roomOffice },
   ],
   Bedroom: [
-    { name: "03-01 King bed", img: roomBedroom },
-    { name: "03-02 Nightstand", img: roomLiving2 },
-    { name: "03-03 Wardrobe", img: roomOffice },
-    { name: "03-04 Dresser", img: roomDining },
-    { name: "03-05 Bench", img: heroLiving },
-    { name: "03-06 Mirror", img: roomBedroom },
-    { name: "03-07 Lounge chair", img: roomLiving2 },
-    { name: "03-08 Vanity", img: roomOffice },
+    { name: "03-01 King bed", img: bed1.url },
+    { name: "03-02 Nightstand", img: bed2.url },
+    { name: "03-03 Wardrobe", img: bed3.url },
+    { name: "03-04 Dresser", img: bed4.url },
+    { name: "03-05 Bench", img: bed5.url },
+    { name: "03-06 Mirror", img: bed6.url },
+    { name: "03-07 Lounge chair", img: bed7.url },
+    { name: "03-08 Vanity", img: bed8.url },
   ],
   "Movie & TV room": [
     { name: "15-01 Cinema sofa", img: roomLiving2 },
