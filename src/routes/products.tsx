@@ -49,6 +49,10 @@ import bed5 from "@/assets/bed-dsc06062.jpg.asset.json";
 import bed6 from "@/assets/bed-dsc06064-1.jpg.asset.json";
 import bed7 from "@/assets/bed-dsc06067.jpg.asset.json";
 import bed8 from "@/assets/bed-dsc06070.jpg.asset.json";
+import bed9 from "@/assets/bed-dsc06073-1.jpg.asset.json";
+import bed10 from "@/assets/bed-dsc06081.jpg.asset.json";
+import bed11 from "@/assets/bed-dsc06083.jpg.asset.json";
+import bed12 from "@/assets/bed-dsc06087.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   validateSearch: (search: Record<string, unknown>) => ({
