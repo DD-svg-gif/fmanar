@@ -138,6 +138,10 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "03-06 Mirror", img: bed6.url },
     { name: "03-07 Lounge chair", img: bed7.url },
     { name: "03-08 Vanity", img: bed8.url },
+    { name: "03-09 Bed suite", img: bed9.url },
+    { name: "03-10 Headboard", img: bed10.url },
+    { name: "03-11 Bedside set", img: bed11.url },
+    { name: "03-12 Bedroom ensemble", img: bed12.url },
   ],
   "Movie & TV room": [
     { name: "15-01 Cinema sofa", img: roomLiving2 },
