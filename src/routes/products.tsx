@@ -46,7 +46,7 @@ import bed2 from "@/assets/bed-dsc06051.jpg.asset.json";
 import bed3 from "@/assets/bed-dsc06055-1.jpg.asset.json";
 import bed4 from "@/assets/bed-dsc06058-1.jpg.asset.json";
 import bed5 from "@/assets/bed-dsc06062.jpg.asset.json";
-import bed6 from "@/assets/bed-dsc06064-1.jpg.asset.json";
+import bed6 from "@/assets/bed-dsc06064-v2.jpg.asset.json";
 import bed7 from "@/assets/bed-dsc06067.jpg.asset.json";
 import bed8 from "@/assets/bed-dsc06070.jpg.asset.json";
 import bed9 from "@/assets/bed-dsc06073-1.jpg.asset.json";
