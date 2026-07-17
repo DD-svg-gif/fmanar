@@ -49,6 +49,10 @@ import bed5 from "@/assets/bed-dsc06062.jpg.asset.json";
 import bed6 from "@/assets/bed-dsc06064-1.jpg.asset.json";
 import bed7 from "@/assets/bed-dsc06067.jpg.asset.json";
 import bed8 from "@/assets/bed-dsc06070.jpg.asset.json";
+import bed9 from "@/assets/bed-dsc06073-1.jpg.asset.json";
+import bed10 from "@/assets/bed-dsc06081.jpg.asset.json";
+import bed11 from "@/assets/bed-dsc06083.jpg.asset.json";
+import bed12 from "@/assets/bed-dsc06087.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -134,6 +138,10 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "03-06 Mirror", img: bed6.url },
     { name: "03-07 Lounge chair", img: bed7.url },
     { name: "03-08 Vanity", img: bed8.url },
+    { name: "03-09 Bed suite", img: bed9.url },
+    { name: "03-10 Headboard", img: bed10.url },
+    { name: "03-11 Bedside set", img: bed11.url },
+    { name: "03-12 Bedroom ensemble", img: bed12.url },
   ],
   "Movie & TV room": [
     { name: "15-01 Cinema sofa", img: roomLiving2 },
