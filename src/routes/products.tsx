@@ -146,6 +146,10 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "03-10 Headboard", img: bed10.url },
     { name: "03-11 Bedside set", img: bed11.url },
     { name: "03-12 Bedroom ensemble", img: bed12.url },
+    { name: "03-13 Panel bed", img: bed13.url },
+    { name: "03-14 Quilted headboard bed", img: bed14.url },
+    { name: "03-15 Golden accent bed", img: bed15.url },
+    { name: "03-16 Onyx leather bed", img: bed16.url },
   ],
   "Movie & TV room": [
     { name: "15-01 Cinema sofa", img: roomLiving2 },
