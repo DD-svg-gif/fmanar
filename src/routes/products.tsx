@@ -57,6 +57,9 @@ import bed13 from "@/assets/bed-dsc06089.jpg.asset.json";
 import bed14 from "@/assets/bed-dsc06094.jpg.asset.json";
 import bed15 from "@/assets/bed-dsc06096.jpg.asset.json";
 import bed16 from "@/assets/bed-dsc06097.jpg.asset.json";
+import office1 from "@/assets/office-dsc06116.jpg.asset.json";
+import office2 from "@/assets/office-dsc06117.jpg.asset.json";
+import office3 from "@/assets/office-dsc06125.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -126,9 +129,9 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "12-12 Fringe & noir suite", img: lp36.url },
   ],
   "Office Room": [
-    { name: "05-01 Executive desk", img: roomOffice },
-    { name: "05-02 Office chair", img: roomLiving2 },
-    { name: "05-03 Bookshelf", img: roomBedroom },
+    { name: "05-01 Executive desk", img: office1.url },
+    { name: "05-02 Office chair", img: office2.url },
+    { name: "05-03 Bookshelf", img: office3.url },
     { name: "05-04 Filing cabinet", img: roomDining },
     { name: "05-05 Reading lamp", img: heroLiving },
     { name: "05-06 Side table", img: roomOffice },
