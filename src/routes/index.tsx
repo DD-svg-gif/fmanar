@@ -97,7 +97,7 @@ function Home() {
 
           <nav className="hidden flex-1 items-center justify-end gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navRight.map((n) => (
-              <a key={n} href="#" className="transition-colors hover:text-[--gold]">
+              <a key={n} href="#" className="whitespace-nowrap transition-colors hover:text-[--gold]">
                 {n}
               </a>
             ))}
