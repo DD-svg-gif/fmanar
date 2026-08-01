@@ -76,7 +76,7 @@ function Home() {
 
         {/* Top nav */}
         <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
-          <nav className="hidden flex-1 items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-start gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
                 <Link key={n} to="/products" className="transition-colors hover:text-[--gold]">
