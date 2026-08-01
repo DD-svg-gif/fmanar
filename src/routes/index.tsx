@@ -211,6 +211,12 @@ function Home() {
         </div>
       </section>
 
+      <AboutIntro />
+      <Customization />
+      <Cases />
+
+
+
       {/* Featured product */}
       <section className="grid grid-cols-1 items-center gap-12 border-t border-border/40 px-8 py-24 md:grid-cols-2 md:gap-20 md:px-20">
         <div className="relative aspect-[4/5] overflow-hidden bg-black">
