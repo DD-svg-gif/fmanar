@@ -79,13 +79,13 @@ function Home() {
           <nav className="hidden flex-1 basis-0 items-center justify-start gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
-                <Link key={n} to="/products" className="transition-colors hover:text-[--gold]">
+                <Link key={n} to="/products" className="whitespace-nowrap transition-colors hover:text-[--gold]">
                   {n}
                 </Link>
               ) : (
-                <a key={n} href="#" className="transition-colors hover:text-[--gold]">
+                <Link key={n} to="/" className="whitespace-nowrap transition-colors hover:text-[--gold]">
                   {n}
-                </a>
+                </Link>
               ),
             )}
           </nav>
@@ -96,11 +96,17 @@ function Home() {
           </a>
 
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
-            {navRight.map((n) => (
-              <a key={n} href="#" className="whitespace-nowrap transition-colors hover:text-[--gold]">
-                {n}
-              </a>
-            ))}
+            {navRight.map((n) =>
+              n === "About us" ? (
+                <Link key={n} to="/about" className="whitespace-nowrap transition-colors hover:text-[--gold]">
+                  {n}
+                </Link>
+              ) : (
+                <a key={n} href="#request-info" className="whitespace-nowrap transition-colors hover:text-[--gold]">
+                  {n}
+                </a>
+              ),
+            )}
           </nav>
 
           <div className="ml-8 flex shrink-0 items-center gap-4 text-white/80 md:ml-12">
