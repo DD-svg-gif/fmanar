@@ -76,7 +76,7 @@ function Home() {
 
         {/* Top nav */}
         <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
-          <nav className="hidden flex-1 items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-start gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
                 <Link key={n} to="/products" className="transition-colors hover:text-[--gold]">
@@ -90,12 +90,12 @@ function Home() {
             )}
           </nav>
 
-          <a href="#" className="flex flex-col items-center text-white">
+          <a href="#" className="flex shrink-0 flex-col items-center px-10 text-white">
             <span className="text-[10px] tracking-[0.4em] text-white/60">MORE PHILOSOPHY</span>
             <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
           </a>
 
-          <nav className="hidden flex-1 items-center justify-end gap-8 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navRight.map((n) => (
               <a key={n} href="#" className="whitespace-nowrap transition-colors hover:text-[--gold]">
                 {n}
@@ -103,7 +103,7 @@ function Home() {
             ))}
           </nav>
 
-          <div className="ml-6 flex items-center gap-4 text-white/80 md:ml-8">
+          <div className="ml-8 flex shrink-0 items-center gap-4 text-white/80 md:ml-12">
             <button aria-label="Search" className="transition hover:text-[--gold]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
