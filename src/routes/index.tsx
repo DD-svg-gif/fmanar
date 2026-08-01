@@ -42,8 +42,8 @@ const slides: Slide[] = [
   { src: heroOffice, label: "Office room", w: 1920, h: 1280 },
 ];
 
-const navLeft = ["Products", "Categories", "Stores", "About"];
-const navRight = ["Materials", "Cases", "News", "Contact"];
+const navLeft = ["Products", "Home", "Stores", "About"];
+const navRight = ["About us", "Contact us", "News", "Contact"];
 
 function Home() {
   const [i, setI] = useState(0);
