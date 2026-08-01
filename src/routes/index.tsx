@@ -237,7 +237,11 @@ function Home() {
         </div>
       </section>
 
-      <RequestInfo />
+      <WhyChooseUs />
+
+      <div id="request-info">
+        <RequestInfo />
+      </div>
 
       {/* Footer */}
 
