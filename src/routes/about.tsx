@@ -82,9 +82,6 @@ function AboutPage() {
       <Customization />
       <Cases />
       <WhyChooseUs />
-      <div id="request-info">
-        <RequestInfo />
-      </div>
 
       <footer className="border-t border-border/40 px-8 py-12">
         <p className="mx-auto max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
