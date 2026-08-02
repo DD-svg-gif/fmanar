@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import catLiving from "@/assets/cat-living-v4.jpg.asset.json";
 import catBedroom from "@/assets/cat-bedroom-v4.jpg.asset.json";
