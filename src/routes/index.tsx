@@ -97,17 +97,15 @@ function Home() {
           </a>
 
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
-            {navRight.map((n) =>
-              n === "About us" ? (
-                <Link key={n} to="/about" className="whitespace-nowrap transition-colors hover:text-[--gold]">
-                  {n}
-                </Link>
-              ) : (
-                <a key={n} href="#request-info" className="whitespace-nowrap transition-colors hover:text-[--gold]">
-                  {n}
-                </a>
-              ),
-            )}
+            {navRight.map((n) => (
+              <Link
+                key={n}
+                to={n === "About us" ? "/about" : "/contact"}
+                className="whitespace-nowrap transition-colors hover:text-[--gold]"
+              >
+                {n}
+              </Link>
+            ))}
           </nav>
 
           <div className="ml-8 flex shrink-0 items-center gap-4 text-white/80 md:ml-12">
