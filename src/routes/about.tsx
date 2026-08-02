@@ -31,7 +31,7 @@ function linkFor(label: string) {
   if (label === "Home") return "/";
   if (label === "Products") return "/products";
   if (label === "About us") return "/about";
-  return null;
+  return "/contact";
 }
 
 function AboutPage() {
@@ -57,18 +57,11 @@ function AboutPage() {
           </Link>
 
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
-            {navRight.map((n) => {
-              const to = linkFor(n);
-              return to ? (
-                <Link key={n} to={to} className="whitespace-nowrap transition-colors hover:text-[--gold]">
-                  {n}
-                </Link>
-              ) : (
-                <a key={n} href="#request-info" className="whitespace-nowrap transition-colors hover:text-[--gold]">
-                  {n}
-                </a>
-              );
-            })}
+            {navRight.map((n) => (
+              <Link key={n} to={linkFor(n)} className="whitespace-nowrap transition-colors hover:text-[--gold]">
+                {n}
+              </Link>
+            ))}
           </nav>
         </header>
 
