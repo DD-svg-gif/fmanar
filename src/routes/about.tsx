@@ -31,7 +31,7 @@ function linkFor(label: string) {
   if (label === "Home") return "/";
   if (label === "Products") return "/products";
   if (label === "About us") return "/about";
-  return null;
+  return "/contact";
 }
 
 function AboutPage() {
