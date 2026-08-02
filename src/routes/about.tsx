@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AboutIntro, Cases, Customization, WhyChooseUs } from "@/components/SiteSections";
-import { RequestInfo } from "@/components/RequestInfo";
+
 import heroLiving from "@/assets/hero-living-v2.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
