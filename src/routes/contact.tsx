@@ -123,6 +123,24 @@ function ContactPage() {
         </div>
       </section>
 
+      {/* Map */}
+      <section className="px-6 pb-24 md:px-16 lg:px-24">
+        <div className="mx-auto max-w-[1400px]">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">Find us</p>
+          <div className="mt-6 overflow-hidden border border-border/40">
+            <iframe
+              title="FMANAR location — Longjiang Town, Shunde District, Foshan"
+              src="https://www.google.com/maps?q=No.%209%20Zhenxing%20Road%2C%20Mailang%20Village%2C%20Longjiang%20Town%2C%20Shunde%20District%2C%20Foshan%2C%20Guangdong%2C%20China&z=15&output=embed"
+              className="h-[380px] w-full md:h-[460px]"
+              style={{ border: 0 }}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
+
       <div id="request-info">
         <RequestInfo />
       </div>
