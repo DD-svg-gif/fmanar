@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import catLiving from "@/assets/cat-living-v4.jpg.asset.json";
 import catBedroom from "@/assets/cat-bedroom-v4.jpg.asset.json";
@@ -51,7 +51,7 @@ export function AboutIntro() {
 
 /* ---------------- Whole-house customization ---------------- */
 
-const CUSTOM_TABS = [
+const CUSTOM_ROWS = [
   {
     kicker: "Exquisite",
     title: "Sofa",
@@ -66,7 +66,7 @@ const CUSTOM_TABS = [
   },
   {
     kicker: "Fresh",
-    title: "Dining",
+    title: "Dining table",
     img: catDining.url,
     text: "Noble proportions with bold lines, alternating polished stainless steel, bevelled mirror and hand-finished surfaces that reflect the room's finest elements.",
   },
@@ -84,46 +84,97 @@ const CUSTOM_TABS = [
   },
 ];
 
-export function Customization() {
-  const [active, setActive] = useState(0);
-  const t = CUSTOM_TABS[active];
+export function Reveal({
+  children,
+  delay = 0,
+  from = "up",
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  from?: "up" | "left" | "right";
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [shown, setShown] = useState(false);
 
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const hidden =
+    from === "left" ? "-translate-x-10 opacity-0" : from === "right" ? "translate-x-10 opacity-0" : "translate-y-10 opacity-0";
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-[1100ms] ease-out ${shown ? "translate-x-0 translate-y-0 opacity-100" : hidden} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function Customization() {
   return (
     <section className="border-t border-border/40 px-8 py-24">
       <div className="mx-auto max-w-[1600px]">
-        <div className="text-center">
+        <Reveal className="text-center">
           <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">Whole-house customization</p>
           <h2 className="mt-5 font-display text-4xl md:text-5xl">Everything covered, one exclusive solution</h2>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-8 border-b border-border/40 pb-5">
-          {CUSTOM_TABS.map((tab, idx) => (
-            <button
-              key={tab.title}
-              onClick={() => setActive(idx)}
-              className={`whitespace-nowrap text-[11px] uppercase tracking-[0.3em] transition-colors ${
-                idx === active ? "text-[--gold]" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {tab.title}
-            </button>
-          ))}
-        </div>
+        <div className="mt-16 space-y-16 md:space-y-24">
+          {CUSTOM_ROWS.map((r, idx) => {
+            const textLeft = idx % 2 === 1;
+            return (
+              <Reveal key={r.title} from={textLeft ? "right" : "left"}>
+                <div className="grid items-center gap-6 md:grid-cols-12 md:gap-0">
+                  <div
+                    className={`relative overflow-hidden md:col-span-8 ${
+                      textLeft ? "md:order-2 md:col-start-5" : "md:order-1"
+                    }`}
+                  >
+                    <img
+                      src={r.img}
+                      alt={r.title}
+                      loading="lazy"
+                      className="aspect-[16/9] w-full object-cover transition-transform duration-[1600ms] ease-out hover:scale-[1.04]"
+                    />
+                  </div>
 
-        <div className="mt-12 grid items-center gap-12 md:grid-cols-2 md:gap-20">
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <img src={t.img} alt={t.title} loading="lazy" className="h-full w-full object-cover" />
-          </div>
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.35em] text-[--gold]">{t.kicker}</p>
-            <h3 className="mt-4 font-display text-4xl">{t.title}</h3>
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-muted-foreground">{t.text}</p>
-          </div>
+                  <div
+                    className={`relative z-10 border border-border/40 bg-background/95 p-8 backdrop-blur md:col-span-5 md:p-10 ${
+                      textLeft ? "md:order-1 md:col-start-1 md:row-start-1 md:mr-[-8%]" : "md:order-2 md:col-start-8 md:row-start-1 md:ml-[-8%]"
+                    }`}
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.35em] text-[--gold]">{r.kicker}</p>
+                    <h3 className="mt-3 font-display text-3xl md:text-4xl">{r.title}</h3>
+                    <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{r.text}</p>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ---------------- Cases ---------------- */
 
