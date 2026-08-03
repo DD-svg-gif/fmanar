@@ -14,8 +14,8 @@ import office1 from "@/assets/office-dsc06116.jpg.asset.json";
 
 const STATS = [
   { v: "20+", l: "Years of experience" },
-  { v: "15,000+", l: "m² premium showroom" },
-  { v: "30,000+", l: "m² production base" },
+  { v: "12,000+", l: "m² premium showroom" },
+  { v: "20,000+", l: "m² production base" },
 ];
 
 export function AboutIntro() {
@@ -28,12 +28,10 @@ export function AboutIntro() {
         <div>
           <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">About us</p>
           <h2 className="mt-5 font-display text-4xl leading-tight md:text-5xl">
-            High-end bespoke furniture with personalized design
+            High-end bespoke furniture&nbsp;
           </h2>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            FMANAR is a modern furniture maison integrating research, production, marketing and
-            service. From an independent production base and a premium showroom, we specialise in
-            high-end custom furniture for villas, luxury apartments and star-rated hotels.
+            Established in 2015, Foshan Fmanar Furniture is located in Longjiang Town, Shunde District, Foshan City, Guangdong Province—the furniture manufacturing center of China. As a modern furniture manufacturer integrating R&D, production, sales, and service, the company boasts an independent production base of over 20,000 square meters and a high-end showroom of over 12,000 square meters. With advanced production lines, an experienced technical team, and outstanding management talent, we focus on providing customized furniture for high-end venues such as villas, luxury apartments, and star-rated hotels.
           </p>
           <div className="mt-10 grid grid-cols-3 gap-6 border-t border-border/40 pt-8">
             {STATS.map((s) => (
@@ -56,7 +54,7 @@ const CUSTOM_ROWS = [
     kicker: "Exquisite",
     title: "Sofa",
     img: lp1.url,
-    text: "A true manifesto of modern living. The design plays on contrasts — solids and voids, softness and structure, light and shadow — creating a piece in dialogue with its surroundings.",
+    text: "An integrated solution. This sectional sofa is a prime example of understated luxury living. The design cleverly utilizes contrasts—solid and void, soft and hard, light and shadow—to create a piece of furniture that harmonizes with its surroundings.",
   },
   {
     kicker: "Perfect match",
@@ -68,19 +66,19 @@ const CUSTOM_ROWS = [
     kicker: "Fresh",
     title: "Dining table",
     img: catDining.url,
-    text: "Noble proportions with bold lines, alternating polished stainless steel, bevelled mirror and hand-finished surfaces that reflect the room's finest elements.",
+    text: "With its clean lines and sophisticated finish, it balances a grand aesthetic with durable quality, imbuing everyday life with a refined and elegant touch of understated luxury.",
   },
   {
     kicker: "Serene",
     title: "Bedroom",
     img: bed1.url,
-    text: "Upholstered volumes and quiet detailing, conceived for comfortable and elegant bedrooms where every line is intentional.",
+    text: "This headboard perfectly blends exquisite craftsman ship with modern design, creating a new level of sophistication. Its seamless integration infuses a comfortable and elegant bedroom with fresh, modern vitality.",
   },
   {
     kicker: "Focused",
     title: "Office",
     img: office1.url,
-    text: "Solid structures and warm veneers shaped for spaces of concentration, with bespoke dimensions available on request.",
+    text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics, and the neat curved surface replicates Bugatti's iconic body lines, creating a sense of strength and hidden luxury for the office space.",
   },
 ];
 
