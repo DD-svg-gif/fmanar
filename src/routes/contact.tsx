@@ -60,7 +60,7 @@ function ContactPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
 
         <header className="absolute inset-x-0 top-0 z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
-          <nav className="hidden flex-1 basis-0 items-center justify-start gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) => (
               <Link key={n} to={linkFor(n)} className="whitespace-nowrap transition-colors hover:text-[--gold]">
                 {n}
@@ -73,7 +73,7 @@ function ContactPage() {
             <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
           </Link>
 
-          <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navRight.map((n) => (
               <Link key={n} to={linkFor(n)} className="whitespace-nowrap transition-colors hover:text-[--gold]">
                 {n}
