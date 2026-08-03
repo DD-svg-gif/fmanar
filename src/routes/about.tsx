@@ -67,7 +67,7 @@ function AboutPage() {
 
         <div className="absolute inset-x-0 bottom-16 z-10 text-center">
           <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">About us</p>
-          <h1 className="mt-4 font-display text-5xl text-white md:text-6xl">The FMANAR maison</h1>
+          <h1 className="mt-4 font-display text-5xl text-white md:text-6xl">The FMANAR HOME</h1>
         </div>
       </section>
 
