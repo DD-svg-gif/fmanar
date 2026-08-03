@@ -176,8 +176,8 @@ const productsByCategory: Record<string, Product[]> = {
   ],
 };
 
-const navLeft = ["Products", "Categories", "Stores", "About"];
-const navRight = ["Materials", "Cases", "News", "Contact"];
+const navLeft = ["Home", "Products"];
+const navRight = ["About us", "Contact us"];
 
 const categories = [
   {
@@ -226,34 +226,38 @@ function ProductsPage() {
       {/* Top nav — fixed at top */}
       <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
-          <nav className="hidden flex-1 items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-start gap-12 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
-                <Link key={n} to="/products" className="text-[--gold]">
+                <Link key={n} to="/products" className="whitespace-nowrap text-[--gold]">
                   {n}
                 </Link>
               ) : (
-                <a key={n} href="/" className="transition-colors hover:text-[--gold]">
+                <Link key={n} to="/" className="whitespace-nowrap transition-colors hover:text-[--gold]">
                   {n}
-                </a>
+                </Link>
               ),
             )}
           </nav>
 
-          <Link to="/" className="flex flex-col items-center text-foreground">
+          <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-foreground">
             <span className="text-[10px] tracking-[0.4em] text-muted-foreground">MORE PHILOSOPHY</span>
-            <span className="font-display text-2xl tracking-[0.35em]">&nbsp;FMANAR</span>
+            <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
           </Link>
 
-          <nav className="hidden flex-1 items-center justify-end gap-8 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navRight.map((n) => (
-              <a key={n} href="/" className="transition-colors hover:text-[--gold]">
+              <Link
+                key={n}
+                to={n === "About us" ? "/about" : "/contact"}
+                className="whitespace-nowrap transition-colors hover:text-[--gold]"
+              >
                 {n}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          <div className="ml-6 flex items-center gap-4 text-foreground/80 md:ml-8">
+          <div className="ml-8 flex shrink-0 items-center gap-4 text-foreground/80 md:ml-12">
             <button aria-label="Search" className="transition hover:text-[--gold]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="11" cy="11" r="7" />
