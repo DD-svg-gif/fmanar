@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import heroLiving from "@/assets/hero-living.jpg";
+import productsBanner from "@/assets/products-banner.jpg.asset.json";
 import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
 import roomOffice from "@/assets/room-office.jpg";
@@ -267,7 +268,7 @@ function ProductsPage() {
 
       {/* Banner */}
       <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden pt-[72px]">
-        <img src={heroLiving} alt="Products banner" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={productsBanner.url} alt="Products banner" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
 
