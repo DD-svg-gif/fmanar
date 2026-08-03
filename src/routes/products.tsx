@@ -176,8 +176,8 @@ const productsByCategory: Record<string, Product[]> = {
   ],
 };
 
-const navLeft = ["Products", "Categories", "Stores", "About"];
-const navRight = ["Materials", "Cases", "News", "Contact"];
+const navLeft = ["Home", "Products"];
+const navRight = ["About us", "Contact us"];
 
 const categories = [
   {
