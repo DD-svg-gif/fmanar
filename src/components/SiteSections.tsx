@@ -139,7 +139,7 @@ export function Customization() {
 
         <div className="mt-16 space-y-16 md:space-y-24">
           {CUSTOM_ROWS.map((r, idx) => {
-            const textLeft = idx % 2 === 1;
+            const textLeft = idx === 0 || idx % 2 === 1;
             return (
               <Reveal key={r.title} from={textLeft ? "right" : "left"}>
                 <div className="grid items-center gap-6 md:grid-cols-12 md:gap-0">
