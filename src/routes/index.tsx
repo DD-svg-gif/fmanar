@@ -77,7 +77,7 @@ function Home() {
 
         {/* Top nav */}
         <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
-          <nav className="hidden flex-1 basis-0 items-center justify-start gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
                 <Link key={n} to="/products" className="whitespace-nowrap transition-colors hover:text-[--gold]">
@@ -96,7 +96,7 @@ function Home() {
             <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
           </a>
 
-          <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navRight.map((n) => (
               <Link
                 key={n}

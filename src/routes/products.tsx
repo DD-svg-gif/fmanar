@@ -226,7 +226,7 @@ function ProductsPage() {
       {/* Top nav — fixed at top */}
       <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
-          <nav className="hidden flex-1 basis-0 items-center justify-start gap-12 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
                 <Link key={n} to="/products" className="whitespace-nowrap text-[--gold]">
@@ -245,7 +245,7 @@ function ProductsPage() {
             <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
           </Link>
 
-          <nav className="hidden flex-1 basis-0 items-center justify-end gap-12 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
+          <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navRight.map((n) => (
               <Link
                 key={n}
