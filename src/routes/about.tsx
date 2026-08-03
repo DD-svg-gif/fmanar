@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AboutIntro, Cases, Customization, WhyChooseUs } from "@/components/SiteSections";
+import { AboutIntro, Customization, WhyChooseUs } from "@/components/SiteSections";
 
 import heroLiving from "@/assets/hero-living-v2.jpg.asset.json";
 
@@ -73,7 +73,7 @@ function AboutPage() {
 
       <AboutIntro />
       <Customization />
-      <Cases />
+      
       <WhyChooseUs />
 
       <footer className="border-t border-border/40 px-8 py-12">
