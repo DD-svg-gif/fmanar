@@ -6,6 +6,14 @@ import roomBedroom from "@/assets/room-bedroom.jpg";
 import roomDining from "@/assets/room-dining.jpg";
 import roomOffice from "@/assets/room-office.jpg";
 import roomLiving2 from "@/assets/room-living2.jpg";
+import dn1 from "@/assets/dine-dsc06100.jpg.asset.json";
+import dn2 from "@/assets/dine-dsc06104.jpg.asset.json";
+import dn3 from "@/assets/dine-dsc06111.jpg.asset.json";
+import dn4 from "@/assets/dine-dsc06113.jpg.asset.json";
+import dn5 from "@/assets/dine-dsc06155.jpg.asset.json";
+import dn6 from "@/assets/dine-dsc06156.jpg.asset.json";
+import dn7 from "@/assets/dine-dsc06164_1.jpg.asset.json";
+import dn8 from "@/assets/dine-wps.jpg.asset.json";
 import lp1 from "@/assets/living-p1.jpg.asset.json";
 import lp2 from "@/assets/living-p2.jpg.asset.json";
 import lp3 from "@/assets/living-p3.jpg.asset.json";
@@ -82,14 +90,14 @@ type Product = { name: string; img: string };
 
 const productsByCategory: Record<string, Product[]> = {
   "Dining Room": [
-    { name: "08-01 Dining table", img: roomDining },
-    { name: "08-02 Dining chair", img: roomLiving2 },
-    { name: "08-03 Sideboard", img: roomBedroom },
-    { name: "08-04 Display cabinet", img: heroLiving },
-    { name: "08-05 Bar cart", img: roomOffice },
-    { name: "08-06 Round table", img: roomDining },
-    { name: "08-07 Wine console", img: roomLiving2 },
-    { name: "08-08 Buffet", img: roomBedroom },
+    { name: "08-01 Dining table", img: dn1.url },
+    { name: "08-02 Dining chair", img: dn2.url },
+    { name: "08-03 Sideboard", img: dn3.url },
+    { name: "08-04 Display cabinet", img: dn4.url },
+    { name: "08-05 Bar cart", img: dn5.url },
+    { name: "08-06 Round table", img: dn6.url },
+    { name: "08-07 Wine console", img: dn7.url },
+    { name: "08-08 Buffet", img: dn8.url },
   ],
   "Living Room": [
     { name: "07-04 Lounge chair", img: lp1.url },
