@@ -141,9 +141,9 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "05-01 Executive desk", img: office1.url },
     { name: "05-02 Office chair", img: office2.url },
     { name: "05-03 Bookshelf", img: office3.url },
-    { name: "05-04 Filing cabinet", img: roomDining },
-    { name: "05-05 Reading lamp", img: heroLiving },
-    { name: "05-06 Side table", img: roomOffice },
+    { name: "05-04 Filing cabinet", img: office4.url },
+    { name: "05-05 Reading lamp", img: office5.url },
+    { name: "05-06 Side table", img: office6.url },
   ],
   Bedroom: [
     { name: "03-01 King bed", img: bed1.url },
