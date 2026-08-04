@@ -13,7 +13,7 @@ const itemClass =
   "group relative flex h-11 w-11 items-center justify-center border border-border/50 bg-background/80 backdrop-blur-sm text-foreground/80 transition-colors hover:border-[--gold] hover:text-[--gold]";
 
 const popClass =
-  "pointer-events-none absolute right-[calc(100%+10px)] top-1/2 -translate-y-1/2 origin-right scale-95 opacity-0 transition-all duration-200 group-hover:scale-100 group-hover:opacity-100";
+  "pointer-events-none absolute right-[calc(100%+10px)] top-1/2 w-max max-w-none -translate-y-1/2 origin-right scale-95 opacity-0 transition-all duration-200 group-hover:scale-100 group-hover:opacity-100";
 
 export function SocialRail() {
   return (
