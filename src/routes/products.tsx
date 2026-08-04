@@ -69,6 +69,9 @@ import bed16 from "@/assets/bed-dsc06097.jpg.asset.json";
 import office1 from "@/assets/office-dsc06116.jpg.asset.json";
 import office2 from "@/assets/office-dsc06117.jpg.asset.json";
 import office3 from "@/assets/office-dsc06125.jpg.asset.json";
+import office4 from "@/assets/office-dsc06144.jpg.asset.json";
+import office5 from "@/assets/office-orange-desk.webp.asset.json";
+import office6 from "@/assets/office-dsc06145.jpg.asset.json";
 
 export const Route = createFileRoute("/products")({
   validateSearch: (search: Record<string, unknown>) => ({
