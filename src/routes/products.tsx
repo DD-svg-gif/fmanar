@@ -82,14 +82,14 @@ type Product = { name: string; img: string };
 
 const productsByCategory: Record<string, Product[]> = {
   "Dining Room": [
-    { name: "08-01 Dining table", img: roomDining },
-    { name: "08-02 Dining chair", img: roomLiving2 },
-    { name: "08-03 Sideboard", img: roomBedroom },
-    { name: "08-04 Display cabinet", img: heroLiving },
-    { name: "08-05 Bar cart", img: roomOffice },
-    { name: "08-06 Round table", img: roomDining },
-    { name: "08-07 Wine console", img: roomLiving2 },
-    { name: "08-08 Buffet", img: roomBedroom },
+    { name: "08-01 Dining table", img: dn1.url },
+    { name: "08-02 Dining chair", img: dn2.url },
+    { name: "08-03 Sideboard", img: dn3.url },
+    { name: "08-04 Display cabinet", img: dn4.url },
+    { name: "08-05 Bar cart", img: dn5.url },
+    { name: "08-06 Round table", img: dn6.url },
+    { name: "08-07 Wine console", img: dn7.url },
+    { name: "08-08 Buffet", img: dn8.url },
   ],
   "Living Room": [
     { name: "07-04 Lounge chair", img: lp1.url },
