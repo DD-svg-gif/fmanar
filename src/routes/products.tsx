@@ -1,11 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import heroLiving from "@/assets/hero-living.jpg";
 import productsBanner from "@/assets/products-banner.jpg.asset.json";
-import roomBedroom from "@/assets/room-bedroom.jpg";
-import roomDining from "@/assets/room-dining.jpg";
-import roomOffice from "@/assets/room-office.jpg";
-import roomLiving2 from "@/assets/room-living2.jpg";
+
 import dn1 from "@/assets/dine-dsc06100.jpg.asset.json";
 import dn2 from "@/assets/dine-dsc06104.jpg.asset.json";
 import dn3 from "@/assets/dine-dsc06111.jpg.asset.json";
