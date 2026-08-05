@@ -66,7 +66,7 @@ const CUSTOM_ROWS = [
   {
     kicker: "Fresh",
     title: "Dining table",
-    img: catDining.url,
+    img: custDining.url,
     text: "With its clean lines and sophisticated finish, it balances a grand aesthetic with durable quality, imbuing everyday life with a refined and elegant touch of understated luxury.",
   },
   {
