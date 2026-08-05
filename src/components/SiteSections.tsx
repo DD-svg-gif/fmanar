@@ -9,7 +9,7 @@ import bed1 from "@/assets/bed-dsc06049.jpg.asset.json";
 import custSofa from "@/assets/cust-sofa-v5.jpg.asset.json";
 import custLiving from "@/assets/cust-living-v5.jpg.asset.json";
 import custDining from "@/assets/cust-dining-v5.jpg.asset.json";
-import custOffice from "@/assets/cust-office-v5.jpg.asset.json";
+import custOffice from "@/assets/cust-office-v6.jpg.asset.json";
 
 /* ---------------- About + stats ---------------- */
 
