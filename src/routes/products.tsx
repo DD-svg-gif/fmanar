@@ -193,7 +193,7 @@ const navRight = ["About us", "Contact us"];
 const categories = [
   {
     title: "FMANAR",
-    items: ["Dining Room", "Living Room", "Office Room", "Bedroom", "Movie & TV room", "Kitchen", "Full-Service Design-Build"],
+    items: ["Living Room", "Dining Room", "Office Room", "Bedroom", "Movie & TV room", "Kitchen", "Full-Service Design-Build"],
     open: true,
   },
   {
