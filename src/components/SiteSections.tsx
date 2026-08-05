@@ -4,11 +4,12 @@ import catLiving from "@/assets/cat-living-v4.jpg.asset.json";
 import catBedroom from "@/assets/cat-bedroom-v4.jpg.asset.json";
 import catDining from "@/assets/cat-dining-v4.jpg.asset.json";
 import catOffice from "@/assets/cat-office-v4.jpg.asset.json";
-import lp1 from "@/assets/living-p1.jpg.asset.json";
-import lp5 from "@/assets/living-p5.jpg.asset.json";
 import lp12 from "@/assets/living-p12.jpg.asset.json";
 import bed1 from "@/assets/bed-dsc06049.jpg.asset.json";
-import office1 from "@/assets/office-dsc06116.jpg.asset.json";
+import custSofa from "@/assets/cust-sofa-v5.jpg.asset.json";
+import custLiving from "@/assets/cust-living-v5.jpg.asset.json";
+import custDining from "@/assets/cust-dining-v5.jpg.asset.json";
+import custOffice from "@/assets/cust-office-v5.jpg.asset.json";
 
 /* ---------------- About + stats ---------------- */
 
