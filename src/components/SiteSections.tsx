@@ -4,11 +4,12 @@ import catLiving from "@/assets/cat-living-v4.jpg.asset.json";
 import catBedroom from "@/assets/cat-bedroom-v4.jpg.asset.json";
 import catDining from "@/assets/cat-dining-v4.jpg.asset.json";
 import catOffice from "@/assets/cat-office-v4.jpg.asset.json";
-import lp1 from "@/assets/living-p1.jpg.asset.json";
-import lp5 from "@/assets/living-p5.jpg.asset.json";
 import lp12 from "@/assets/living-p12.jpg.asset.json";
 import bed1 from "@/assets/bed-dsc06049.jpg.asset.json";
-import office1 from "@/assets/office-dsc06116.jpg.asset.json";
+import custSofa from "@/assets/cust-sofa-v5.jpg.asset.json";
+import custLiving from "@/assets/cust-living-v5.jpg.asset.json";
+import custDining from "@/assets/cust-dining-v5.jpg.asset.json";
+import custOffice from "@/assets/cust-office-v5.jpg.asset.json";
 
 /* ---------------- About + stats ---------------- */
 
@@ -53,19 +54,19 @@ const CUSTOM_ROWS = [
   {
     kicker: "Exquisite",
     title: "Sofa",
-    img: lp1.url,
+    img: custSofa.url,
     text: "An integrated solution. This sectional sofa is a prime example of understated luxury living. The design cleverly utilizes contrasts—solid and void, soft and hard, light and shadow—to create a piece of furniture that harmonizes with its surroundings.",
   },
   {
     kicker: "Perfect match",
     title: "Living room",
-    img: lp5.url,
+    img: custLiving.url,
     text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
   },
   {
     kicker: "Fresh",
     title: "Dining table",
-    img: catDining.url,
+    img: custDining.url,
     text: "With its clean lines and sophisticated finish, it balances a grand aesthetic with durable quality, imbuing everyday life with a refined and elegant touch of understated luxury.",
   },
   {
@@ -77,7 +78,7 @@ const CUSTOM_ROWS = [
   {
     kicker: "Focused",
     title: "Office",
-    img: office1.url,
+    img: custOffice.url,
     text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics, and the neat curved surface replicates Bugatti's iconic body lines, creating a sense of strength and hidden luxury for the office space.",
   },
 ];
