@@ -166,26 +166,8 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "03-15 Golden accent bed", img: bed15.url },
     { name: "03-16 Onyx leather bed", img: bed16.url },
   ],
-  "Movie & TV room": [
-    { name: "15-01 Cinema sofa", img: roomLiving2 },
-    { name: "15-02 Recliner", img: roomOffice },
-    { name: "15-03 Media console", img: roomBedroom },
-    { name: "15-04 Side table", img: roomDining },
-  ],
-  Kitchen: [
-    { name: "20-01 Kitchen island", img: heroLiving },
-    { name: "20-02 Bar stool", img: roomDining },
-    { name: "20-03 Pantry cabinet", img: roomOffice },
-    { name: "20-04 Breakfast table", img: roomLiving2 },
-    { name: "20-05 Wall unit", img: roomBedroom },
-  ],
-  "Full-Service Design-Build": [
-    { name: "Project — Villa Como", img: heroLiving },
-    { name: "Project — Penthouse Milano", img: roomLiving2 },
-    { name: "Project — Riad Marrakech", img: roomDining },
-    { name: "Project — Hôtel Particulier", img: roomBedroom },
-  ],
 };
+
 
 const navLeft = ["Home", "Products"];
 const navRight = ["About us", "Contact us"];
@@ -193,20 +175,11 @@ const navRight = ["About us", "Contact us"];
 const categories = [
   {
     title: "FMANAR",
-    items: ["Living Room", "Dining Room", "Office Room", "Bedroom", "Movie & TV room", "Kitchen", "Full-Service Design-Build"],
+    items: ["Living Room", "Dining Room", "Office Room", "Bedroom"],
     open: true,
   },
-  {
-    title: "CHIGEL",
-    items: ["Dining Room", "Living Room", "Bedroom", "Office and others"],
-    open: false,
-  },
-  {
-    title: "SOLEREYES",
-    items: [],
-    open: false,
-  },
 ];
+
 
 
 function ProductsPage() {
