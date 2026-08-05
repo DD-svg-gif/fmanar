@@ -54,13 +54,13 @@ const CUSTOM_ROWS = [
   {
     kicker: "Exquisite",
     title: "Sofa",
-    img: lp1.url,
+    img: custSofa.url,
     text: "An integrated solution. This sectional sofa is a prime example of understated luxury living. The design cleverly utilizes contrasts—solid and void, soft and hard, light and shadow—to create a piece of furniture that harmonizes with its surroundings.",
   },
   {
     kicker: "Perfect match",
     title: "Living room",
-    img: lp5.url,
+    img: custLiving.url,
     text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
   },
   {
@@ -78,7 +78,7 @@ const CUSTOM_ROWS = [
   {
     kicker: "Focused",
     title: "Office",
-    img: office1.url,
+    img: custOffice.url,
     text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics, and the neat curved surface replicates Bugatti's iconic body lines, creating a sense of strength and hidden luxury for the office space.",
   },
 ];
