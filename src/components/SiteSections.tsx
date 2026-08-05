@@ -55,7 +55,7 @@ const CUSTOM_ROWS = [
     kicker: "Exquisite",
     title: "Sofa",
     img: custSofa.url,
-    text: "An integrated solution. This sectional sofa is a prime example of understated luxury living. The design cleverly utilizes contrasts—solid and void, soft and hard, light and shadow—to create a piece of furniture that harmonizes with its surroundings.",
+    text: "This curved sofa is the centerpiece of a luxurious ground-floor lifestyle. Its design cleverly employs a modular approach and an open-back structure—complemented by integrated lighting—to create a piece of furniture that harmoniously blends with its surroundings.",
   },
   {
     kicker: "Perfect match",
