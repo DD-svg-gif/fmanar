@@ -19,7 +19,7 @@ export function SocialRail() {
   return (
     <div className="fixed right-3 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-2 sm:flex">
       <a
-        href="https://www.facebook.com/FmanarHome"
+        href="https://www.facebook.com/profile.php?id=61592419122106"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook — FmanarHome"
