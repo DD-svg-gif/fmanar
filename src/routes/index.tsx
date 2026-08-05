@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { RequestInfo } from "@/components/RequestInfo";
-import { AboutIntro, Cases, Customization, WhyChooseUs } from "@/components/SiteSections";
+
 import featuredSofaAsset from "@/assets/featured-sofa.png.asset.json";
 const roomLiving2 = featuredSofaAsset.url;
 import catLivingV3 from "@/assets/cat-living-v4.jpg.asset.json";
@@ -210,9 +210,6 @@ function Home() {
         </div>
       </section>
 
-      <AboutIntro />
-      <Customization />
-      <Cases />
 
 
 
@@ -242,7 +239,7 @@ function Home() {
         </div>
       </section>
 
-      <WhyChooseUs />
+      
 
       <div id="request-info">
         <RequestInfo />
