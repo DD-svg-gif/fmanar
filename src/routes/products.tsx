@@ -240,7 +240,7 @@ function ProductsPage() {
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
-                <Link key={n} to="/products" className="whitespace-nowrap text-[--gold]">
+                <Link key={n} to="/products" search={{ category: undefined }} className="whitespace-nowrap text-[--gold]">
                   {n}
                 </Link>
               ) : (

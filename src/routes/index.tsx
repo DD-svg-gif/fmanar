@@ -80,7 +80,7 @@ function Home() {
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
-                <Link key={n} to="/products" className="whitespace-nowrap transition-colors hover:text-[--gold]">
+                <Link key={n} to="/products" search={{ category: undefined }} className="whitespace-nowrap transition-colors hover:text-[--gold]">
                   {n}
                 </Link>
               ) : (
