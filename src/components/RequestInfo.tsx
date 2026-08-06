@@ -35,6 +35,7 @@ export function RequestInfo() {
   const [f, setF] = useState<FormState>(initial);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [hp, setHp] = useState("");
 
   const upd = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((prev) => ({ ...prev, [k]: v }));
@@ -55,7 +56,7 @@ export function RequestInfo() {
       const res = await fetch("/api/public/request-info", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(f),
+        body: JSON.stringify({ ...f, company: hp }),
       });
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       setStatus("sent");
@@ -80,6 +81,17 @@ export function RequestInfo() {
         </div>
 
         <form onSubmit={onSubmit} className="space-y-4">
+          {/* Honeypot — hidden from users, filled only by spam bots */}
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={hp}
+            onChange={(e) => setHp(e.target.value)}
+            className="absolute left-[-9999px] h-0 w-0 opacity-0"
+          />
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <input className={fieldBase} placeholder="Name*" value={f.name}
               onChange={(e) => upd("name", e.target.value)} maxLength={100} required />

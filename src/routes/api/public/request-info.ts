@@ -10,7 +10,16 @@ const schema = z.object({
   country: z.string().trim().min(1).max(100),
   topic: z.string().trim().min(1).max(100),
   message: z.string().trim().min(1).max(2000),
+  // Honeypot: real users never see or fill this field.
+  company: z.string().max(0).optional(),
 });
+
+// Blocks the classic "SEO / ad" spam submissions that only carry links.
+const LINK_RE = /(https?:\/\/|www\.|\[url=|<a\s)/gi;
+function looksLikeSpam(text: string) {
+  const links = text.match(LINK_RE)?.length ?? 0;
+  return links >= 2 || /\b(casino|viagra|crypto airdrop|seo services|buy backlinks)\b/i.test(text);
+}
 
 const RECIPIENT = "fmnhome2015@gmail.com";
 const GATEWAY = "https://connector-gateway.lovable.dev/google_mail/gmail/v1";
@@ -52,6 +61,26 @@ export const Route = createFileRoute("/api/public/request-info")({
     handlers: {
       POST: async ({ request }) => {
         try {
+          // Only accept submissions coming from this site (blocks bots that
+          // POST to the endpoint directly from other domains).
+          const origin = request.headers.get("origin");
+          if (origin) {
+            const host = request.headers.get("host");
+            try {
+              if (new URL(origin).host !== host) {
+                return new Response(JSON.stringify({ error: "Forbidden" }), {
+                  status: 403,
+                  headers: { "Content-Type": "application/json" },
+                });
+              }
+            } catch {
+              return new Response(JSON.stringify({ error: "Forbidden" }), {
+                status: 403,
+                headers: { "Content-Type": "application/json" },
+              });
+            }
+          }
+
           const json = await request.json();
           const parsed = schema.safeParse(json);
           if (!parsed.success) {
@@ -59,6 +88,19 @@ export const Route = createFileRoute("/api/public/request-info")({
               JSON.stringify({ error: "Invalid input", details: parsed.error.flatten() }),
               { status: 400, headers: { "Content-Type": "application/json" } },
             );
+          }
+
+          if (parsed.data.company) {
+            // Honeypot tripped — pretend success so bots do not retry.
+            return new Response(JSON.stringify({ ok: true }), {
+              headers: { "Content-Type": "application/json" },
+            });
+          }
+
+          if (looksLikeSpam(`${parsed.data.message} ${parsed.data.topic} ${parsed.data.name}`)) {
+            return new Response(JSON.stringify({ ok: true }), {
+              headers: { "Content-Type": "application/json" },
+            });
           }
 
           const lovableKey = process.env.LOVABLE_API_KEY;
