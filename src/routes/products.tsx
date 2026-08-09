@@ -90,7 +90,7 @@ type Product = { name: string; img: string };
 const productsByCategory: Record<string, Product[]> = {
 
   "Living Room": [
-    { name: "Newert", img: "/PRODUCTS/living%20room/Newert.jpg" },  
+    { name: "Newert Sofa", img: "/PRODUCTS/living%20room/Newert.jpg" },  
     { name: "Bainton Sofa", img: "/PRODUCTS/living%20room/Bainton%20Sofa.jpg" },  
     { name: "Lyman Sofa", img: "/PRODUCTS/living%20room/Lyman%20Sofa.jpg" },   
     { name: "Havergate Sofa", img: "/PRODUCTS/living%20room/Havergate%20Sofa.jpg" },   
