@@ -39,7 +39,7 @@ function AboutPage() {
       {/* Banner */}
       <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
         {/* 直接指向 public/about/ 下的图片路径 */}
-        <img src="/about/hero.jpg" alt="FMANAR maison" className="h-full w-full object-cover" />
+        <img src="/about/sofa.jpg" alt="FMANAR maison" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
         <header className="absolute inset-x-0 top-0 z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
