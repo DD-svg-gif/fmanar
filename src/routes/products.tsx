@@ -247,10 +247,10 @@ function ProductsPage() {
         </div>
       </header>
 
-      {/* Banner */}
-      <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden pt-[72px]">
-        <img src={productsBanner.url} alt="Products banner" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+     {/* Banner */}
+<section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden pt-[72px]">
+  <img src="/DSC05873_1%20%E6%8B%B7%E8%B4%9D.jpg" alt="Products banner" className="absolute inset-0 h-full w-full object-cover" />
+  <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
 
 
         {/* Caption */}
