@@ -1,16 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-import catLiving from "@/assets/cat-living-v4.jpg.asset.json";
-import catBedroom from "@/assets/cat-bedroom-v4.jpg.asset.json";
-import catDining from "@/assets/cat-dining-v4.jpg.asset.json";
-import catOffice from "@/assets/cat-office-v4.jpg.asset.json";
-import lp12 from "@/assets/living-p12.jpg.asset.json";
-import bed1 from "@/assets/bed-dsc06049.jpg.asset.json";
-import custSofa from "@/assets/cust-sofa-v5.jpg.asset.json";
-import custLiving from "@/assets/cust-living-v5.jpg.asset.json";
-import custDining from "@/assets/cust-dining-v5.jpg.asset.json";
-import custOffice from "@/assets/cust-office-v6.jpg.asset.json";
-
 /* ---------------- About + stats ---------------- */
 
 const STATS = [
@@ -24,7 +13,13 @@ export function AboutIntro() {
     <section className="border-t border-border/40 px-8 py-24">
       <div className="mx-auto grid max-w-[1600px] items-center gap-14 md:grid-cols-2 md:gap-20">
         <div className="relative aspect-[4/3] overflow-hidden">
-          <img src={catLiving.url} alt="FMANAR atelier" loading="lazy" className="h-full w-full object-cover" />
+          {/* 直接引用 public/about/about-studio.jpg */}
+          <img
+            src="/about/about-studio.jpg"
+            alt="FMANAR atelier"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
         </div>
         <div>
           <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">About us</p>
@@ -54,31 +49,31 @@ const CUSTOM_ROWS = [
   {
     kicker: "Exquisite",
     title: "Sofa",
-    img: custSofa.url,
+    img: "/about/sofa.jpg", // 修改为静态文件路径
     text: "This curved sofa is the centerpiece of a luxurious ground-floor lifestyle. Its design cleverly employs a modular approach and an open-back structure—complemented by integrated lighting—to create a piece of furniture that harmoniously blends with its surroundings.",
   },
   {
     kicker: "Perfect match",
     title: "Living room",
-    img: custLiving.url,
+    img: "/about/living.jpg", // 修改为静态文件路径
     text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
   },
   {
     kicker: "Fresh",
     title: "Dining table",
-    img: custDining.url,
+    img: "/about/dining.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 dining.jpg）
     text: "With its clean lines and sophisticated finish, it balances a grand aesthetic with durable quality, imbuing everyday life with a refined and elegant touch of understated luxury.",
   },
   {
     kicker: "Serene",
     title: "Bedroom",
-    img: bed1.url,
+    img: "/about/bedroom.jpg", // 修改为静态文件路径
     text: "This headboard perfectly blends exquisite craftsman ship with modern design, creating a new level of sophistication. Its seamless integration infuses a comfortable and elegant bedroom with fresh, modern vitality.",
   },
   {
     kicker: "Focused",
     title: "Office",
-    img: custOffice.url,
+    img: "/about/office.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 office.jpg）
     text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics, and the neat curved surface replicates Bugatti's iconic body lines, creating a sense of strength and hidden luxury for the office space.",
   },
 ];
@@ -174,14 +169,13 @@ export function Customization() {
   );
 }
 
-
 /* ---------------- Cases ---------------- */
 
 const CASES = [
-  { img: catBedroom.url, label: "Private villa" },
-  { img: lp12.url, label: "Penthouse residence" },
-  { img: catOffice.url, label: "Executive suite" },
-  { img: catDining.url, label: "Hotel project" },
+  { img: "/about/bedroom.jpg", label: "Private villa" },
+  { img: "/about/living.jpg", label: "Penthouse residence" },
+  { img: "/about/office.jpg", label: "Executive suite" },
+  { img: "/about/dining.jpg", label: "Hotel project" },
 ];
 
 export function Cases() {
