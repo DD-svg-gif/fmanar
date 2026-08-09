@@ -88,15 +88,15 @@ export const Route = createFileRoute("/products")({
 type Product = { name: string; img: string };
 
 const productsByCategory: Record<string, Product[]> = {
-  "Dining Room": [
-    { name: "08-01 Dining table", img: dn1.url },
-    { name: "08-02 Dining chair", img: dn2.url },
-    { name: "08-03 Sideboard", img: dn3.url },
-    { name: "08-04 Display cabinet", img: dn4.url },
-    { name: "08-05 Bar cart", img: dn5.url },
-    { name: "08-06 Round table", img: dn6.url },
-    { name: "08-07 Wine console", img: dn7.url },
-    { name: "08-08 Buffet", img: dn8.url },
+ "Dining Room": [
+    { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG" },
+    { name: "Majestic Dining Table", img: "/PRODUCTS/dining%20room/Majestic%20Dining%20Table.JPG" },
+    { name: "Newent Dining Table", img: "/PRODUCTS/dining%20room/Newent%20Dining%20Table.JPG" },
+    { name: "Raglan Dining Table", img: "/PRODUCTS/dining%20room/Raglan%20Dining%20Table.JPG" },
+    { name: "Ramsey Dining Table", img: "/PRODUCTS/dining%20room/Ramsey%20Dining%20Table.JPG" },
+    { name: "Stamboul Dining Table", img: "/PRODUCTS/dining%20room/Stamboul%20Dining%20Teble.JPG" },
+    { name: "V-Dining Table", img: "/PRODUCTS/dining%20room/V-Dining%20Table.JPG" },
+    { name: "Vasmara Dining Table", img: "/PRODUCTS/dining%20room/Vasmara%20Dining%20Table.jpeg" },
   ],
   "Living Room": [
     { name: "Newert", img: "/PRODUCTS/living%20room/Newert.jpg" },  
