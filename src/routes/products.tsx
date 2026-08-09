@@ -88,7 +88,16 @@ export const Route = createFileRoute("/products")({
 type Product = { name: string; img: string };
 
 const productsByCategory: Record<string, Product[]> = {
-
+ "Dining Room": [
+    { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG" },
+    { name: "Majestic Dining Table", img: "/PRODUCTS/dining%20room/Majestic%20Dining%20Table.JPG" },
+    { name: "Newent Dining Table", img: "/PRODUCTS/dining%20room/Newent%20Dining%20Table.JPG" },
+    { name: "Raglan Dining Table", img: "/PRODUCTS/dining%20room/Raglan%20Dining%20Table.JPG" },
+    { name: "Ramsey Dining Table", img: "/PRODUCTS/dining%20room/Ramsey%20Dining%20Table.JPG" },
+    { name: "Stamboul Dining Table", img: "/PRODUCTS/dining%20room/Stamboul%20Dining%20Teble.JPG" },
+    { name: "V-Dining Table", img: "/PRODUCTS/dining%20room/V-Dining%20Table.JPG" },
+    { name: "Vasmara Dining Table", img: "/PRODUCTS/dining%20room/Vasmara%20Dining%20Table.jpeg" },
+  ],
   "Living Room": [
     { name: "Newert Sofa", img: "/PRODUCTS/living%20room/Newert.jpg" },  
     { name: "Bainton Sofa", img: "/PRODUCTS/living%20room/Bainton%20Sofa.jpg" },  
@@ -124,16 +133,7 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "Abey Sofa", img: "/PRODUCTS/living%20room/Abey%20Sofa.jpg" },
     { name: "Winston Sofa", img: "/PRODUCTS/living%20room/Winston%20Sofa.jpg" },
   ],
-   "Dining Room": [
-    { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG" },
-    { name: "Majestic Dining Table", img: "/PRODUCTS/dining%20room/Majestic%20Dining%20Table.JPG" },
-    { name: "Newent Dining Table", img: "/PRODUCTS/dining%20room/Newent%20Dining%20Table.JPG" },
-    { name: "Raglan Dining Table", img: "/PRODUCTS/dining%20room/Raglan%20Dining%20Table.JPG" },
-    { name: "Ramsey Dining Table", img: "/PRODUCTS/dining%20room/Ramsey%20Dining%20Table.JPG" },
-    { name: "Stamboul Dining Table", img: "/PRODUCTS/dining%20room/Stamboul%20Dining%20Teble.JPG" },
-    { name: "V-Dining Table", img: "/PRODUCTS/dining%20room/V-Dining%20Table.JPG" },
-    { name: "Vasmara Dining Table", img: "/PRODUCTS/dining%20room/Vasmara%20Dining%20Table.jpeg" },
-  ],
+  
  "Office Room": [
     { name: "Elena Desk", img: "/PRODUCTS/office%20room/Elena%20Desk.JPG" },
     { name: "Executive Desk", img: "/PRODUCTS/office%20room/Executive%20Desk.JPG" },
