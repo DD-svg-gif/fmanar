@@ -88,7 +88,7 @@ export const Route = createFileRoute("/products")({
 type Product = { name: string; img: string };
 
 const productsByCategory: Record<string, Product[]> = {
- "Dining Room": [
+  "Dining Room": [
     { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG" },
     { name: "Majestic Dining Table", img: "/PRODUCTS/dining%20room/Majestic%20Dining%20Table.JPG" },
     { name: "Newent Dining Table", img: "/PRODUCTS/dining%20room/Newent%20Dining%20Table.JPG" },
@@ -134,14 +134,13 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "Winston Sofa", img: "/PRODUCTS/living%20room/Winston%20Sofa.jpg" },
   ],
   
- "Office Room": [
-    { name: "Elena Desk", img: "/PRODUCTS/office%20room/Elena%20Desk.JPG" },
-    { name: "Executive Desk", img: "/PRODUCTS/office%20room/Executive%20Desk.JPG" },
-    { name: "President Desk", img: "/PRODUCTS/office%20room/President%20Desk.jpg" },
-    { name: "Raglan Desk", img: "/PRODUCTS/office%20room/Raglan%20Desk.JPG" },
-    { name: "Stamboul Desk", img: "/PRODUCTS/office%20room/Stamboul%20Desk.JPG" },
-    { name: "Supercar Desk", img: "/PRODUCTS/office%20room/Supercar%20Desk.jpg" },
-  ],
+"Office Room": [
+    { name: "Elena Desk", img: "/PRODUCTS/office room/Elena Desk.JPG" },
+    { name: "Executive Desk", img: "/PRODUCTS/office room/Executive Desk.JPG" },
+    { name: "President Desk", img: "/PRODUCTS/office room/President Desk.jpg" },
+    { name: "Raglan Desk", img: "/PRODUCTS/office room/Raglan Desk.JPG" },
+    { name: "Stamboul Desk", img: "/PRODUCTS/office room/Stamboul Desk.JPG" },
+    { name: "Supercar Desk", img: "/PRODUCTS/office room/Supercar Desk.jpg" },
   ],
   Bedroom: [
   { name: "Gesu Bed", img: "/PRODUCTS/bedroom/Gesu%20Bed.JPG" },
