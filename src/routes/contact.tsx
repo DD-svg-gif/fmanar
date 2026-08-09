@@ -1,8 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { RequestInfo } from "@/components/RequestInfo";
 
-import heroLiving from "@/assets/hero-living-v2.jpg.asset.json";
-
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -56,9 +54,9 @@ function ContactPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <section className="relative h-[55vh] min-h-[380px] w-full overflow-hidden">
-        <img src={heroLiving.url} alt="FMANAR showroom" className="h-full w-full object-cover" />
+        {/* ✅ 直接引用 public 目录下的 about-studio.jpg */}
+        <img src="/about-studio.jpg" alt="FMANAR showroom" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
-
         <header className="absolute inset-x-0 top-0 z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) => (
@@ -67,12 +65,10 @@ function ContactPage() {
               </Link>
             ))}
           </nav>
-
           <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-white">
             <span className="text-[10px] tracking-[0.4em] text-white/60">MORE PHILOSOPHY</span>
             <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
           </Link>
-
           <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navRight.map((n) => (
               <Link key={n} to={linkFor(n)} className="whitespace-nowrap transition-colors hover:text-[--gold]">
@@ -81,7 +77,6 @@ function ContactPage() {
             ))}
           </nav>
         </header>
-
         <div className="absolute inset-x-0 bottom-16 z-10 text-center">
           <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">Get in touch</p>
           <h1 className="mt-4 font-display text-5xl text-white md:text-6xl">Contact us</h1>
@@ -95,11 +90,9 @@ function ContactPage() {
             <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">FMANAR Maison</p>
             <h2 className="mt-4 font-display text-4xl md:text-5xl">We would love to hear from you</h2>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Whether you are planning a private villa, a luxury apartment or a hospitality project,
-              our team is ready to guide you from the first sketch to the final installation.
+              Whether you are planning a private villa, a luxury apartment or a hospitality project, our team is ready to guide you from the first sketch to the final installation.
             </p>
           </div>
-
           <dl className="grid grid-cols-1 gap-10 sm:grid-cols-2">
             {DETAILS.map((d) => (
               <div key={d.label} className="border-t border-border/40 pt-6">
