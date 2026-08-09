@@ -25,10 +25,10 @@ type Slide = { src: string; label: string; w: number; h: number };
 
 // 1. 顶部 Hero 轮播图：绑定 public/home/ 下的 4 张大图
 const slides: Slide[] = [
-  { src: "/home/livingroom.jpg", label: "Living room", w: 1920, h: 1280 },
-  { src: "/home/diningroom.jpg", label: "Dining room", w: 1920, h: 1280 },
-  { src: "/home/bedroom.jpg", label: "Bedroom", w: 1920, h: 1280 },
-  { src: "/home/officeroom.jpg", label: "Office room", w: 1920, h: 1280 },
+  { src: "/HOME/livingroom.jpg", label: "Living room", w: 1920, h: 1280 },
+  { src: "/HOME/diningroom.jpg", label: "Dining room", w: 1920, h: 1280 },
+  { src: "/HOME/bedroom.jpg", label: "Bedroom", w: 1920, h: 1280 },
+  { src: "/HOME/officeroom.jpg", label: "Office room", w: 1920, h: 1280 },
 ];
 
 const navLeft = ["Home", "Products"];
@@ -36,10 +36,10 @@ const navRight = ["About us", "Contact us"];
 
 // 2. 中间 4 个空间分类入口：绑定 public/home/ 下的 4 张分类图
 const CATEGORIES = [
-  { src: "/home/living1.jpg", label: "Living", count: "24 pieces", cat: "Living Room" },
-  { src: "/home/bed1.jpg", label: "Bedroom", count: "18 pieces", cat: "Bedroom" },
-  { src: "/home/dining1.jpg", label: "Dining", count: "21 pieces", cat: "Dining Room" },
-  { src: "/home/office1.jpg", label: "Office", count: "12 pieces", cat: "Office Room" },
+  { src: "/HOME/living1.jpg", label: "Living", count: "24 pieces", cat: "Living Room" },
+  { src: "/HOME/bed1.jpg", label: "Bedroom", count: "18 pieces", cat: "Bedroom" },
+  { src: "/HOME/dining1.jpg", label: "Dining", count: "21 pieces", cat: "Dining Room" },
+  { src: "/HOME/office1.jpg", label: "Office", count: "12 pieces", cat: "Office Room" },
 ];
 
 function Home() {
