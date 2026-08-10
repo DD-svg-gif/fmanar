@@ -54,7 +54,7 @@ const CUSTOM_ROWS = [
   },
   {
    
-    ,
+    
     title: "Living room",
     img: "/about/living.jpg", // 修改为静态文件路径
     text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
