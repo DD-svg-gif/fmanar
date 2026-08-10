@@ -12,9 +12,9 @@ export function AboutIntro() {
   return (
     <section className="border-t border-border/40 px-8 py-24">
       <div className="mx-auto grid max-w-[1600px] items-center gap-14 md:grid-cols-2 md:gap-20">
-       <div className="relative overflow-hidden">
+      <div className="relative aspect-[3/4] overflow-hidden">
   {/* 直接引用 public/about/about-studio.jpg */}
-  <img src="/about/gongchang.jpg" alt="FMANAR atelier" loading="lazy" className="w-full h-auto" />
+  <img src="/about/gongchang.jpg" alt="FMANAR atelier" loading="lazy" className="h-full w-full object-cover" />
 </div>
         </div>
         <div>
