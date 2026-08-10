@@ -1,16 +1,22 @@
+const STATS = [
+  { v: "10+", l: "Years Experience" },
+  { v: "20,000m²", l: "Production Base" },
+  { v: "12,000m²", l: "Showroom" },
+];
+
 export function AboutIntro() {
   return (
     <section className="border-t border-border/40 px-8 py-24">
-      {/* 1. 两栏网格容器包住【左侧图片】和【右侧文字】 */}
+      {/* 网格容器：左侧图片，右侧文字 */}
       <div className="mx-auto grid max-w-[1600px] items-center gap-14 md:grid-cols-2 md:gap-20">
         
-        {/* 左侧图片：移除 aspect-[3/4] 和 object-cover，保证图片完整不裁剪 */}
-        <div className="relative overflow-hidden">
+        {/* 左侧图片：设置为 3:4 竖屏比例 */}
+        <div className="relative aspect-[3/4] overflow-hidden">
           <img
             src="/about/gongchang.jpg"
             alt="FMANAR atelier"
             loading="lazy"
-            className="h-auto w-full"
+            className="h-full w-full object-cover"
           />
         </div>
 
