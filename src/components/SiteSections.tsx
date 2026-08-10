@@ -15,7 +15,7 @@ export function AboutIntro() {
         <div className="relative aspect-[4/3] overflow-hidden">
           {/* 直接引用 public/about/about-studio.jpg */}
           <img
-            src="/about/about-studio.jpg"
+            src="/about/gongchang.jpg"
             alt="FMANAR atelier"
             loading="lazy"
             className="h-full w-full object-cover"
