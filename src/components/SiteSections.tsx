@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 /* ---------------- About + stats ---------------- */
 
 const STATS = [
-  { v: "20+", l: "Years of experience" },
+  { v: "10+", l: "Years of experience" },
   { v: "12,000+", l: "m² premium showroom" },
   { v: "20,000+", l: "m² production base" },
 ];
@@ -47,13 +47,14 @@ export function AboutIntro() {
 
 const CUSTOM_ROWS = [
   {
-    kicker: "Exquisite",
-    title: "Sofa",
+    
+    title: "Who We Are",
     img: "/about/sofa.jpg", // 修改为静态文件路径
-    text: "This curved sofa is the centerpiece of a luxurious ground-floor lifestyle. Its design cleverly employs a modular approach and an open-back structure—complemented by integrated lighting—to create a piece of furniture that harmoniously blends with its surroundings.",
+    text: "Fmanar Home is your ideal partner for luxury‑residence furnishing. We deliver end‑to‑end services for every client, ranging from space‑matching proposals and personalized size customization to full‑project implementation. Committed to balancing aesthetic sophistication and real‑life living experience, we craft comprehensive home furnishing solutions that perfectly cater to both practical needs and refined tastes for your luxury mansion.",
   },
   {
-    kicker: "Perfect match",
+    kicker: "Perfect match"
+    ,
     title: "Living room",
     img: "/about/living.jpg", // 修改为静态文件路径
     text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
