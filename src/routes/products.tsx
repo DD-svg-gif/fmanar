@@ -394,65 +394,67 @@ function ProductsPage() {
       </section>
 
 {/* ==================== 页脚区块 (Footer) ==================== */}
-      <footer className="border-t border-border/40 px-8 py-16">
-        <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
-          {/* 品牌地址与营业时间 */}
-          <div>
-            <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-            <div className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground space-y-1">
-              <p>
-                Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China
-              </p>
-              <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
-            </div>
-          </div>
-
-          {/* 页脚分类链接与路由映射 */}
-          {(() => {
-            const customerServiceRoutes: Record<string, string> = {
-              "Delivery": "/delivery",
-              "Privacy Policy": "/privacy-policy",
-              "Shipping Policy": "/shipping-policy",
-              "Return and Refunds": "/return-and-refunds",
-              "Important Notice": "/important-notice",
-            };
-
-            return [
-              { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
-              {
-                h: "Customer Service",
-                l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
-              },
-              { h: "Contact Us", l: ["Feedback"] },
-            ].map((col) => (
-              <div key={col.h}>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
-                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                  {col.l.map((x) => (
-                    <li key={x}>
-                      {customerServiceRoutes[x] ? (
-                        <Link to={customerServiceRoutes[x]} className="hover:text-foreground transition-colors">
-                          {x}
-                        </Link>
-                      ) : (
-                        <a href="#" className="hover:text-foreground">
-                          {x}
-                        </a>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ));
-          })()}
-        </div>
-
-        {/* 版权信息 */}
-        <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
-          © 2026 Fmanar Maison — All rights reserved
+<footer className="border-t border-border/40 px-8 py-16">
+  <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+    {/* 品牌地址与营业时间 */}
+    <div>
+      <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
+      <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
+        <p>
+          Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
+          Shunde District, Foshan City, Guangdong Province, China
         </p>
-      </footer>
+        <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
+      </div>
     </div>
-  );
-}
+
+    {/* 页脚分类链接与路由映射 */}
+    {[
+      { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
+      {
+        h: "Customer Service",
+        l: [
+          "Delivery",
+          "Privacy Policy",
+          "Shipping Policy",
+          "Return and Refunds",
+          "Important Notice",
+        ],
+      },
+      { h: "Contact Us", l: ["Feedback"] },
+    ].map((col) => (
+      <div key={col.h}>
+        <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
+          {col.h}
+        </p>
+        <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+          {col.l.map((x) => {
+            const routePath = customerServiceRoutes[x];
+            return (
+              <li key={x}>
+                {routePath ? (
+                  <Link
+                    to={routePath}
+                    className="transition-colors hover:text-foreground"
+                  >
+                    {x}
+                  </Link>
+                ) : (
+                  <a href="#" className="hover:text-foreground">
+                    {x}
+                  </a>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  {/* 版权信息 */}
+  <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
+    © 2026 Fmanar Maison — All rights reserved
+  </p>
+</footer>
 
