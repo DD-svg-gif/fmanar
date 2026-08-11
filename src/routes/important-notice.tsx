@@ -1,29 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/delivery")({
+export const Route = createFileRoute("/important-notice")({
   head: () => ({
     meta: [
-      { title: "Delivery — FMANAR Luxury Italian Furniture" },
+      { title: "Important Notice — FMANAR Luxury Italian Furniture" },
       {
         name: "description",
-        content: "Delivery and shipping information for FMANAR luxury Italian furniture.",
+        content: "Important notice and legal terms for FMANAR luxury Italian furniture.",
       },
     ],
   }),
-  component: DeliveryPage,
+  component: ImportantNoticePage,
 });
 
 // 顶部导航与页脚辅助数据
 const navLeft = ["Home", "Products"];
 const navRight = ["About us", "Contact us"];
 
-function DeliveryPage() {
+function ImportantNoticePage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
       {/* ==================== 顶部固定导航栏 (Header) ==================== */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
-          {/* 左侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navLeft.map((n) => (
               <Link
@@ -36,7 +35,6 @@ function DeliveryPage() {
             ))}
           </nav>
 
-          {/* 中间品牌 Logo */}
           <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-foreground">
             <span className="text-[10px] tracking-[0.4em] text-muted-foreground">
               MORE PHILOSOPHY
@@ -46,7 +44,6 @@ function DeliveryPage() {
             </span>
           </Link>
 
-          {/* 右侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
             {navRight.map((n) => (
               <Link
@@ -59,7 +56,6 @@ function DeliveryPage() {
             ))}
           </nav>
 
-          {/* 右侧搜索与多语言 */}
           <div className="ml-8 flex shrink-0 items-center gap-4 text-foreground/80 md:ml-12">
             <button aria-label="Search" className="transition hover:text-[--gold]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -73,50 +69,27 @@ function DeliveryPage() {
         </div>
       </header>
 
-      {/* ==================== 页面主体内容区 (Delivery Content) ==================== */}
+      {/* ==================== 页面主体内容区 ==================== */}
       <main className="mx-auto w-full max-w-4xl px-8 pt-36 pb-20 flex-1">
         <h1 className="font-display text-4xl md:text-5xl text-foreground text-center mb-12 tracking-wide">
-          Delivery & Shipping Information
+          Important Notice
         </h1>
-
-        <div className="space-y-10 text-sm leading-relaxed text-muted-foreground">
-          {/* Shipping Info */}
+        <div className="space-y-8 text-sm leading-relaxed text-muted-foreground">
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Complimentary White-Glove Shipping
+              Product Care & Maintenance
             </h2>
             <p>
-              At FMANAR, we ensure that every piece of modern Italian luxury furniture is handled with maximum care and precision. We provide standard complimentary delivery for all white-glove eligible orders within mainland locations.
+              Please review all care instructions provided with your FMANAR pieces. Natural materials such as genuine leather, marble, and wood require specific care to maintain their luxury finish and longevity.
             </p>
           </section>
 
-          {/* Dispatch & Processing */}
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Dispatch & Processing Times
+              Terms & Conditions
             </h2>
             <p>
-              In-stock items typically ship within 2–5 business days after order confirmation. Custom and handcrafted Made-to-Order items require additional lead times as each piece is crafted to perfection in our atelier.
-            </p>
-          </section>
-
-          {/* Delivery Method */}
-          <section className="space-y-3">
-            <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Delivery Method & Installation
-            </h2>
-            <p>
-              Our specialized freight partners provide full white-glove service, including placement in your room of choice, complete unpacking, assembly, and inspection, as well as removal of all packaging materials.
-            </p>
-          </section>
-
-          {/* Tracking */}
-          <section className="space-y-3">
-            <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Tracking & Support
-            </h2>
-            <p>
-              Once your shipment is dispatched, you will receive a tracking link along with direct contact for our logistics coordinator to schedule a delivery time window that best suits your schedule.
+              All products are subject to availability. FMANAR reserves the right to modify product specifications and availability without prior notice.
             </p>
           </section>
         </div>
@@ -135,30 +108,43 @@ function DeliveryPage() {
             </div>
           </div>
 
-          {[
-            { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
-            {
-              h: "Customer Service",
-              l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
-            },
-            { h: "Contact Us", l: ["Feedback"] },
-          ].map((col) => (
-            <div key={col.h}>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {col.l.map((x) => (
-                  <li key={x}>
-                    <Link
-                      to={x === "Delivery" ? "/delivery" : "#"}
-                      className="hover:text-foreground transition-colors"
-                    >
-                      {x}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {(() => {
+            const customerServiceRoutes: Record<string, string> = {
+              "Delivery": "/delivery",
+              "Privacy Policy": "/privacy-policy",
+              "Shipping Policy": "/shipping-policy",
+              "Return and Refunds": "/return-and-refunds",
+              "Important Notice": "/important-notice",
+            };
+
+            return [
+              { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
+              {
+                h: "Customer Service",
+                l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
+              },
+              { h: "Contact Us", l: ["Feedback"] },
+            ].map((col) => (
+              <div key={col.h}>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {col.l.map((x) => (
+                    <li key={x}>
+                      {customerServiceRoutes[x] ? (
+                        <Link to={customerServiceRoutes[x]} className="hover:text-foreground transition-colors">
+                          {x}
+                        </Link>
+                      ) : (
+                        <a href="#" className="hover:text-foreground">
+                          {x}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ));
+          })()}
         </div>
 
         <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
