@@ -231,3 +231,16 @@ return (
 </section>
 );
 }
+
+// 在文件末尾添加以下代码：
+
+export default function ProductsPage() {
+  return (
+    <main>
+      <AboutIntro />
+      <Customization />
+      <Cases />
+      <WhyChooseUs />
+    </main>
+  );
+}
