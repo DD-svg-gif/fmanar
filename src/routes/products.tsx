@@ -44,40 +44,33 @@ Established in 2015, Foshan Fmanar Furniture is located in Longjiang Town, Shund
 }
 
 /* ---------------- Whole-house customization ---------------- */
-
 const CUSTOM_ROWS = [
-{
-
-title: "Who We Are",
-img: "/about/zhangting.jpg", // 修改为静态文件路径
-text: "Fmanar Home is your ideal partner for luxury‑residence furnishing. We deliver end‑to‑end services for every client, ranging from space‑matching proposals and personalized size customization to full‑project implementation. Committed to balancing aesthetic sophistication and real‑life living experience, we craft comprehensive home furnishing solutions that perfectly cater to both practical needs and refined tastes for your luxury mansion.",
-},
-{
-
-    ,
-    
-title: "Living room",
-img: "/about/living.jpg", // 修改为静态文件路径
-text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
-},
-{
-
-title: "package",
-img: "/about/dabao.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 dabao.jpg）
-text: "Once you confirm upon inspection that the products are in perfect condition, we will protect items with EPE foam, foam boards and plastic film for shock resistance, pack into cartons and reinforce with solid wooden frames for reliable protection against knocks and compression in shipment.",
-},
-{
-
-title: "Bedroom",
-img: "/about/bedroom.jpg", // 修改为静态文件路径
-text: "This headboard perfectly blends exquisite craftsman ship with modern design, creating a new level of sophistication. Its seamless integration infuses a comfortable and elegant bedroom with fresh, modern vitality.",
-},
-{
-kicker: "Focused",
-title: "Office",
-img: "/about/office.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 office.jpg）
-text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics, and the neat curved surface replicates Bugatti's iconic body lines, creating a sense of strength and hidden luxury for the office space.",
-},
+  {
+    title: "Who We Are",
+    img: "/about/zhangting.jpg", // 修改为静态文件路径
+    text: "Fmanar Home is your ideal partner for luxury‑residence furnishing. We deliver end‑to‑end services for every client, ranging from space‑matching proposals and personalized size customization to full‑project implementation. Committed to balancing aesthetic sophistication and real‑life living experience, we craft comprehensive home furnishing solutions that perfectly cater to both practical needs and refined tastes for your luxury mansion.",
+  },
+  {
+    title: "Living room",
+    img: "/about/living.jpg", // 修改为静态文件路径
+    text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
+  },
+  {
+    title: "package",
+    img: "/about/dabao.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 dabao.jpg）
+    text: "Once you confirm upon inspection that the products are in perfect condition, we will protect items with EPE foam, foam boards and plastic film for shock resistance, pack into cartons and reinforce with solid wooden frames for reliable protection against knocks and compression in shipment.",
+  },
+  {
+    title: "Bedroom",
+    img: "/about/bedroom.jpg", // 修改为静态文件路径
+    text: "This headboard perfectly blends exquisite craftsman ship with modern design, creating a new level of sophistication. Its seamless integration infuses a comfortable and elegant bedroom with fresh, modern vitality.",
+  },
+  {
+    kicker: "Focused",
+    title: "Office",
+    img: "/about/office.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 office.jpg）
+    text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics, and the neat curved surface replicates Bugatti's iconic body lines, creating a sense of strength and hidden luxury for the office space.",
+  },
 ];
 
 export function Reveal({
