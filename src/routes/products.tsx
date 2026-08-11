@@ -379,13 +379,14 @@ function ProductsPage() {
           <div>
             <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              Via dell'Artigianato 12, 41049 Fmanar (MO), Italia
+              Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China
+              Business hours: 09:00 – 18:00 (UTC+8)
             </p>
           </div>
           {[
             { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
-            { h: "Maison", l: ["Philosophy", "Craftsmanship", "Showrooms", "Press"] },
-            { h: "Contact", l: ["Trade program", "Newsletter", "WeChat", "Instagram"] },
+            { h: "Customer Service", l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"] },
+            { h: "Contact Us", l: ["Feedback"] },
           ].map((col) => (
             <div key={col.h}>
               <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
