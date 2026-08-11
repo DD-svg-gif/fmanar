@@ -1,6 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
 
-/* ---------------- About + stats ---------------- */
 
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
