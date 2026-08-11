@@ -99,26 +99,19 @@ function Home() {
         <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
           {/* 左侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
-            {navLeft.map((n) =>
-              n === "Products" ? (
-                <Link
-                  key={n}
-                  to="/products"
-                  search={{ category: undefined }}
-                  className="whitespace-nowrap transition-colors hover:text-[--gold]"
-                >
-                  {n}
-                </Link>
-              ) : (
-                <Link
-                  key={n}
-                  to="/"
-                  className="whitespace-nowrap transition-colors hover:text-[--gold]"
-                >
-                  {n}
-                </Link>
-              ),
-            )}
+           // ✅ 修改后的代码：
+{navLeft.map((n) => {
+  const isProducts = n === "Products" || n === "产品";
+  return (
+    <Link
+      key={n}
+      to={isProducts ? "/products" : "/"}
+      className="whitespace-nowrap transition-colors hover:text-[--gold]"
+    >
+      {n}
+    </Link>
+  );
+})}
           </nav>
 
           {/* 中间品牌 Logo */}
