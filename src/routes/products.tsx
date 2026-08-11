@@ -1,9 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
-// 提示：若项目未配置 Vite/Webpack 资源索引，请按需清理未使用的 JSON/图片导入以保持代码整洁
-import productsBanner from "@/assets/products-banner.jpg.asset.json";
-
 // ----------------------------------------------------------------------
 // 1. TanStack Router 路由与 Search 参数校验定义
 // ----------------------------------------------------------------------
@@ -46,12 +43,6 @@ type Product = {
 const productsByCategory: Record<string, Product[]> = {
   "Dining Room": [
     { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG" },
-    { name: "Majestic Dining Table", img: "/PRODUCTS/dining%20room/Majestic%20Dining%20Table.JPG" },
-    { name: "Newent Dining Table", img: "/PRODUCTS/dining%20room/Newent%20Dining%20Table.JPG" },
-    { name: "Raglan Dining Table", img: "/PRODUCTS/dining%20room/Raglan%20Dining%20Table.JPG" },
-    { name: "Ramsey Dining Table", img: "/PRODUCTS/dining%20room/Ramsey%20Dining%20Table.JPG" },
-    { name: "Stamboul Dining Table", img: "/PRODUCTS/dining%20room/Stamboul%20Dining%20Teble.JPG" },
-    { name: "V-Dining Table", img: "/PRODUCTS/dining%20room/V-Dining%20Table.JPG" },
     { name: "Vasmara Dining Table", img: "/PRODUCTS/dining%20room/Vasmara%20Dining%20Table.jpeg" },
   ],
   "Living Room": [
@@ -84,8 +75,6 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "Beaumont Sofa", img: "/PRODUCTS/living%20room/Beaumont%20Sofa.jpg" },
     { name: "Crescent Sofa", img: "/PRODUCTS/living%20room/Crescent%20Sofa.jpg" },
     { name: "Dina Sofa", img: "/PRODUCTS/living%20room/Dina%20Sofa.jpg" },
-    { name: "Ramsey Sofa", img: "/PRODUCTS/living%20room/Ramsey%20Sofa.jpg" },
-    { name: "Supercar Sofa", img: "/PRODUCTS/living%20room/Supercar%20Sofa.jpg" },
     { name: "Abey Sofa", img: "/PRODUCTS/living%20room/Abey%20Sofa.jpg" },
     { name: "Winston Sofa", img: "/PRODUCTS/living%20room/Winston%20Sofa.jpg" },
   ],
@@ -93,11 +82,10 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "Elena Desk", img: "/PRODUCTS/office room/Elena Desk.JPG" },
     { name: "Executive Desk", img: "/PRODUCTS/office room/Executive Desk.JPG" },
     { name: "President Desk", img: "/PRODUCTS/office room/President Desk.jpg" },
-    { name: "Raglan Desk", img: "/PRODUCTS/office room/Raglan Desk.JPG" },
-    { name: "Stamboul Desk", img: "/PRODUCTS/office room/Stamboul Desk.JPG" },
     { name: "Supercar Desk", img: "/PRODUCTS/office room/Supercar Desk.jpg" },
   ],
-  Bedroom: [
+  // 修正点：将 Bedroom 加上双引号，修复语法错误
+  "Bedroom": [
     { name: "Gesu Bed", img: "/PRODUCTS/bedroom/Gesu%20Bed.JPG" },
     { name: "Havergate Bed", img: "/PRODUCTS/bedroom/Havergate%20Bed.JPG" },
     { name: "Leather Belt Bed", img: "/PRODUCTS/bedroom/Leather%20Belt%20Bed.JPG" },
@@ -125,8 +113,8 @@ const navRight = ["About us", "Contact us"];
 const categories = [
   {
     title: "FMANAR",
-    items: ["Living Room", "Dining Room", "Office Room", "Bedroom"],
     open: true,
+    items: ["Living Room", "Dining Room", "Bedroom", "Office Room"],
   },
 ];
 
@@ -145,7 +133,7 @@ function ProductsPage() {
 
   // 侧边栏分类组展开/折叠状态
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
-    Object.fromEntries(categories.map((c) => [c.title, !!c.open])),
+    Object.fromEntries(categories.map((c) => [c.title, !!c.open]))
   );
 
   // 当前选中的空间分类
@@ -158,7 +146,7 @@ function ProductsPage() {
   useEffect(() => {
     if (search.category && search.category in productsByCategory) {
       setActiveCategory(search.category);
-      setPage(1); // 切换分类时回到第 1 页
+      setPage(1); // 切换分类时重置到第 1 页
     }
   }, [search.category]);
 
@@ -166,7 +154,7 @@ function ProductsPage() {
   const products = productsByCategory[activeCategory] ?? [];
   const pageSize = 12; // 每页展示 12 件产品
   const totalPages = Math.max(1, Math.ceil(products.length / pageSize));
-  
+
   // 根据当前页码截取当前页展示的产品数组
   const pageProducts = products.slice((page - 1) * pageSize, page * pageSize);
 
@@ -195,7 +183,7 @@ function ProductsPage() {
                 >
                   {n}
                 </Link>
-              ),
+              )
             )}
           </nav>
 
@@ -214,7 +202,7 @@ function ProductsPage() {
             {navRight.map((n) => (
               <Link
                 key={n}
-                to={n === "About us" ? "/about" : "/contact"}
+                to="/"
                 className="whitespace-nowrap transition-colors hover:text-[--gold]"
               >
                 {n}
@@ -222,7 +210,7 @@ function ProductsPage() {
             ))}
           </nav>
 
-          {/* 右侧搜索与多语言切换 */}
+          {/* 右侧搜索与图标区 */}
           <div className="ml-8 flex shrink-0 items-center gap-4 text-foreground/80 md:ml-12">
             <button aria-label="Search" className="transition hover:text-[--gold]">
               <svg
@@ -237,8 +225,6 @@ function ProductsPage() {
                 <path d="m20 20-3.5-3.5" />
               </svg>
             </button>
-            <span className="text-[11px] tracking-widest">EN</span>
-            <span className="text-[11px] tracking-widest text-muted-foreground">AR</span>
           </div>
         </div>
       </header>
@@ -252,7 +238,7 @@ function ProductsPage() {
         />
         {/* 深色渐变遮罩层 */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
-        
+
         {/* 横幅标语 */}
         <div className="absolute inset-x-0 bottom-20 z-10 flex flex-col items-center text-center">
           <h1 className="font-display text-6xl text-white drop-shadow md:text-7xl">
@@ -291,11 +277,10 @@ function ProductsPage() {
                 {openGroups[c.title] && c.items.length > 0 && (
                   <ul className="mt-4 space-y-3 border-l border-border/40 pl-4 text-sm">
                     {c.items.map((it) => {
-                      const isActive = activeCategory === it && c.title === "FMANAR";
+                      const isActive = activeCategory === it;
                       return (
                         <li key={it}>
                           <button
-                            type="button"
                             onClick={() => {
                               if (c.title === "FMANAR") {
                                 setActiveCategory(it);
@@ -304,7 +289,7 @@ function ProductsPage() {
                             }}
                             className={`block w-full text-left transition ${
                               isActive
-                                ? "text-[--gold]"
+                                ? "font-semibold text-[--gold]"
                                 : "text-muted-foreground hover:text-foreground"
                             }`}
                           >
@@ -336,19 +321,16 @@ function ProductsPage() {
           <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {pageProducts.map((p) => (
               <a key={p.name} href="#" className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden bg-black/40">
+                <div className="aspect-[4/5] w-full overflow-hidden bg-muted">
                   <img
                     src={p.img}
                     alt={p.name}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="mt-4 border-t border-border/30 pt-4 text-center">
-                  <p className="text-sm tracking-[0.15em] text-foreground transition group-hover:text-[--gold]">
-                    {p.name}
-                  </p>
-                </div>
+                <h3 className="mt-4 text-sm font-medium text-foreground transition-colors group-hover:text-[--gold]">
+                  {p.name}
+                </h3>
               </a>
             ))}
           </div>
@@ -369,10 +351,10 @@ function ProductsPage() {
               <button
                 key={n}
                 onClick={() => setPage(n)}
-                className={`h-9 w-9 border transition ${
+                className={`px-3 py-2 transition ${
                   page === n
-                    ? "border-[--gold] text-[--gold]"
-                    : "border-border/40 text-muted-foreground hover:border-[--gold] hover:text-[--gold]"
+                    ? "font-bold text-[--gold]"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {n}
@@ -397,7 +379,7 @@ function ProductsPage() {
           {/* 品牌地址与营业时间 */}
           <div>
             <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-            <div className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground space-y-1">
+            <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
               <p>
                 Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
                 Shunde District, Foshan City, Guangdong Province, China
@@ -428,7 +410,7 @@ function ProductsPage() {
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 {col.l.map((x) => (
                   <li key={x}>
-                    <a href="#" className="hover:text-foreground">
+                    <a href="#" className="transition hover:text-foreground">
                       {x}
                     </a>
                   </li>
