@@ -1,430 +1,240 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// ----------------------------------------------------------------------
-// 1. TanStack Router 路由与 Search 参数校验定义
-// ----------------------------------------------------------------------
-export const Route = createFileRoute("/products")({
-  // 校验并解析 URL 中的 query 参数（如 /products?category=Living Room）
-  validateSearch: (search: Record<string, unknown>) => ({
-    category: typeof search.category === "string" ? search.category : undefined,
-  }),
-  // 页面 HEAD 元数据配置（用于 SEO 及社交分享预览）
-  head: () => ({
-    meta: [
-      { title: "Products — FMANAR Luxury Italian Furniture" },
-      {
-        name: "description",
-        content:
-          "Browse the FMANAR collection of luxury Italian furniture — living, dining, bedroom and office pieces hand-finished in Italy.",
-      },
-      { property: "og:title", content: "Products — FMANAR" },
-      {
-        property: "og:description",
-        content:
-          "The FMANAR furniture collection. Hand-finished Italian craftsmanship for living, dining, bedroom and office.",
-      },
-    ],
-  }),
-  component: ProductsPage,
-});
+/* ---------------- About + stats ---------------- */
 
-// ----------------------------------------------------------------------
-// 2. 类型定义与静态数据源
-// ----------------------------------------------------------------------
-
-/** 单个产品项数据结构 */
-type Product = {
-  name: string; // 产品名称
-  img: string;  // 产品图片相对路径
-};
-
-/** 按空间分类的产品数据集 */
-const productsByCategory: Record<string, Product[]> = {
-  "Dining Room": [
-    { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG" },
-    { name: "Vasmara Dining Table", img: "/PRODUCTS/dining%20room/Vasmara%20Dining%20Table.jpeg" },
-  ],
-  "Living Room": [
-    { name: "Newert Sofa", img: "/PRODUCTS/living%20room/Newert.jpg" },
-    { name: "Bainton Sofa", img: "/PRODUCTS/living%20room/Bainton%20Sofa.jpg" },
-    { name: "Lyman Sofa", img: "/PRODUCTS/living%20room/Lyman%20Sofa.jpg" },
-    { name: "Havergate Sofa", img: "/PRODUCTS/living%20room/Havergate%20Sofa.jpg" },
-    { name: "Babylon Curved Sofa", img: "/PRODUCTS/living%20room/Babylon%20Curved%20Sofa.jpg" },
-    { name: "Babylon Sofa", img: "/PRODUCTS/living%20room/Babylon%20Sofa.jpg" },
-    { name: "Elena Sofa", img: "/PRODUCTS/living%20room/Elena%20Sofa.jpg" },
-    { name: "Krezer Sofa", img: "/PRODUCTS/living%20room/Krezer%20Sofa.jpg" },
-    { name: "Five Sofa", img: "/PRODUCTS/living%20room/Five%20Sofa.jpg" },
-    { name: "Leather Belt Sofa", img: "/PRODUCTS/living%20room/Leather%20Belt%20Sofa.jpg" },
-    { name: "Malawi Sofa", img: "/PRODUCTS/living%20room/Malawi%20Sofa.jpg" },
-    { name: "West Sofa", img: "/PRODUCTS/living%20room/West%20Sofa.jpg" },
-    { name: "Victorian Sofa", img: "/PRODUCTS/living%20room/Victorian%20Sofa.jpg" },
-    { name: "Smile Sofa", img: "/PRODUCTS/living%20room/Smile%20Sofa.jpg" },
-    { name: "Rhapsody Sofa", img: "/PRODUCTS/living%20room/Rhapsody%20Sofa.jpg" },
-    { name: "Signature Sofa", img: "/PRODUCTS/living%20room/Signature%20Sofa.jpg" },
-    { name: "Tiger Stripe Sofa", img: "/PRODUCTS/living%20room/Tiger%20Stripe%20Sofa.jpg" },
-    { name: "Tucson Blues Sofa", img: "/PRODUCTS/living%20room/Tucson%20Blues%20Sofa.jpg" },
-    { name: "Jona Sofa", img: "/PRODUCTS/living%20room/Jona%20Sofa.jpg" },
-    { name: "Siena Sofa", img: "/PRODUCTS/living%20room/Siena%20Sofa.jpg" },
-    { name: "Annual Ring Sofa", img: "/PRODUCTS/living%20room/Annual%20Ring%20Sofa.jpg" },
-    { name: "Stone Sofa", img: "/PRODUCTS/living%20room/Stone%20Sofa.jpg" },
-    { name: "Tiverton Sofa", img: "/PRODUCTS/living%20room/Tiverton%20Sofa.jpg" },
-    { name: "Now Barton Sofa", img: "/PRODUCTS/living%20room/Now%20Barton%20Sofa.jpg" },
-    { name: "Barton Sofa", img: "/PRODUCTS/living%20room/Barton%20Sofa.jpg" },
-    { name: "AM Sofa", img: "/PRODUCTS/living%20room/AM%20Sofa.jpg" },
-    { name: "Beaumont Sofa", img: "/PRODUCTS/living%20room/Beaumont%20Sofa.jpg" },
-    { name: "Crescent Sofa", img: "/PRODUCTS/living%20room/Crescent%20Sofa.jpg" },
-    { name: "Dina Sofa", img: "/PRODUCTS/living%20room/Dina%20Sofa.jpg" },
-    { name: "Abey Sofa", img: "/PRODUCTS/living%20room/Abey%20Sofa.jpg" },
-    { name: "Winston Sofa", img: "/PRODUCTS/living%20room/Winston%20Sofa.jpg" },
-  ],
-  "Office Room": [
-    { name: "Elena Desk", img: "/PRODUCTS/office room/Elena Desk.JPG" },
-    { name: "Executive Desk", img: "/PRODUCTS/office room/Executive Desk.JPG" },
-    { name: "President Desk", img: "/PRODUCTS/office room/President Desk.jpg" },
-    { name: "Supercar Desk", img: "/PRODUCTS/office room/Supercar Desk.jpg" },
-  ],
-  // 修正点：将 Bedroom 加上双引号，修复语法错误
-  "Bedroom": [
-    { name: "Gesu Bed", img: "/PRODUCTS/bedroom/Gesu%20Bed.JPG" },
-    { name: "Havergate Bed", img: "/PRODUCTS/bedroom/Havergate%20Bed.JPG" },
-    { name: "Leather Belt Bed", img: "/PRODUCTS/bedroom/Leather%20Belt%20Bed.JPG" },
-    { name: "Lyman Bed", img: "/PRODUCTS/bedroom/Lyman%20Bed.jpg" },
-    { name: "Malawi Bed", img: "/PRODUCTS/bedroom/Malawi%20Bed.JPG" },
-    { name: "Midas Bed", img: "/PRODUCTS/bedroom/Midas%20Bed.JPG" },
-    { name: "Newert Bed", img: "/PRODUCTS/bedroom/Newert%20Bed.JPG" },
-    { name: "Newert Extra-Wide Bed", img: "/PRODUCTS/bedroom/Newert%20Extra-Wide%20Bed.jpg" },
-    { name: "Now V-Wide Bed", img: "/PRODUCTS/bedroom/Now%20V-Wide%20Bed.JPG" },
-    { name: "Ramsey Bed", img: "/PRODUCTS/bedroom/Ramsey%20Bed.JPG" },
-    { name: "Rhapsody-Wide Bed", img: "/PRODUCTS/bedroom/Rhapsody-Wide%20Bed.JPG" },
-    { name: "Siena Bed", img: "/PRODUCTS/bedroom/Siena%20Bed.JPG" },
-    { name: "Stamford Bed", img: "/PRODUCTS/bedroom/Stamford%20Bed.JPG" },
-    { name: "Symphony Bed", img: "/PRODUCTS/bedroom/Symphony%20Bed.JPG" },
-    { name: "V-Wide Bed", img: "/PRODUCTS/bedroom/V-Wide%20Bed.JPG" },
-    { name: "Wings Bed", img: "/PRODUCTS/bedroom/Wings%20Bed.JPG" },
-  ],
-};
-
-// 顶部导航项配置
-const navLeft = ["Home", "Products"];
-const navRight = ["About us", "Contact us"];
-
-// 侧边栏折叠分类配置
-const categories = [
-  {
-    title: "FMANAR",
-    open: true,
-    items: ["Living Room", "Dining Room", "Bedroom", "Office Room"],
-  },
+const STATS = [
+{ v: "10+", l: "Years of experience" },
+{ v: "12,000+", l: "m² premium showroom" },
+{ v: "20,000+", l: "m² production base" },
 ];
 
-// ----------------------------------------------------------------------
-// 3. 产品列表主页面组件
-// ----------------------------------------------------------------------
-function ProductsPage() {
-  // 读取当前 URL 中的 query 搜索参数
-  const search = Route.useSearch();
+export function AboutIntro() {
+return (
+<section className="border-t border-border/40 px-8 py-24">
+<div className="mx-auto grid max-w-[1600px] items-center gap-14 md:grid-cols-2 md:gap-20">
+<div className="relative aspect-[4/3] overflow-hidden">
+{/* 直接引用 public/about/about-studio.jpg */}
+<img
+src="/about/gongchang.jpg"
+alt="FMANAR atelier"
+loading="lazy"
+className="h-full w-full object-cover"
+/>
+</div>
+<div>
+<p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">About us</p>
+<h2 className="mt-5 font-display text-4xl leading-tight md:text-5xl">
+High-end bespoke furniture&nbsp;
+</h2>
+<p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
+Established in 2015, Foshan Fmanar Furniture is located in Longjiang Town, Shunde District, Foshan City, Guangdong Province—the furniture manufacturing center of China. As a modern furniture manufacturer integrating R&D, production, sales, and service, the company boasts an independent production base of over 20,000 square meters and a high-end showroom of over 12,000 square meters. With advanced production lines, an experienced technical team, and outstanding management talent, we focus on providing customized furniture for high-end venues such as villas, luxury apartments, and star-rated hotels.
+</p>
+<div className="mt-10 grid grid-cols-3 gap-6 border-t border-border/40 pt-8">
+{STATS.map((s) => (
+<div key={s.l}>
+<p className="font-display text-3xl text-[--gold]">{s.v}</p>
+<p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{s.l}</p>
+</div>
+))}
+</div>
+</div>
+</div>
+</section>
+);
+}
 
-  // 若 URL 中指定了有效 category 参数，则设为初始分类，否则默认显示 "Living Room"
-  const initialCategory =
-    search.category && search.category in productsByCategory
-      ? search.category
-      : "Living Room";
+/* ---------------- Whole-house customization ---------------- */
 
-  // 侧边栏分类组展开/折叠状态
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(
-    Object.fromEntries(categories.map((c) => [c.title, !!c.open]))
-  );
+const CUSTOM_ROWS = [
+{
 
-  // 当前选中的空间分类
-  const [activeCategory, setActiveCategory] = useState<string>(initialCategory);
+title: "Who We Are",
+img: "/about/zhangting.jpg", // 修改为静态文件路径
+text: "Fmanar Home is your ideal partner for luxury‑residence furnishing. We deliver end‑to‑end services for every client, ranging from space‑matching proposals and personalized size customization to full‑project implementation. Committed to balancing aesthetic sophistication and real‑life living experience, we craft comprehensive home furnishing solutions that perfectly cater to both practical needs and refined tastes for your luxury mansion.",
+},
+{
 
-  // 当前页码（默认为第 1 页）
-  const [page, setPage] = useState(1);
+    ,
+    
+title: "Living room",
+img: "/about/living.jpg", // 修改为静态文件路径
+text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
+},
+{
 
-  // 监听 URL 中的 category 变化并同步更新选中的分类与重置页码
-  useEffect(() => {
-    if (search.category && search.category in productsByCategory) {
-      setActiveCategory(search.category);
-      setPage(1); // 切换分类时重置到第 1 页
-    }
-  }, [search.category]);
+title: "package",
+img: "/about/dabao.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 dabao.jpg）
+text: "Once you confirm upon inspection that the products are in perfect condition, we will protect items with EPE foam, foam boards and plastic film for shock resistance, pack into cartons and reinforce with solid wooden frames for reliable protection against knocks and compression in shipment.",
+},
+{
 
-  // 分页计算逻辑
-  const products = productsByCategory[activeCategory] ?? [];
-  const pageSize = 12; // 每页展示 12 件产品
-  const totalPages = Math.max(1, Math.ceil(products.length / pageSize));
+title: "Bedroom",
+img: "/about/bedroom.jpg", // 修改为静态文件路径
+text: "This headboard perfectly blends exquisite craftsman ship with modern design, creating a new level of sophistication. Its seamless integration infuses a comfortable and elegant bedroom with fresh, modern vitality.",
+},
+{
+kicker: "Focused",
+title: "Office",
+img: "/about/office.jpg", // 修改为静态文件路径（确保 GitHub 上文件名是小写 office.jpg）
+text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics, and the neat curved surface replicates Bugatti's iconic body lines, creating a sense of strength and hidden luxury for the office space.",
+},
+];
 
-  // 根据当前页码截取当前页展示的产品数组
-  const pageProducts = products.slice((page - 1) * pageSize, page * pageSize);
+export function Reveal({
+children,
+delay = 0,
+from = "up",
+className = "",
+}: {
+children: React.ReactNode;
+delay?: number;
+from?: "up" | "left" | "right";
+className?: string;
+}) {
+const ref = useRef<HTMLDivElement | null>(null);
+const [shown, setShown] = useState(false);
 
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* ==================== 顶部固定导航栏 (Header) ==================== */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
-          {/* 左侧导航菜单 */}
-          <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
-            {navLeft.map((n) =>
-              n === "Products" ? (
-                <Link
-                  key={n}
-                  to="/products"
-                  search={{ category: undefined }}
-                  className="whitespace-nowrap text-[--gold]"
-                >
-                  {n}
-                </Link>
-              ) : (
-                <Link
-                  key={n}
-                  to="/"
-                  className="whitespace-nowrap transition-colors hover:text-[--gold]"
-                >
-                  {n}
-                </Link>
-              )
-            )}
-          </nav>
+useEffect(() => {
+const el = ref.current;
+if (!el) return;
+const io = new IntersectionObserver(
+(entries) => {
+if (entries[0]?.isIntersecting) {
+setShown(true);
+io.disconnect();
+}
+},
+{ threshold: 0.15 },
+);
+io.observe(el);
+return () => io.disconnect();
+}, []);
 
-          {/* 中间品牌 Logo */}
-          <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-foreground">
-            <span className="text-[10px] tracking-[0.4em] text-muted-foreground">
-              MORE PHILOSOPHY
-            </span>
-            <span className="font-display text-3xl tracking-[0.35em]">
-              &nbsp;FMANAR
-            </span>
-          </Link>
+const hidden =
+from === "left" ? "-translate-x-10 opacity-0" : from === "right" ? "translate-x-10 opacity-0" : "translate-y-10 opacity-0";
 
-          {/* 右侧导航菜单 */}
-          <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
-            {navRight.map((n) => (
-              <Link
-                key={n}
-                to="/"
-                className="whitespace-nowrap transition-colors hover:text-[--gold]"
-              >
-                {n}
-              </Link>
-            ))}
-          </nav>
+return (
+<div
+ref={ref}
+style={{ transitionDelay: `${delay}ms` }}
+className={`transition-all duration-[1100ms] ease-out ${shown ? "translate-x-0 translate-y-0 opacity-100" : hidden} ${className}`}
+>
+{children}
+</div>
+);
+}
 
-          {/* 右侧搜索与图标区 */}
-          <div className="ml-8 flex shrink-0 items-center gap-4 text-foreground/80 md:ml-12">
-            <button aria-label="Search" className="transition hover:text-[--gold]">
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
+export function Customization() {
+return (
+<section className="border-t border-border/40 px-8 py-24">
+<div className="mx-auto max-w-[1600px]">
+<Reveal className="text-center">
+<p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">Whole-house customization</p>
+<h2 className="mt-5 font-display text-4xl md:text-5xl">Everything covered, one exclusive solution</h2>
+</Reveal>
 
-      {/* ==================== 页面顶部横幅区 (Banner) ==================== */}
-      <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden pt-[72px]">
-        <img
-          src="/DSC05873_1%20%E6%8B%B7%E8%B4%9D.jpg"
-          alt="Products banner"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        {/* 深色渐变遮罩层 */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+<div className="mt-16 space-y-16 md:space-y-24">
+{CUSTOM_ROWS.map((r, idx) => {
+const textLeft = idx === 0 || idx % 2 === 1;
+return (
+<Reveal key={r.title} from={textLeft ? "right" : "left"}>
+<div className="grid items-center gap-6 md:grid-cols-12 md:gap-0">
+<div
+className={`relative overflow-hidden md:col-span-8 ${
+                     textLeft ? "md:order-2 md:col-start-5" : "md:order-1"
+                   }`}
+>
+<img
+src={r.img}
+alt={r.title}
+loading="lazy"
+className="aspect-[16/9] w-full object-cover transition-transform duration-[1600ms] ease-out hover:scale-[1.04]"
+/>
+</div>
 
-        {/* 横幅标语 */}
-        <div className="absolute inset-x-0 bottom-20 z-10 flex flex-col items-center text-center">
-          <h1 className="font-display text-6xl text-white drop-shadow md:text-7xl">
-            Products
-          </h1>
-          <p className="mt-4 text-[11px] uppercase tracking-[0.5em] text-[--gold-soft]">
-            Life Style
-          </p>
-        </div>
-      </section>
+<div
+className={`relative z-10 border border-border/40 bg-background/95 p-8 backdrop-blur md:col-span-5 md:p-10 ${
+                     textLeft ? "md:order-1 md:col-start-1 md:row-start-1 md:mr-[-8%]" : "md:order-2 md:col-start-8 md:row-start-1 md:ml-[-8%]"
+                   }`}
+>
+<p className="text-[11px] uppercase tracking-[0.35em] text-[--gold]">{r.kicker}</p>
+<h3 className="mt-3 font-display text-3xl md:text-4xl">{r.title}</h3>
+<p className="mt-5 text-sm leading-relaxed text-muted-foreground">{r.text}</p>
+</div>
+</div>
+</Reveal>
+);
+})}
+</div>
+</div>
+</section>
+);
+}
 
-      {/* ==================== 主内容区 (侧边栏 + 产品网格) ==================== */}
-      <section className="mx-auto grid max-w-[1600px] gap-12 px-8 py-20 lg:grid-cols-[260px_1fr]">
-        {/* 左侧分类导航菜单 (Sidebar) */}
-        <aside>
-          <p className="border-b border-border/40 pb-4 text-[11px] uppercase tracking-[0.4em] text-[--gold]">
-            Categories
-          </p>
-          <div className="mt-6 space-y-6">
-            {categories.map((c) => (
-              <div key={c.title}>
-                {/* 折叠/展开按钮 */}
-                <button
-                  onClick={() =>
-                    setOpenGroups((p) => ({ ...p, [c.title]: !p[c.title] }))
-                  }
-                  className="flex w-full items-center justify-between text-left text-sm font-medium uppercase tracking-[0.25em] text-foreground transition hover:text-[--gold]"
-                >
-                  <span>{c.title}</span>
-                  <span className="text-[--gold]">
-                    {openGroups[c.title] ? "−" : "+"}
-                  </span>
-                </button>
+/* ---------------- Cases ---------------- */
 
-                {/* 分类子项列表 */}
-                {openGroups[c.title] && c.items.length > 0 && (
-                  <ul className="mt-4 space-y-3 border-l border-border/40 pl-4 text-sm">
-                    {c.items.map((it) => {
-                      const isActive = activeCategory === it;
-                      return (
-                        <li key={it}>
-                          <button
-                            onClick={() => {
-                              if (c.title === "FMANAR") {
-                                setActiveCategory(it);
-                                setPage(1); // 切换分类时重置到第 1 页
-                              }
-                            }}
-                            className={`block w-full text-left transition ${
-                              isActive
-                                ? "font-semibold text-[--gold]"
-                                : "text-muted-foreground hover:text-foreground"
-                            }`}
-                          >
-                            {it}
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </div>
-            ))}
-          </div>
-        </aside>
+const CASES = [
+{ img: "/about/bedroom.jpg", label: "Private villa" },
+{ img: "/about/living.jpg", label: "Penthouse residence" },
+{ img: "/about/office.jpg", label: "Executive suite" },
+{ img: "/about/dining.jpg", label: "Hotel project" },
+];
 
-        {/* 右侧产品展柜与分页 */}
-        <div>
-          {/* 分类标题与总数指示 */}
-          <div className="mb-8 flex items-baseline justify-between border-b border-border/30 pb-4">
-            <h2 className="font-display text-3xl text-foreground">
-              {activeCategory}
-            </h2>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              {products.length} pieces
-            </span>
-          </div>
+export function Cases() {
+return (
+<section className="border-t border-border/40 px-8 py-24">
+<div className="mx-auto max-w-[1600px]">
+<div className="text-center">
+<p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">Cases</p>
+<h2 className="mt-5 font-display text-4xl md:text-5xl">Projects around the world</h2>
+</div>
+<div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+{CASES.map((c) => (
+<figure key={c.label} className="group relative aspect-[3/4] overflow-hidden">
+<img
+src={c.img}
+alt={c.label}
+loading="lazy"
+className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-105"
+/>
+<div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
+<figcaption className="absolute inset-x-0 bottom-0 p-6 text-[11px] uppercase tracking-[0.3em] text-white/85">
+{c.label}
+</figcaption>
+</figure>
+))}
+</div>
+</div>
+</section>
+);
+}
 
-          {/* 产品网格列表 */}
-          <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {pageProducts.map((p) => (
-              <a key={p.name} href="#" className="group block">
-                <div className="aspect-[4/5] w-full overflow-hidden bg-muted">
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="mt-4 text-sm font-medium text-foreground transition-colors group-hover:text-[--gold]">
-                  {p.name}
-                </h3>
-              </a>
-            ))}
-          </div>
+/* ---------------- Why choose us ---------------- */
 
-          {/* 分页控制栏 */}
-          <div className="mt-16 flex items-center justify-center gap-2 text-xs tracking-widest">
-            {/* 上一页 */}
-            <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              className="px-3 py-2 text-muted-foreground transition hover:text-[--gold]"
-              aria-label="Previous page"
-            >
-              «
-            </button>
+const REASONS = [
+{ t: "Own production base", d: "Advanced production lines and a seasoned technical team keep every detail under our control." },
+{ t: "Bespoke by default", d: "Dimensions, fabrics, leathers and finishes tailored to each residence and each project." },
+{ t: "Global delivery", d: "Packing, logistics and installation support for villas, apartments and hotels worldwide." },
+];
 
-            {/* 页码数字按钮 */}
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
-              <button
-                key={n}
-                onClick={() => setPage(n)}
-                className={`px-3 py-2 transition ${
-                  page === n
-                    ? "font-bold text-[--gold]"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {n}
-              </button>
-            ))}
-
-            {/* 下一页 */}
-            <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-              className="px-3 py-2 text-muted-foreground transition hover:text-[--gold]"
-              aria-label="Next page"
-            >
-              »
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== 页脚区块 (Footer) ==================== */}
-      <footer className="border-t border-border/40 px-8 py-16">
-        <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
-          {/* 品牌地址与营业时间 */}
-          <div>
-            <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-            <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
-              <p>
-                Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
-                Shunde District, Foshan City, Guangdong Province, China
-              </p>
-              <p>Business hours: 09:00 &ndash; 18:00 (UTC+8)</p>
-            </div>
-          </div>
-
-          {/* 页脚分类链接 */}
-          {[
-            { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
-            {
-              h: "Customer Service",
-              l: [
-                "Delivery",
-                "Privacy Policy",
-                "Shipping Policy",
-                "Return and Refunds",
-                "Important Notice",
-              ],
-            },
-            { h: "Contact Us", l: ["Feedback"] },
-          ].map((col) => (
-            <div key={col.h}>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
-                {col.h}
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {col.l.map((x) => (
-                  <li key={x}>
-                    <a href="#" className="transition hover:text-foreground">
-                      {x}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* 版权信息 */}
-        <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
-          © 2026 Fmanar Maison — All rights reserved
-        </p>
-      </footer>
-    </div>
-  );
+export function WhyChooseUs() {
+return (
+<section className="border-t border-border/40 px-8 py-24">
+<div className="mx-auto max-w-[1600px]">
+<div className="text-center">
+<p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">Why choose us</p>
+<h2 className="mt-5 font-display text-4xl md:text-5xl">Resources, craftsmanship, continuity</h2>
+</div>
+<div className="mt-14 grid gap-10 md:grid-cols-3">
+{REASONS.map((r, i) => (
+<div key={r.t} className="border-t border-border/40 pt-6">
+<p className="font-display text-2xl text-[--gold]">{String(i + 1).padStart(2, "0")}</p>
+<h3 className="mt-3 font-display text-2xl">{r.t}</h3>
+<p className="mt-4 text-sm leading-relaxed text-muted-foreground">{r.d}</p>
+</div>
+))}
+</div>
+</div>
+</section>
+);
 }
