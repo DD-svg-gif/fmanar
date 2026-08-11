@@ -279,10 +279,11 @@ function Home() {
         <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
           <div>
             <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-            <p className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground">
-            Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China
-            Business hours: 09:00 – 18:00 (UTC+8)
-            </p>
+           <p className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground">
+  Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China
+  <br />
+  Business hours: 09:00 – 18:00 (UTC+8)
+</p>
           </div>
           {[
             { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
