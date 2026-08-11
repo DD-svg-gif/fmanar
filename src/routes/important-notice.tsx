@@ -13,7 +13,7 @@ export const Route = createFileRoute("/important-notice")({
   component: ImportantNoticePage,
 });
 
-// 顶部导航与页脚辅助数据
+// 顶部导航与页脚辅助数据 
 const navLeft = ["Home", "Products"];
 const navRight = ["About us", "Contact us"];
 
