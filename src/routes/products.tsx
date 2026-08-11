@@ -427,15 +427,22 @@ function ProductsPage() {
               <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
                 {col.h}
               </p>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {col.l.map((x) => (
-                  <li key={x}>
-                    <a href="#" className="hover:text-foreground">
-                      {x}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+           {/* ✅ 修改后的代码 */}
+<ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+  {col.l.map((x) => (
+    <li key={x}>
+      {x === "Delivery" ? (
+        <Link to="/delivery" className="hover:text-foreground transition-colors">
+          {x}
+        </Link>
+      ) : (
+        <a href="#" className="hover:text-foreground">
+          {x}
+        </a>
+      )}
+    </li>
+  ))}
+</ul>
             </div>
           ))}
         </div>
