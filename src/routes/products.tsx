@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 /* ---------------- About + stats ---------------- */
@@ -233,8 +234,7 @@ return (
 }
 
 // 在文件末尾添加以下代码：
-
-export default function ProductsPage() {
+function ProductsPage() {
   return (
     <main>
       <AboutIntro />
@@ -244,3 +244,7 @@ export default function ProductsPage() {
     </main>
   );
 }
+
+export const Route = createFileRoute("/products")({
+  component: ProductsPage,
+});
