@@ -409,39 +409,33 @@ function ProductsPage() {
           </div>
 
           {/* 页脚分类链接 */}
-          {[
+{[
             { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
             {
               h: "Customer Service",
-              l: [
-                "Delivery",
-                "Privacy Policy",
-                "Shipping Policy",
-                "Return and Refunds",
-                "Important Notice",
-              ],
+              l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
             },
             { h: "Contact Us", l: ["Feedback"] },
           ].map((col) => (
             <div key={col.h}>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
-                {col.h}
-              </p>
-           {/* ✅ 修改后的代码 */}
-<ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-  {col.l.map((x) => (
-    <li key={x}>
-      {x === "Delivery" ? (
-        <Link to="/delivery" className="hover:text-foreground transition-colors">
-          {x}
-        </Link>
-      ) : (
-        <a href="#" className="hover:text-foreground">
-          {x}
-        </a>
-      )}
-    </li>
-  ))}
+              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                {col.l.map((x) => (
+                  <li key={x}>
+                    {x === "Delivery" ? (
+                      <Link to="/delivery" className="hover:text-foreground transition-colors">
+                        {x}
+                      </Link>
+                    ) : (
+                      <a href="#" className="hover:text-foreground">
+                        {x}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 </ul>
             </div>
           ))}
