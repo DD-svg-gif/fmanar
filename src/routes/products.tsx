@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
 
 /* ---------------- About + stats ---------------- */
 
@@ -245,6 +244,9 @@ function ProductsPage() {
   );
 }
 
+export const Route = createFileRoute("/products")({
+  component: ProductsPage,
+});
 export const Route = createFileRoute("/products")({
   component: ProductsPage,
 });
