@@ -2,7 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { RequestInfo } from "@/components/RequestInfo";
 
+// ----------------------------------------------------------------------
+// 1. 路由与 Meta 信息配置
+// ----------------------------------------------------------------------
 export const Route = createFileRoute("/")({
+  // 页面 HEAD 元数据配置（SEO 与 Open Graph 标签）
   head: () => ({
     meta: [
       { title: "FMANAR — Luxury Italian Furniture" },
@@ -21,9 +25,19 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-type Slide = { src: string; label: string; w: number; h: number };
+// ----------------------------------------------------------------------
+// 2. 类型定义与静态数据
+// ----------------------------------------------------------------------
 
-// 1. 顶部 Hero 轮播图：绑定 public/home/ 下的 4 张大图
+/** 轮播图项类型 */
+type Slide = {
+  src: string;   // 图片资源路径
+  label: string; // 空间名称
+  w: number;     // 原始宽度
+  h: number;     // 原始高度
+};
+
+// 顶部 Hero 全屏轮播图配置数据
 const slides: Slide[] = [
   { src: "/HOME/livingroom.jpg", label: "Living room", w: 1920, h: 1280 },
   { src: "/HOME/diningroom.jpg", label: "Dining room", w: 1920, h: 1280 },
@@ -31,10 +45,11 @@ const slides: Slide[] = [
   { src: "/HOME/officeroom.jpg", label: "Office room", w: 1920, h: 1280 },
 ];
 
+// 顶部导航项配置
 const navLeft = ["Home", "Products"];
 const navRight = ["About us", "Contact us"];
 
-// 2. 中间 4 个空间分类入口：绑定 public/home/ 下的 4 张分类图
+// 空间分类卡片数据
 const CATEGORIES = [
   { src: "/HOME/living1.jpg", label: "Living", count: "24 pieces", cat: "Living Room" },
   { src: "/HOME/bed1.jpg", label: "Bedroom", count: "18 pieces", cat: "Bedroom" },
@@ -42,18 +57,24 @@ const CATEGORIES = [
   { src: "/HOME/office1.jpg", label: "Office", count: "12 pieces", cat: "Office Room" },
 ];
 
+// ----------------------------------------------------------------------
+// 3. 首页主组件
+// ----------------------------------------------------------------------
 function Home() {
+  // 当前激活的轮播图索引
   const [i, setI] = useState(0);
 
+  // 定时器：每 6 秒自动切换轮播图
   useEffect(() => {
     const t = setInterval(() => setI((p) => (p + 1) % slides.length), 6000);
-    return () => clearInterval(t);
+    return () => clearInterval(t); // 清理定时器，避免内存泄漏
   }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* 顶部 Hero 全屏轮播区 */}
+      {/* ==================== 顶部 Hero 全屏轮播区 ==================== */}
       <section className="relative h-screen w-full overflow-hidden">
+        {/* 背景轮播图片列表 */}
         {slides.map((s, idx) => (
           <div
             key={idx}
@@ -65,15 +86,18 @@ function Home() {
               alt={s.label}
               width={s.w}
               height={s.h}
+              // 首张图片立即加载，后续图片延迟加载以优化性能
               loading={idx === 0 ? "eager" : "lazy"}
               className="h-full w-full object-cover"
             />
+            {/* 渐变遮罩层，提升文字可读性 */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/70" />
           </div>
         ))}
 
-        {/* 顶部 Header 导航 */}
+        {/* 顶部 Header 导航栏 */}
         <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
+          {/* 左侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navLeft.map((n) =>
               n === "Products" ? (
@@ -97,6 +121,7 @@ function Home() {
             )}
           </nav>
 
+          {/* 中间品牌 Logo */}
           <a href="#" className="flex shrink-0 flex-col items-center px-10 text-white">
             <span className="text-[10px] tracking-[0.4em] text-white/60">
               MORE PHILOSOPHY
@@ -106,6 +131,7 @@ function Home() {
             </span>
           </a>
 
+          {/* 右侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
             {navRight.map((n) => (
               <Link
@@ -118,6 +144,7 @@ function Home() {
             ))}
           </nav>
 
+          {/* 右侧工具栏（搜索与语言切换） */}
           <div className="ml-8 flex shrink-0 items-center gap-4 text-white/80 md:ml-12">
             <button aria-label="Search" className="transition hover:text-[--gold]">
               <svg
@@ -137,7 +164,7 @@ function Home() {
           </div>
         </header>
 
-        {/* 轮播图当前标题 */}
+        {/* 轮播图当前空间标题与探索锚点 */}
         <div className="absolute inset-x-0 bottom-24 z-10 flex flex-col items-center text-center">
           <h1 className="font-display text-5xl text-white drop-shadow md:text-7xl">
             {slides[i].label}
@@ -146,7 +173,7 @@ function Home() {
             href="#categories"
             className="mt-6 inline-flex items-center gap-3 border-b border-[--gold] pb-1 text-[11px] uppercase tracking-[0.3em] text-[--gold-soft] transition hover:text-[--gold]"
           >
-            Explore rooms
+            Explore rooms{" "}
             <svg
               width="14"
               height="14"
@@ -160,7 +187,7 @@ function Home() {
           </a>
         </div>
 
-        {/* 轮播进度指示器 */}
+        {/* 轮播进度条/切换指示器 */}
         <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-3">
           {slides.map((_, idx) => (
             <button
@@ -177,7 +204,7 @@ function Home() {
           ))}
         </div>
 
-        {/* 侧栏社交图标 */}
+        {/* 右侧固定社交媒体图标栏 */}
         <div className="absolute right-5 top-1/2 z-10 hidden -translate-y-1/2 flex-col gap-5 text-white/60 md:flex">
           {["IG", "FB", "WA", "WC", "YT", "IN", "TT"].map((s) => (
             <a
@@ -191,7 +218,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 品牌理念 */}
+      {/* ==================== 品牌理念板块 ==================== */}
       <section className="border-t border-border/40 px-8 py-28 text-center">
         <p className="mx-auto max-w-3xl text-[11px] uppercase tracking-[0.4em] text-[--gold]">
           The Philosophy
@@ -204,7 +231,7 @@ function Home() {
         </p>
       </section>
 
-      {/* 核心空间分类区块 (Catogories) */}
+      {/* ==================== 核心空间分类区块 (Categories) ==================== */}
       <section id="categories" className="mx-auto max-w-[1600px] px-8 pb-28">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map((c) => (
@@ -235,8 +262,9 @@ function Home() {
         </div>
       </section>
 
-      {/* 3. 主打产品区块：绑定 public/home/Babylon Rack Circle sofa.png */}
+      {/* ==================== 主打/新品推荐区块 ==================== */}
       <section className="grid grid-cols-1 items-center gap-12 border-t border-border/40 px-8 py-24 md:grid-cols-2 md:gap-20 md:px-20">
+        {/* 产品展现大图 */}
         <div className="relative aspect-[4/5] overflow-hidden bg-black">
           <img
             src="/HOME/Babylon Rack Circle sofa.png"
@@ -245,6 +273,8 @@ function Home() {
             className="h-full w-full object-cover"
           />
         </div>
+
+        {/* 产品详细说明 */}
         <div>
           <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">
             NEW COLLECTION&nbsp;
@@ -261,6 +291,7 @@ function Home() {
             <li>— Mirror Polished Stainless Steel Finish</li>
             <li>— Custom dimensions on request</li>
           </ul>
+          {/* 跳转至咨询表单锚点 */}
           <a
             href="#request-info"
             className="mt-10 inline-flex items-center gap-3 border border-[--gold] px-8 py-4 text-[11px] uppercase tracking-[0.3em] text-[--gold-soft] transition hover:bg-[--gold] hover:text-[oklch(0.14_0_0)]"
@@ -270,23 +301,36 @@ function Home() {
         </div>
       </section>
 
+      {/* ==================== 信息表单索取组件 ==================== */}
       <div id="request-info">
         <RequestInfo />
       </div>
 
-      {/* 页脚 */}
+      {/* ==================== 页脚区块 (Footer) ==================== */}
       <footer className="border-t border-border/40 px-8 py-16">
         <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+          {/* 品牌地址与营业时间 */}
           <div>
             <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-         <div className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground space-y-1">
-  <p>Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China</p>
-  <p>Business hours: 09:00 &ndash; 18:00 (UTC+8)</p>
-</div>
+            <div className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground space-y-1">
+              <p>Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China</p>
+              <p>Business hours: 09:00 &ndash; 18:00 (UTC+8)</p>
+            </div>
           </div>
+
+          {/* 页脚分类导航链接 */}
           {[
             { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
-            { h: "Customer Service", l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"] },
+            {
+              h: "Customer Service",
+              l: [
+                "Delivery",
+                "Privacy Policy",
+                "Shipping Policy",
+                "Return and Refunds",
+                "Important Notice",
+              ],
+            },
             { h: "Contact Us", l: ["Feedback"] },
           ].map((col) => (
             <div key={col.h}>
@@ -305,6 +349,8 @@ function Home() {
             </div>
           ))}
         </div>
+
+        {/* 版权信息 */}
         <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
           © 2026 Fmanar Maison — All rights reserved
         </p>
