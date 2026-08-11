@@ -4,7 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 // 提示：若项目未配置 Vite/Webpack 资源索引，请按需清理未使用的 JSON/图片导入以保持代码整洁
-import productsBanner from "@/assets/products-banner.jpg.asset.json";
+
 
 // ----------------------------------------------------------------------
 // 1. TanStack Router 路由与 Search 参数校验定义
@@ -404,7 +404,7 @@ function ProductsPage() {
                 Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
                 Shunde District, Foshan City, Guangdong Province, China
               </p>
-              <p>Business hours: 09:00 &ndash; 18:00 (UTC+8)</p>
+              <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
             </div>
           </div>
 
