@@ -451,21 +451,3 @@ function ProductsPage() {
   );
 }
 
-// 在文件末尾添加以下代码：
-function ProductsPage() {
-  return (
-    <main>
-      <AboutIntro />
-      <Customization />
-      <Cases />
-      <WhyChooseUs />
-    </main>
-  );
-}
-
-export const Route = createFileRoute("/products")({
-  component: ProductsPage,
-});
-export const Route = createFileRoute("/products")({
-  component: ProductsPage,
-});
