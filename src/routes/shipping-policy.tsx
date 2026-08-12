@@ -119,10 +119,47 @@ function ShippingPolicyPage() {
 
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Customs, Duties & Taxes
+              Shipping & White-Glove Services
             </h2>
             <p>
-              International shipments may be subject to import duties, customs taxes, and localized handling fees assessed by the destination country's customs authority. All custom clearance procedures are coordinated directly through our white-glove logistics support team.
+             All orders dispatched via our partnered carriers include standard door-to-door (threshold) delivery by default. Standard delivery does not include room-of-choice placement, uncrating, in-home assembly, installation, or removal of packaging materials.
+<br />
+  <br />
+              If your delivery requires room-of-choice placement, stair carry, product assembly, or specialized handling (collectively referred to as "White-Glove Services"), please contact our Customer Care team at least 3 business days in advance. We will coordinate with our logistics partners to arrange tailored solutions for you.
+<br />
+  <br />
+              Important Terms for White-Glove Services:
+              <br />
+  <br />
+             •&nbsp;Optional Add-On: White-Glove Service is an optional, paid add-on service.
+<br />
+  <br />
+             •&nbsp;Potential Additional Fees: Supplemental charges may apply under certain circumstances, including but not limited to:
+<br />
+  <br />
+             &nbsp; • &nbsp; Delivery to remote or difficult-to-access regions
+<br />
+  <br />
+             &nbsp; • &nbsp; Stair-carry services
+              <br />
+  <br />
+             &nbsp; • &nbsp; Specialized handling of oversized or heavy items
+              <br />
+  <br />
+             &nbsp; • &nbsp; Deliveries with restricted building access or specific entry protocols
+              <br />
+  <br />
+             •&nbsp;On-Site Presence Required: You or a designated authorized representative (aged 18 or older) must be present during the entire delivery and sign off upon completion of the White-Glove Service.
+              <br />
+  <br />
+             •&nbsp;Service Scope & Access Conditions: White-Glove Service includes placement in your room of choice, assembly (where applicable), and complete removal of packaging materials. Additional fees may be incurred based on delivery conditions, such as multiple flights of stairs, restricted pathways, lack of elevator access, narrow stairwells, or oversized items.
+              <br />
+  <br />
+             •&nbsp;Safety & Right of Refusal: To protect our personnel and your property, we reserve the right to decline or suspend White-Glove Services if delivery conditions are deemed unsafe (e.g., icy steps, blocked passageways).
+              <br />
+  <br />
+             •&nbsp;Health & Hygiene Policy: For health and safety reasons, our White-Glove Service will not handle, move, or haul away any existing items that are stained, soiled, or contaminated.
+              
             </p>
           </section>
 
