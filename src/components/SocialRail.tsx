@@ -1,5 +1,5 @@
 import { Facebook, Mail } from "lucide-react";
-import qr from "@/assets/whatsapp-qr.jpg.asset.json";
+import qr from "@/assets/Whatsapp.jpg";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
