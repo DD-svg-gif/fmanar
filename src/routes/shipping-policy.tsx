@@ -113,7 +113,7 @@ function ShippingPolicyPage() {
               Global Logistics & White-Glove Transport
             </h2>
             <p>
-              FMANAR delivers bespoke luxury furniture to residential and commercial clients worldwide. We partner with specialized art and high-end furniture logistics networks to manage every phase of transit with precision and care.
+              FMANAR crafts bespoke luxury furniture for prestigious residential and commercial clients worldwide. In partnership with elite white-glove logistics specialists, we meticulously manage every aspect of transit with uncompromised precision.
             </p>
           </section>
 
