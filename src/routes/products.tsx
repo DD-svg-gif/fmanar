@@ -3,6 +3,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
+const customerServiceRoutes: Record<string, string> = {
+  // 1. 添加 Collections 的路由参数
+  Living: "/products?category=Living Room",
+  Bedroom: "/products?category=Bedroom",
+  Dining: "/products?category=Dining Room",
+  Office: "/products?category=Office",
+
+  // 2. 原有的 Customer Service 路由
+  Delivery: "/delivery",
+  "Privacy Policy": "/privacy-policy",
+  "Shipping Policy": "/shipping-policy",
+  "Return and Refunds": "/return-and-refunds",
+  "Important Notice": "/important-notice",
+
+  // 3. 原有的 Contact 路由
+  Feedback: "/contact",
+};
 // 提示：若项目未配置 Vite/Webpack 资源索引，请按需清理未使用的 JSON/图片导入以保持代码整洁
 
 
@@ -429,10 +446,13 @@ function ProductsPage() {
         </p>
         <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
           {col.l.map((x) => {
+        // 1. 从顶部定义的 customerServiceRoutes 获取映射路径
             const routePath = customerServiceRoutes[x];
+        
             return (
               <li key={x}>
                 {routePath ? (
+                // 2. 如果存在映射路径，使用 TanStack Router 的 Link 进行跳转
                   <Link
                     to={routePath}
                     className="transition-colors hover:text-foreground"
