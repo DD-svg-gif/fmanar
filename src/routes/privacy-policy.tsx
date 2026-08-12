@@ -1,23 +1,52 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/delivery")({
+export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
-      { title: "Delivery — FMANAR Luxury Italian Furniture" },
+      { title: "Privacy Policy — FMANAR Luxury Italian Furniture" },
       {
         name: "description",
-        content: "Delivery and shipping information for FMANAR luxury Italian furniture.",
+        content: "Privacy policy and data protection guidelines for FMANAR luxury Italian furniture.",
       },
     ],
   }),
-  component: DeliveryPage,
+  component: PrivacyPolicyPage,
 });
 
-// 顶部导航与页脚辅助数据 
-const navLeft = ["Home", "Products"];
-const navRight = ["About us", "Contact us"];
+// 顶部 Header 导航项配置
+const navLeft = [
+  { label: "Home", to: "/" },
+  { label: "Products", to: "/products" },
+];
+const navRight = [
+  { label: "About us", to: "/about" },
+  { label: "Contact us", to: "/contact" },
+];
 
-function DeliveryPage() {
+// 声明页脚路由目标对象类型
+type RouteTarget = {
+  to: string;
+  search?: Record<string, string>;
+};
+
+// 页脚菜单路由字典映射（与 index.tsx / delivery.tsx 保持完全一致）
+const customerServiceRoutes: Record<string, RouteTarget> = {
+  // Collections 分类跳转
+  Living: { to: "/products", search: { category: "Living Room" } },
+  Bedroom: { to: "/products", search: { category: "Bedroom" } },
+  Dining: { to: "/products", search: { category: "Dining Room" } },
+  Office: { to: "/products", search: { category: "Office Room" } },
+  // Customer Service 路由
+  Delivery: { to: "/delivery" },
+  "Privacy Policy": { to: "/privacy-policy" },
+  "Shipping Policy": { to: "/shipping-policy" },
+  "Return and Refunds": { to: "/return-and-refunds" },
+  "Important Notice": { to: "/important-notice" },
+  // Contact Us
+  Feedback: { to: "/contact" },
+};
+
+function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col justify-between">
       {/* ==================== 顶部固定导航栏 (Header) ==================== */}
@@ -25,13 +54,13 @@ function DeliveryPage() {
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
           {/* 左侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
-            {navLeft.map((n) => (
+            {navLeft.map((item) => (
               <Link
-                key={n}
-                to={n === "Products" ? "/products" : "/"}
+                key={item.label}
+                to={item.to}
                 className="whitespace-nowrap transition-colors hover:text-[--gold]"
               >
-                {n}
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -48,18 +77,18 @@ function DeliveryPage() {
 
           {/* 右侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
-            {navRight.map((n) => (
+            {navRight.map((item) => (
               <Link
-                key={n}
-                to={n === "About us" ? "/about" : "/contact"}
+                key={item.label}
+                to={item.to}
                 className="whitespace-nowrap transition-colors hover:text-[--gold]"
               >
-                {n}
+                {item.label}
               </Link>
             ))}
           </nav>
 
-          {/* 右侧搜索与多语言 */}
+          {/* 右侧搜索与语言切换 */}
           <div className="ml-8 flex shrink-0 items-center gap-4 text-foreground/80 md:ml-12">
             <button aria-label="Search" className="transition hover:text-[--gold]">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -73,50 +102,36 @@ function DeliveryPage() {
         </div>
       </header>
 
-      {/* ==================== 页面主体内容区 (Delivery Content) ==================== */}
+      {/* ==================== 页面主体内容区 (Privacy Policy Content) ==================== */}
       <main className="mx-auto w-full max-w-4xl px-8 pt-36 pb-20 flex-1">
         <h1 className="font-display text-4xl md:text-5xl text-foreground text-center mb-12 tracking-wide">
-          Delivery & Shipping Information
+          Privacy Policy
         </h1>
-
         <div className="space-y-10 text-sm leading-relaxed text-muted-foreground">
-          {/* Shipping Info */}
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Complimentary White-Glove Shipping
+              Information Collection
             </h2>
             <p>
-              At FMANAR, we ensure that every piece of modern Italian luxury furniture is handled with maximum care and precision. We provide standard complimentary delivery for all white-glove eligible orders within mainland locations.
+              At FMANAR, we respect your privacy and are committed to protecting your personal data. We collect personal information that you provide to us directly when placing an order, subscribing to our communications, or contacting our concierge service.
             </p>
           </section>
 
-          {/* Dispatch & Processing */}
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Dispatch & Processing Times
+              Use of Personal Data
             </h2>
             <p>
-              In-stock items typically ship within 2–5 business days after order confirmation. Custom and handcrafted Made-to-Order items require additional lead times as each piece is crafted to perfection in our atelier.
+              Your information is used solely to fulfill your orders, manage logistics, process transactions, and provide tailored service updates regarding your bespoke luxury furniture inquiries.
             </p>
           </section>
 
-          {/* Delivery Method */}
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Delivery Method & Installation
+              Data Protection & Security
             </h2>
             <p>
-              Our specialized freight partners provide full white-glove service, including placement in your room of choice, complete unpacking, assembly, and inspection, as well as removal of all packaging materials.
-            </p>
-          </section>
-
-          {/* Tracking */}
-          <section className="space-y-3">
-            <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Tracking & Support
-            </h2>
-            <p>
-              Once your shipment is dispatched, you will receive a tracking link along with direct contact for our logistics coordinator to schedule a delivery time window that best suits your schedule.
+              We implement advanced technical and organizational measures to maintain the safety of your personal details. We do not sell, trade, or rent your personal information to third parties.
             </p>
           </section>
         </div>
@@ -125,9 +140,10 @@ function DeliveryPage() {
       {/* ==================== 页脚区块 (Footer) ==================== */}
       <footer className="border-t border-border/40 px-8 py-16">
         <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+          {/* 品牌地址与营业时间 */}
           <div>
             <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-            <div className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground space-y-1">
+            <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
               <p>
                 Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China
               </p>
@@ -135,32 +151,52 @@ function DeliveryPage() {
             </div>
           </div>
 
+          {/* 页脚分类链接与路由映射 */}
           {[
             { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
             {
               h: "Customer Service",
-              l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
+              l: [
+                "Delivery",
+                "Privacy Policy",
+                "Shipping Policy",
+                "Return and Refunds",
+                "Important Notice",
+              ],
             },
             { h: "Contact Us", l: ["Feedback"] },
           ].map((col) => (
             <div key={col.h}>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
+                {col.h}
+              </p>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {col.l.map((x) => (
-                  <li key={x}>
-                    <Link
-                      to={x === "Delivery" ? "/delivery" : "#"}
-                      className="hover:text-foreground transition-colors"
-                    >
-                      {x}
-                    </Link>
-                  </li>
-                ))}
+                {col.l.map((x) => {
+                  const route = customerServiceRoutes[x];
+                  return (
+                    <li key={x}>
+                      {route ? (
+                        <Link
+                          to={route.to}
+                          search={route.search}
+                          className="transition-colors hover:text-foreground"
+                        >
+                          {x}
+                        </Link>
+                      ) : (
+                        <a href="#" className="hover:text-foreground">
+                          {x}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
         </div>
 
+        {/* 版权信息 */}
         <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
           © 2026 Fmanar Maison — All rights reserved
         </p>
