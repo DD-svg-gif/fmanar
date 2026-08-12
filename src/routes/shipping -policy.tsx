@@ -1,5 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+// 声明路由目标对象类型
+type RouteTarget = {
+  to: string;
+  search?: Record<string, string>;
+};
+
+const customerServiceRoutes: Record<string, RouteTarget> = {
+  // Collections 分类跳转（使用 search 属性传递 category，且名称与 productsByCategory 对应）
+  Living: { to: "/products", search: { category: "Living Room" } },
+  Bedroom: { to: "/products", search: { category: "Bedroom" } },
+  Dining: { to: "/products", search: { category: "Dining Room" } },
+  Office: { to: "/products", search: { category: "Office Room" } },
+
+  // Customer Service 路由
+  Delivery: { to: "/delivery" },
+  "Privacy Policy": { to: "/privacy-policy" },
+  "Shipping Policy": { to: "/shipping-policy" },
+  "Return and Refunds": { to: "/return-and-refunds" },
+  "Important Notice": { to: "/important-notice" },
+
+  // Contact Us
+  Feedback: { to: "/contact" },
+};
 export const Route = createFileRoute("/delivery")({
   head: () => ({
     meta: [
@@ -122,45 +145,68 @@ function DeliveryPage() {
         </div>
       </main>
 
-      {/* ==================== 页脚区块 (Footer) ==================== */}
+{/* ==================== 页脚区块 (Footer) ==================== */}
       <footer className="border-t border-border/40 px-8 py-16">
         <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+          {/* 品牌地址与营业时间 */}
           <div>
             <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-            <div className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground space-y-1">
+            <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
               <p>
-                Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China
+                Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
+                Shunde District, Foshan City, Guangdong Province, China
               </p>
               <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
             </div>
           </div>
 
+          {/* 页脚分类链接与路由映射 */}
           {[
             { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
             {
               h: "Customer Service",
-              l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
+              l: [
+                "Delivery",
+                "Privacy Policy",
+                "Shipping Policy",
+                "Return and Refunds",
+                "Important Notice",
+              ],
             },
             { h: "Contact Us", l: ["Feedback"] },
           ].map((col) => (
             <div key={col.h}>
-              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
+                {col.h}
+              </p>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {col.l.map((x) => (
-                  <li key={x}>
-                    <Link
-                      to={x === "Delivery" ? "/delivery" : "#"}
-                      className="hover:text-foreground transition-colors"
-                    >
-                      {x}
-                    </Link>
-                  </li>
-                ))}
+                {col.l.map((x) => {
+                  const route = customerServiceRoutes[x];
+
+                  return (
+                    <li key={x}>
+                      {route ? (
+                        <Link
+                          to={route.to}
+                          search={route.search}
+                          className="transition-colors hover:text-foreground"
+                        >
+                          {x}
+                        </Link>
+                      ) : (
+                        <a href="#" className="hover:text-foreground">
+                          {x}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
         </div>
 
+        {/* 版权信息 */}
         <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
           © 2026 Fmanar Maison — All rights reserved
         </p>
