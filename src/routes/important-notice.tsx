@@ -109,22 +109,66 @@ function ImportantNoticePage() {
         </h1>
         <div className="space-y-10 text-sm leading-relaxed text-muted-foreground">
           <section className="space-y-3">
-            <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Product Care & Maintenance
-            </h2>
             <p>
-              Please review all care instructions provided with your FMANAR pieces. Natural materials such as genuine leather, marble, and wood require specific care to maintain their luxury finish and longevity.
+            Official Security & Anti-Fraud Statement
+            <br />
+<br />
+            Dear Valued Fmanar Home Clients,
+            <br />
+<br />
+            We extend our heartfelt gratitude for your continued trust and loyalty toward Fmanar Home.
+            <br />
+<br />
+            It has come to our attention that fraudulent websites and fake social media accounts are impersonating Fmanar Home in an attempt to unlawfully obtain clients' personal and sensitive data.
+            <br />
+<br />  
+            We hereby officially clarify that:
+            <br />
+<br />  
+            •&nbsp;Official Website: fmanar.com
+            <br />
+<br />                
+            •&nbsp;Official Email Addresses: fmnhome2015@gmail.com / fmanarhome@outlook.com
+            <br />
+<br />              
+            Any other platforms, websites, or communications claiming to be the "Official Fmanar Home" are unauthorized and fraudulent. We strongly advise all clients to exercise extreme caution when interacting with unverified sources to prevent privacy breaches and financial losses.  
+            <br />
+<br />      
+            Strict Brand Protection & Legal Notice
+            <br />
+<br />  
+           To safeguard the integrity of the Fmanar Home brand and protect our consumers' rights:
+            <br />
+<br />  
+            •&nbsp;Cease & Desist Warning: We strictly warn all infringers to cease all unauthorized activities immediately.
+            <br />
+<br />                
+            •&nbsp;Legal Action: Fmanar Home reserves all legal rights to pursue civil and criminal liability against any individual or entity infringing upon our rights.
+            <br />
+<br />          
+            Security Advice & Liability Disclaimer
+            <br />
+<br />  
+            •&nbsp;Verify Before Entering Data: Please double-check the authenticity of any URL before entering sensitive financial details, account numbers, or passwords.
+            <br />
+<br />                
+            •&nbsp;Disclaimer: Fmanar Home is not liable for financial losses caused by third-party fraudulent websites and bears no legal obligation to compensate or assist in claims. However, we welcome any information regarding fake platforms and are committed to maintaining open communication on these matters.
+            <br />
+<br />              
+            The Fmanar Home team remains dedicated to delivering exceptional experiences to our global clients while safeguarding your interests. If you encounter any suspicious activity or fake websites, please report them to our customer service team immediately.
+            <br />
+<br />    
+            Thank you for your vigilance and ongoing support. 
+            <br />
+<br />    
+            Sincerely, 
+            <br />
+<br /> 
+            The Fmanar Home Team  
             </p>
           </section>
 
-          <section className="space-y-3">
-            <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Terms & Conditions
-            </h2>
-            <p>
-              All products are subject to availability. FMANAR reserves the right to modify product specifications and availability without prior notice.
-            </p>
-          </section>
+       
         </div>
       </main>
 
