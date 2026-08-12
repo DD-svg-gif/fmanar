@@ -26,7 +26,7 @@ const customerServiceRoutes: Record<string, RouteTarget> = {
   // Contact Us
   Feedback: { to: "/contact" },
 };
-};
+
 // 提示：若项目未配置 Vite/Webpack 资源索引，请按需清理未使用的 JSON/图片导入以保持代码整洁
 
 
