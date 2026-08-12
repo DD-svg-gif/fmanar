@@ -29,7 +29,7 @@ type RouteTarget = {
   search?: Record<string, string>;
 };
 
-// 页脚菜单路由字典映射（与 index.tsx / delivery.tsx 保持完全一致）
+// 页脚菜单路由字典映射（与全站其他页面保持完全一致）
 const customerServiceRoutes: Record<string, RouteTarget> = {
   // Collections 分类跳转
   Living: { to: "/products", search: { category: "Living Room" } },
