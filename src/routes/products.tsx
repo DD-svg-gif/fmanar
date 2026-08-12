@@ -3,22 +3,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
-const customerServiceRoutes: Record<string, string> = {
-  // 1. 添加 Collections 的路由参数
-  Living: "/products?category=Living Room",
-  Bedroom: "/products?category=Bedroom",
-  Dining: "/products?category=Dining Room",
-  Office: "/products?category=Office",
+// 声明路由目标对象类型
+type RouteTarget = {
+  to: string;
+  search?: Record<string, string>;
+};
 
-  // 2. 原有的 Customer Service 路由
-  Delivery: "/delivery",
-  "Privacy Policy": "/privacy-policy",
-  "Shipping Policy": "/shipping-policy",
-  "Return and Refunds": "/return-and-refunds",
-  "Important Notice": "/important-notice",
+const customerServiceRoutes: Record<string, RouteTarget> = {
+  // Collections 分类跳转（使用 search 属性传递 category，且名称与 productsByCategory 对应）
+  Living: { to: "/products", search: { category: "Living Room" } },
+  Bedroom: { to: "/products", search: { category: "Bedroom" } },
+  Dining: { to: "/products", search: { category: "Dining Room" } },
+  Office: { to: "/products", search: { category: "Office Room" } },
 
-  // 3. 原有的 Contact 路由
-  Feedback: "/contact",
+  // Customer Service 路由
+  Delivery: { to: "/delivery" },
+  "Privacy Policy": { to: "/privacy-policy" },
+  "Shipping Policy": { to: "/shipping-policy" },
+  "Return and Refunds": { to: "/return-and-refunds" },
+  "Important Notice": { to: "/important-notice" },
+
+  // Contact Us
+  Feedback: { to: "/contact" },
+};
 };
 // 提示：若项目未配置 Vite/Webpack 资源索引，请按需清理未使用的 JSON/图片导入以保持代码整洁
 
@@ -411,70 +418,71 @@ function ProductsPage() {
       </section>
 
 {/* ==================== 页脚区块 (Footer) ==================== */}
-<footer className="border-t border-border/40 px-8 py-16">
-  <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
-    {/* 品牌地址与营业时间 */}
-    <div>
-      <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-      <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
-        <p>
-          Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
-          Shunde District, Foshan City, Guangdong Province, China
+      <footer className="border-t border-border/40 px-8 py-16">
+        <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+          {/* 品牌地址与营业时间 */}
+          <div>
+            <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
+            <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
+              <p>
+                Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
+                Shunde District, Foshan City, Guangdong Province, China
+              </p>
+              <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
+            </div>
+          </div>
+
+          {/* 页脚分类链接与路由映射 */}
+          {[
+            { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
+            {
+              h: "Customer Service",
+              l: [
+                "Delivery",
+                "Privacy Policy",
+                "Shipping Policy",
+                "Return and Refunds",
+                "Important Notice",
+              ],
+            },
+            { h: "Contact Us", l: ["Feedback"] },
+          ].map((col) => (
+            <div key={col.h}>
+              <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
+                {col.h}
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                {col.l.map((x) => {
+                  const route = customerServiceRoutes[x];
+
+                  return (
+                    <li key={x}>
+                      {route ? (
+                        <Link
+                          to={route.to}
+                          search={route.search}
+                          className="transition-colors hover:text-foreground"
+                        >
+                          {x}
+                        </Link>
+                      ) : (
+                        <a href="#" className="hover:text-foreground">
+                          {x}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* 版权信息 */}
+        <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
+          © 2026 Fmanar Maison — All rights reserved
         </p>
-        <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
-      </div>
+      </footer>
     </div>
-
-    {/* 页脚分类链接与路由映射 */}
-    {[
-      { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
-      {
-        h: "Customer Service",
-        l: [
-          "Delivery",
-          "Privacy Policy",
-          "Shipping Policy",
-          "Return and Refunds",
-          "Important Notice",
-        ],
-      },
-      { h: "Contact Us", l: ["Feedback"] },
-    ].map((col) => (
-      <div key={col.h}>
-        <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
-          {col.h}
-        </p>
-        <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-          {col.l.map((x) => {
-        // 1. 从顶部定义的 customerServiceRoutes 获取映射路径
-            const routePath = customerServiceRoutes[x];
-        
-            return (
-              <li key={x}>
-                {routePath ? (
-                // 2. 如果存在映射路径，使用 TanStack Router 的 Link 进行跳转
-                  <Link
-                    to={routePath}
-                    className="transition-colors hover:text-foreground"
-                  >
-                    {x}
-                  </Link>
-                ) : (
-                  <a href="#" className="hover:text-foreground">
-                    {x}
-                  </a>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    ))}
-  </div>
-
-  {/* 版权信息 */}
-  <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
-    © 2026 Fmanar Maison — All rights reserved
-  </p>
-</footer>
-
+  );
+}
