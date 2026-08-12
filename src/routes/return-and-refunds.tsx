@@ -108,12 +108,42 @@ function ReturnAndRefundsPage() {
           Return & Refund Policy
         </h1>
         <div className="space-y-10 text-sm leading-relaxed text-muted-foreground">
+            <section className="space-y-3">
+            <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
+              Damaged, Missing, or Incorrect Items
+            </h2>
+            <p>
+            If your order arrives damaged, is missing parts, or if you have received an incorrect item, please gather the following information and email our customer service team at fmnhome2015@gmail.com:
+<br />
+  <br />
+            1.Full Product Photo: Overall photo(s) of the complete item.
+<br />
+  <br />
+            2.Defect/Damage Close-ups: Clear photos of the affected areas from multiple angles.
+<br />
+  <br />
+           3.Packaging Photos: Photos of the original outer packaging and protective materials (if available).
+<br />
+  <br />
+          4.Order Details: Your Purchase Order (PO) number and a detailed description of the issue.
+<br />
+  <br />
+          We will respond to your claim within 24 business hours.
+            </p>
+          </section>
+          
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
               Returns & Eligibility
             </h2>
             <p>
-              We want you to be completely satisfied with your purchase. Standard items may be returned within 14 days of receipt, provided they are in their original condition and packaging. Custom or Made-to-Order furniture items are bespoke and non-refundable.
+             We want you to be completely delighted with your purchase.
+<br />
+  <br />
+             Standard Products: Non-customized items may be returned within 14 days of receipt, provided they remain in their original condition and packaging.
+<br />
+  <br />
+             Custom & Bespoke Furniture: Due to their personalized nature, custom items are non-refundable. To guarantee your absolute satisfaction, we will provide thorough detailed inspections for your approval prior to dispatch, resolving any standard or issue before shipping.
             </p>
           </section>
 
