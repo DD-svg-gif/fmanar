@@ -111,10 +111,10 @@ function DeliveryPage() {
           {/* Shipping Info */}
           <section className="space-y-3">
             <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
-              Complimentary White-Glove Shipping
+             Delivery Services
             </h2>
             <p>
-              At FMANAR, we ensure that every piece of modern Italian luxury furniture is handled with maximum care and precision. We provide standard complimentary delivery for all white-glove eligible orders within mainland locations.
+             To ensure all product prices remain at direct ex-factory rates, shipping costs are not included. If you have a preferred logistics provider, FMANAR will fully coordinate with them. Alternatively, if you do not have a designated carrier, our trusted logistics partners are available to provide comprehensive, high-quality service.
             </p>
           </section>
 
@@ -124,7 +124,7 @@ function DeliveryPage() {
               Dispatch & Processing Times
             </h2>
             <p>
-              In-stock items typically ship within 2–5 business days after order confirmation. Custom and handcrafted Made-to-Order items require additional lead times as each piece is crafted to perfection in our atelier.
+             In-Stock Items: Shipped within 2–5 business days following order confirmation.Custom Orders: Delivered in 45–50 business days, as every made-to-order piece is meticulously handcrafted in our workshop.
             </p>
           </section>
 
@@ -134,7 +134,10 @@ function DeliveryPage() {
               Delivery Method & Installation
             </h2>
             <p>
-              Our specialized freight partners provide full white-glove service, including placement in your room of choice, complete unpacking, assembly, and inspection, as well as removal of all packaging materials.
+             Client-Designated Carrier: Prior to shipment, we will verify the products with you via photos and video to ensure perfection, then secure them in custom wooden crates before handing them over to your specified freight provider.
+  <br />
+  <br />
+             Our Partnered Freight Service: Upon video confirmation, our trusted logistics partners will provide a comprehensive white-glove service. This includes delivering the items directly to your room of choice, complete unpacking, full assembly and inspection, and removal of all packaging materials.
             </p>
           </section>
 
