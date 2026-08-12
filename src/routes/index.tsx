@@ -2,6 +2,30 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { RequestInfo } from "@/components/RequestInfo";
 
+// 声明路由目标对象类型
+type RouteTarget = {
+  to: string;
+  search?: Record<string, string>;
+};
+
+const customerServiceRoutes: Record<string, RouteTarget> = {
+  // Collections 分类跳转
+  Living: { to: "/products", search: { category: "Living Room" } },
+  Bedroom: { to: "/products", search: { category: "Bedroom" } },
+  Dining: { to: "/products", search: { category: "Dining Room" } },
+  Office: { to: "/products", search: { category: "Office Room" } },
+
+  // Customer Service 路由
+  Delivery: { to: "/delivery" },
+  "Privacy Policy": { to: "/privacy-policy" },
+  "Shipping Policy": { to: "/shipping-policy" },
+  "Return and Refunds": { to: "/return-and-refunds" },
+  "Important Notice": { to: "/important-notice" },
+
+  // Contact Us
+  Feedback: { to: "/contact" },
+};
+
 // ----------------------------------------------------------------------
 // 1. 路由与 Meta 信息配置
 // ----------------------------------------------------------------------
@@ -45,9 +69,16 @@ const slides: Slide[] = [
   { src: "/HOME/officeroom.jpg", label: "Office room", w: 1920, h: 1280 },
 ];
 
-// 顶部导航项配置
-const navLeft = ["Home", "Products"];
-const navRight = ["About us", "Contact us"];
+// 优化：顶部导航项配置（包含具体的路由目标，避免在组件内部硬编码判断）
+const navLeft = [
+  { label: "Home", to: "/" },
+  { label: "Products", to: "/products" },
+];
+
+const navRight = [
+  { label: "About us", to: "/about" },
+  { label: "Contact us", to: "/contact" },
+];
 
 // 空间分类卡片数据
 const CATEGORIES = [
@@ -99,40 +130,36 @@ function Home() {
         <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
           {/* 左侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
-           // ✅ 修改后的代码：
-{navLeft.map((n) => {
-  const isProducts = n === "Products" || n === "产品";
-  return (
-    <Link
-      key={n}
-      to={isProducts ? "/products" : "/"}
-      className="whitespace-nowrap transition-colors hover:text-[--gold]"
-    >
-      {n}
-    </Link>
-  );
-})}
+            {navLeft.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                className="whitespace-nowrap transition-colors hover:text-[--gold]"
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           {/* 中间品牌 Logo */}
-          <a href="#" className="flex shrink-0 flex-col items-center px-10 text-white">
+          <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-white">
             <span className="text-[10px] tracking-[0.4em] text-white/60">
               MORE PHILOSOPHY
             </span>
             <span className="font-display text-3xl tracking-[0.35em]">
               &nbsp;FMANAR
             </span>
-          </a>
+          </Link>
 
           {/* 右侧导航菜单 */}
           <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
-            {navRight.map((n) => (
+            {navRight.map((item) => (
               <Link
-                key={n}
-                to={n === "About us" ? "/about" : "/contact"}
+                key={item.label}
+                to={item.to}
                 className="whitespace-nowrap transition-colors hover:text-[--gold]"
               >
-                {n}
+                {item.label}
               </Link>
             ))}
           </nav>
@@ -305,13 +332,16 @@ function Home() {
           {/* 品牌地址与营业时间 */}
           <div>
             <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
-            <div className="mt-4 max-w-xs text-xs leading-relaxed text-muted-foreground space-y-1">
-              <p>Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China</p>
-              <p>Business hours: 09:00 &ndash; 18:00 (UTC+8)</p>
+            <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
+              <p>
+                Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town,
+                Shunde District, Foshan City, Guangdong Province, China
+              </p>
+              <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
             </div>
           </div>
 
-          {/* 页脚分类导航链接 */}
+          {/* 页脚分类链接与路由映射 */}
           {[
             { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
             {
@@ -331,13 +361,27 @@ function Home() {
                 {col.h}
               </p>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                {col.l.map((x) => (
-                  <li key={x}>
-                    <a href="#" className="hover:text-foreground">
-                      {x}
-                    </a>
-                  </li>
-                ))}
+                {col.l.map((x) => {
+                  const route = customerServiceRoutes[x];
+
+                  return (
+                    <li key={x}>
+                      {route ? (
+                        <Link
+                          to={route.to}
+                          search={route.search}
+                          className="transition-colors hover:text-foreground"
+                        >
+                          {x}
+                        </Link>
+                      ) : (
+                        <a href="#" className="hover:text-foreground">
+                          {x}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
