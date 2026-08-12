@@ -224,18 +224,7 @@ function Home() {
           ))}
         </div>
 
-        {/* 右侧固定社交媒体图标栏 */}
-        <div className="absolute right-5 top-1/2 z-10 hidden -translate-y-1/2 flex-col gap-5 text-white/60 md:flex">
-          {["IG", "FB", "WA", "WC", "YT", "IN", "TT"].map((s) => (
-            <a
-              key={s}
-              href="#"
-              className="text-[10px] tracking-widest transition hover:text-[--gold]"
-            >
-              {s}
-            </a>
-          ))}
-        </div>
+      
       </section>
 
       {/* ==================== 品牌理念板块 ==================== */}
