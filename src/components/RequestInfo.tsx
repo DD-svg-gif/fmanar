@@ -40,33 +40,52 @@ export function RequestInfo() {
   const upd = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((prev) => ({ ...prev, [k]: v }));
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrorMsg("");
-    if (!f.accepted) {
-      setErrorMsg("Please accept the privacy policy.");
-      return;
-    }
-    if (!f.name || !f.lastName || !f.email || !f.telephone || !f.postalCode || !f.country || !f.topic || !f.message) {
-      setErrorMsg("Please complete all required fields.");
-      return;
-    }
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/public/request-info", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...f, company: hp }),
-      });
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
-      setStatus("sent");
-      setF(initial);
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-      setErrorMsg("Something went wrong. Please try again.");
-    }
-  };
+const onSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setErrorMsg("");
+
+  if (!f.accepted) {
+    setErrorMsg("Please accept the privacy policy.");
+    return;
+  }
+
+  if (!f.name || !f.lastName || !f.email || !f.telephone || !f.postalCode || !f.country || !f.topic || !f.message) {
+    setErrorMsg("Please complete all required fields.");
+    return;
+  }
+
+  setStatus("sending");
+
+  try {
+    // 将数据转化为 FormData 格式发送给 Formspree
+    const formData = new FormData();
+    formData.append("name", f.name);
+    formData.append("lastName", f.lastName);
+    formData.append("email", f.email);
+    formData.append("telephone", f.telephone);
+    formData.append("postalCode", f.postalCode);
+    formData.append("country", f.country);
+    formData.append("topic", f.topic);
+    formData.append("message", f.message);
+
+    const res = await fetch("https://formspree.io/f/mljrvwoy", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+
+    setStatus("sent");
+    setF(initial);
+  } catch (err) {
+    console.error(err);
+    setStatus("error");
+    setErrorMsg("Something went wrong. Please try again.");
+  }
+};
 
   const fieldBase =
     "w-full bg-[#f3ede3] px-5 py-4 text-sm text-[#1a1a1a] placeholder:text-[#8a7f70] outline-none focus:ring-1 focus:ring-[--gold] transition";
