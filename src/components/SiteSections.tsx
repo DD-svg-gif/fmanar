@@ -11,7 +11,7 @@ export function AboutIntro() {
   return (
     <section className="border-t border-border/40 px-8 py-24">
       <div className="mx-auto grid max-w-[1600px] items-center gap-14 md:grid-cols-2 md:gap-20">
-        <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="relative aspect-[3/4] overflow-hidden">
           <img src="/about/gongchang.jpg" alt="FMANAR atelier" loading="lazy" className="h-full w-full object-cover" />
         </div>
         <div>
