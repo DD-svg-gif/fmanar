@@ -43,7 +43,7 @@ const CUSTOM_ROWS = [
   },
   {
     title: "Uncompromised Quality",
-    img: "/about/mujia.jpg",
+    img: "/about/mujia.jpeg",
     text: "Behind every luxurious, comfortable sofa lies an extraordinary inner foundation. Our Custom Solid Beech Wood Curved Sofa Frame is built specifically for high-end furniture manufacturers, custom upholstery workshops, and interior designers who demand uncompromised structural integrity and timeless design",
   },
   {
