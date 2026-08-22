@@ -42,9 +42,14 @@ const CUSTOM_ROWS = [
     text: "Fmanar Home is your ideal partner for luxury‑residence furnishing. We deliver end‑to‑end services for every client, ranging from space‑matching proposals and personalized size customization to full‑project implementation.",
   },
   {
-    title: "Living room",
-    img: "/about/living.jpg",
-    text: "Exceptional craftsmanship and contemporary design brought to a new realm, with hand-fitted metal details and materials selected for how they age in the light.",
+    title: "Uncompromised Quality",
+    img: "/about/mujia.jpg",
+    text: "Behind every luxurious, comfortable sofa lies an extraordinary inner foundation. Our Custom Solid Beech Wood Curved Sofa Frame is built specifically for high-end furniture manufacturers, custom upholstery workshops, and interior designers who demand uncompromised structural integrity and timeless design",
+  },
+  {
+    title: "Your Palette, Our Craft",
+    img: "/about/dabao.jpg",
+    text: "Explore our curated collection of premium top-grain leathers and high-performance textiles. Every hue, shade, and texture—fully customizable to bring your unique design to life.",
   },
   {
     title: "package",
@@ -52,15 +57,10 @@ const CUSTOM_ROWS = [
     text: "Once you confirm upon inspection that the products are in perfect condition, we will protect items with EPE foam, foam boards and plastic film for shock resistance, pack into cartons and reinforce with solid wooden frames for reliable protection.",
   },
   {
-    title: "Bedroom",
-    img: "/about/bedroom.jpg",
-    text: "This headboard perfectly blends exquisite craftsmanship with modern design, creating a new level of sophistication.",
-  },
-  {
-    kicker: "Focused",
-    title: "Office",
+    
+    title: "Global Ocean Freight",
     img: "/about/office.jpg",
-    text: "Drawing on the design language of supercars, the flowing arc of the track is condensed into office space aesthetics.",
+    text: "Cost-effective, fully transparent ocean shipping solutions. From FCL and LCL to complete Door-to-Door (DDP) clearance, we keep your global supply chain moving effortlessly.",
   },
 ];
 
