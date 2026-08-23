@@ -78,6 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        httpEquiv: "Content-Security-Policy",
+        content:
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: data: blob: ws: wss:; form-action 'self' https://formspree.io; connect-src 'self' https://formspree.io https://*.supabase.co https://*.lovable.app https://*.lovable.dev wss://*.supabase.co ws: wss:; img-src 'self' data: https: blob:;",
+      },
       { title: "FMANAR — Luxury Italian Furniture" },
       { name: "description", content: "Bespoke luxury furniture for living rooms, bedrooms, dining and office spaces. Crafted in Italy." },
       { name: "author", content: "Fmanar" },
@@ -124,7 +129,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <SocialRail />
     </QueryClientProvider>
