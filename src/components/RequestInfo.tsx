@@ -39,7 +39,7 @@ export function RequestInfo() {
   const upd = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((prev) => ({ ...prev, [k]: v }));
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMsg("");
 
@@ -53,39 +53,21 @@ export function RequestInfo() {
       return;
     }
 
-    setStatus("sending");
+    const subject = encodeURIComponent(`[FMANAR Inquiry] ${f.topic} - ${f.name} ${f.lastName}`);
+    const body = encodeURIComponent(
+      `Name: ${f.name} ${f.lastName}\n` +
+      `Email: ${f.email}\n` +
+      `Phone: ${f.telephone}\n` +
+      `Postal Code: ${f.postalCode}\n` +
+      `Country: ${f.country}\n` +
+      `Topic: ${f.topic}\n\n` +
+      `Message:\n${f.message}`
+    );
 
-    try {
-      const response = await fetch("https://formspree.io/f/mljrvwoy", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          Name: `${f.name} ${f.lastName}`,
-          Email: f.email,
-          Telephone: f.telephone,
-          PostalCode: f.postalCode,
-          Country: f.country,
-          Topic: f.topic,
-          Message: f.message,
-        }),
-      });
-
-      if (response.ok) {
-        setStatus("sent");
-        setF(initial);
-      } else {
-        const data = await response.json().catch(() => ({}));
-        setStatus("error");
-        setErrorMsg(data.error || "Failed to send request. Please try again.");
-      }
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-      setErrorMsg("Network error. Please try again.");
-    }
+    // 唤起邮件客户端直接发送至你的官方邮箱
+    window.location.href = `mailto:fmnhome2015@gmail.com?subject=${subject}&body=${body}`;
+    setStatus("sent");
+    setF(initial);
   };
 
   const fieldBase =
@@ -208,10 +190,9 @@ export function RequestInfo() {
           <div className="pt-4">
             <button 
               type="submit" 
-              disabled={status === "sending"}
-              className="inline-block border-b border-[#1a1a1a] pb-1 text-base font-medium text-[#1a1a1a] transition hover:text-[--gold] hover:border-[--gold] disabled:opacity-50"
+              className="inline-block border-b border-[#1a1a1a] pb-1 text-base font-medium text-[#1a1a1a] transition hover:text-[--gold] hover:border-[--gold]"
             >
-              {status === "sending" ? "Sending..." : "Submit"}
+              Submit
             </button>
           </div>
         </form>
