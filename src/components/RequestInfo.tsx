@@ -33,17 +33,58 @@ const initial: FormState = {
 
 export function RequestInfo() {
   const [f, setF] = useState<FormState>(initial);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const upd = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((prev) => ({ ...prev, [k]: v }));
 
-  // 前端简单校验隐私政策是否勾选
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrorMsg("");
+
     if (!f.accepted) {
-      e.preventDefault();
       setErrorMsg("Please accept the privacy policy.");
       return;
+    }
+
+    if (!f.name || !f.lastName || !f.email || !f.telephone || !f.postalCode || !f.country || !f.topic || !f.message) {
+      setErrorMsg("Please complete all required fields.");
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      const response = await fetch("https://formspree.io/f/mljrvwoy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          Name: `${f.name} ${f.lastName}`,
+          Email: f.email,
+          Telephone: f.telephone,
+          PostalCode: f.postalCode,
+          Country: f.country,
+          Topic: f.topic,
+          Message: f.message,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("sent");
+        setF(initial);
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setStatus("error");
+        setErrorMsg(data.error || "Failed to send request. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setErrorMsg("Network error. Please try again.");
     }
   };
 
@@ -59,72 +100,118 @@ export function RequestInfo() {
           </h2>
         </div>
 
-        {/* 核心修改：加上 action 和 method，直接向 Formspree 提交 */}
-        <form 
-          action="https://formspree.io/f/mljrvwoy" 
-          method="POST" 
-          onSubmit={handleSubmit}
-          className="space-y-4"
-        >
-          {/* 蜜罐字段（防垃圾邮件） */}
-          <input
-            type="text"
-            name="_gotcha"
-            tabIndex={-1}
-            autoComplete="off"
-            className="absolute left-[-9999px] h-0 w-0 opacity-0"
-          />
-
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <input name="name" className={fieldBase} placeholder="Name*" value={f.name}
-              onChange={(e) => upd("name", e.target.value)} maxLength={100} required />
-            <input name="lastName" className={fieldBase} placeholder="Last Name*" value={f.lastName}
-              onChange={(e) => upd("lastName", e.target.value)} maxLength={100} required />
+            <input 
+              name="name" 
+              className={fieldBase} 
+              placeholder="Name*" 
+              value={f.name}
+              onChange={(e) => upd("name", e.target.value)} 
+              maxLength={100} 
+              required 
+            />
+            <input 
+              name="lastName" 
+              className={fieldBase} 
+              placeholder="Last Name*" 
+              value={f.lastName}
+              onChange={(e) => upd("lastName", e.target.value)} 
+              maxLength={100} 
+              required 
+            />
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <input name="email" type="email" className={fieldBase} placeholder="Email*" value={f.email}
-              onChange={(e) => upd("email", e.target.value)} maxLength={255} required />
-            <input name="telephone" className={fieldBase} placeholder="Telephone*" value={f.telephone}
-              onChange={(e) => upd("telephone", e.target.value)} maxLength={50} required />
+            <input 
+              name="email" 
+              type="email" 
+              className={fieldBase} 
+              placeholder="Email*" 
+              value={f.email}
+              onChange={(e) => upd("email", e.target.value)} 
+              maxLength={255} 
+              required 
+            />
+            <input 
+              name="telephone" 
+              className={fieldBase} 
+              placeholder="Telephone*" 
+              value={f.telephone}
+              onChange={(e) => upd("telephone", e.target.value)} 
+              maxLength={50} 
+              required 
+            />
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <input name="postalCode" className={fieldBase} placeholder="Postal Code*" value={f.postalCode}
-              onChange={(e) => upd("postalCode", e.target.value)} maxLength={20} required />
-            <select name="country" className={`${fieldBase} appearance-none`} value={f.country}
-              onChange={(e) => upd("country", e.target.value)} required>
+            <input 
+              name="postalCode" 
+              className={fieldBase} 
+              placeholder="Postal Code*" 
+              value={f.postalCode}
+              onChange={(e) => upd("postalCode", e.target.value)} 
+              maxLength={20} 
+              required 
+            />
+            <select 
+              name="country" 
+              className={`${fieldBase} appearance-none`} 
+              value={f.country}
+              onChange={(e) => upd("country", e.target.value)} 
+              required
+            >
               <option value="" disabled>Select a country*</option>
               {COUNTRIES.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
 
-          <select name="topic" className={`${fieldBase} appearance-none`} value={f.topic}
-            onChange={(e) => upd("topic", e.target.value)} required>
+          <select 
+            name="topic" 
+            className={`${fieldBase} appearance-none`} 
+            value={f.topic}
+            onChange={(e) => upd("topic", e.target.value)} 
+            required
+          >
             <option value="" disabled>Select a topic*</option>
             {TOPICS.map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
 
-          <textarea name="message" className={`${fieldBase} min-h-[200px] resize-y`} placeholder="Message*"
-            value={f.message} onChange={(e) => upd("message", e.target.value)}
-            maxLength={2000} required />
+          <textarea 
+            name="message" 
+            className={`${fieldBase} min-h-[200px] resize-y`} 
+            placeholder="Message*"
+            value={f.message} 
+            onChange={(e) => upd("message", e.target.value)}
+            maxLength={2000} 
+            required 
+          />
 
-          <label className="flex items-start gap-3 pt-2 text-sm text-[#1a1a1a]">
-            <input type="checkbox" checked={f.accepted}
+          <label className="flex items-start gap-3 pt-2 text-sm text-[#1a1a1a] cursor-pointer">
+            <input 
+              type="checkbox" 
+              checked={f.accepted}
               onChange={(e) => upd("accepted", e.target.checked)}
-              className="mt-1 h-4 w-4 accent-[--gold]" />
+              className="mt-1 h-4 w-4 accent-[--gold]" 
+            />
             <span>
               I have read and I accept the{" "}
               <a href="#" className="underline underline-offset-2">privacy policy</a>. *
             </span>
           </label>
 
-          {errorMsg && <p className="text-sm text-red-600">{errorMsg}</p>}
+          {errorMsg && <p className="text-sm text-red-600 font-medium">{errorMsg}</p>}
+          {status === "sent" && (
+            <p className="text-sm text-[--gold] font-medium">Thank you — your request has been sent.</p>
+          )}
 
           <div className="pt-4">
-            <button type="submit"
-              className="inline-block border-b border-[#1a1a1a] pb-1 text-base font-medium text-[#1a1a1a] transition hover:text-[--gold] hover:border-[--gold]">
-              Submit
+            <button 
+              type="submit" 
+              disabled={status === "sending"}
+              className="inline-block border-b border-[#1a1a1a] pb-1 text-base font-medium text-[#1a1a1a] transition hover:text-[--gold] hover:border-[--gold] disabled:opacity-50"
+            >
+              {status === "sending" ? "Sending..." : "Submit"}
             </button>
           </div>
         </form>
