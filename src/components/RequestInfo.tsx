@@ -40,52 +40,55 @@ export function RequestInfo() {
   const upd = <K extends keyof FormState>(k: K, v: FormState[K]) =>
     setF((prev) => ({ ...prev, [k]: v }));
 
-const onSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setErrorMsg("");
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg("");
 
-  if (!f.accepted) {
-    setErrorMsg("Please accept the privacy policy.");
-    return;
-  }
+    if (!f.accepted) {
+      setErrorMsg("Please accept the privacy policy.");
+      return;
+    }
 
-  if (!f.name || !f.lastName || !f.email || !f.telephone || !f.postalCode || !f.country || !f.topic || !f.message) {
-    setErrorMsg("Please complete all required fields.");
-    return;
-  }
+    if (!f.name || !f.lastName || !f.email || !f.telephone || !f.postalCode || !f.country || !f.topic || !f.message) {
+      setErrorMsg("Please complete all required fields.");
+      return;
+    }
 
-  setStatus("sending");
+    setStatus("sending");
 
-  try {
-    // 将数据转化为 FormData 格式发送给 Formspree
-    const formData = new FormData();
-    formData.append("name", f.name);
-    formData.append("lastName", f.lastName);
-    formData.append("email", f.email);
-    formData.append("telephone", f.telephone);
-    formData.append("postalCode", f.postalCode);
-    formData.append("country", f.country);
-    formData.append("topic", f.topic);
-    formData.append("message", f.message);
+    try {
+      const formData = new FormData();
+      formData.append("name", f.name);
+      formData.append("lastName", f.lastName);
+      formData.append("email", f.email);
+      formData.append("telephone", f.telephone);
+      formData.append("postalCode", f.postalCode);
+      formData.append("country", f.country);
+      formData.append("topic", f.topic);
+      formData.append("message", f.message);
+      
+      //【修复点】将防垃圾机器人蜜罐字段加入 FormData 一起提交
+      formData.append("company", hp);
 
-    const res = await fetch("https://formspree.io/f/mljrvwoy", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    });
+      const res = await fetch("https://formspree.io/f/mljrvwoy", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-    if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
 
-    setStatus("sent");
-    setF(initial);
-  } catch (err) {
-    console.error(err);
-    setStatus("error");
-    setErrorMsg("Something went wrong. Please try again.");
-  }
-};
+      setStatus("sent");
+      setF(initial);
+      setHp("");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setErrorMsg("Something went wrong. Please try again.");
+    }
+  };
 
   const fieldBase =
     "w-full bg-[#f3ede3] px-5 py-4 text-sm text-[#1a1a1a] placeholder:text-[#8a7f70] outline-none focus:ring-1 focus:ring-[--gold] transition";
@@ -111,6 +114,7 @@ const onSubmit = async (e: React.FormEvent) => {
             onChange={(e) => setHp(e.target.value)}
             className="absolute left-[-9999px] h-0 w-0 opacity-0"
           />
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <input className={fieldBase} placeholder="Name*" value={f.name}
               onChange={(e) => upd("name", e.target.value)} maxLength={100} required />
