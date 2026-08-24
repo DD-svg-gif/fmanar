@@ -40,3 +40,18 @@
   }
   h1,h2,h3,h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.01em; }
 }
+/* ==================== 移动端专属优化工具类 ==================== */
+
+/* 1. 隐藏横向滚动条（保持触控滑动流畅） */
+.scrollbar-none {
+  -ms-overflow-style: none; /* IE / Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
+
+/* 2. iPhone 底部安全区域垫高（防止底部按钮被系统手势条遮挡） */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
