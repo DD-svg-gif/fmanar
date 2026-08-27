@@ -222,9 +222,10 @@ function ProductsPage() {
       </div>
 
       {/* 💻 PC 桌面端 (保持原有的大图 Banner + 左侧边栏 + 多列网格) */}
-      <div className="hidden md:block">
+    <div className="hidden md:block">
         <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
           <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
+            {/* 左侧导航 */}
             <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
               {navLeft.map((n) => (
                 <Link
@@ -236,8 +237,25 @@ function ProductsPage() {
                 </Link>
               ))}
             </nav>
+
+            {/* 中间 LOGO */}
             <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-foreground">
               <span className="text-[10px] tracking-[0.4em] text-muted-foreground">MORE PHILOSOPHY</span>
               <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
             </Link>
-            <nav className="hidden flex-1 basis-
+            
+            {/* 右侧导航（已补全） */}
+            <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
+              {typeof navRight !== "undefined" && navRight.map((n) => (
+                <Link
+                  key={n}
+                  to={n === "Products" ? "/products" : "/"}
+                  className="whitespace-nowrap transition-colors hover:text-[--gold]"
+                >
+                  {n}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </header>
+      </div>
