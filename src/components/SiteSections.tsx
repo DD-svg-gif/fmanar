@@ -48,7 +48,7 @@ const CUSTOM_ROWS = [
   },
   {
     title: "Your Palette, Our Craft",
-    img: "/about/dabao.jpg",
+    img: "/about/pise.jpg",
     text: "Explore our curated collection of premium top-grain leathers and high-performance textiles. Every hue, shade, and texture—fully customizable to bring your unique design to life.",
   },
   {
@@ -59,7 +59,7 @@ const CUSTOM_ROWS = [
   {
     
     title: "Global Ocean Freight",
-    img: "/about/office.jpg",
+    img: "/about/haiyun.jpg",
     text: "Cost-effective, fully transparent ocean shipping solutions. From FCL and LCL to complete Door-to-Door (DDP) clearance, we keep your global supply chain moving effortlessly.",
   },
 ];
