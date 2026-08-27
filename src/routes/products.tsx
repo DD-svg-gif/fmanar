@@ -159,8 +159,12 @@ function ProductsPage() {
       {/* 📱 移动端产品列表 (仅在 <768px 显示) */}
       <div className="block md:hidden pb-20 pt-16">
         <div className="fixed inset-x-0 top-0 z-40 bg-background/90 backdrop-blur-md px-5 py-3 border-b border-border/30 flex items-center justify-between">
-          <Link to="/" className="font-display text-lg tracking-widest">FMANAR</Link>
-          <span className="text-[10px] uppercase tracking-widest text-[--gold]">{activeCategory}</span>
+          <Link to="/" className="font-display text-lg tracking-widest">
+            FMANAR
+          </Link>
+          <span className="text-[10px] uppercase tracking-widest text-[--gold]">
+            {activeCategory}
+          </span>
         </div>
 
         <div className="sticky top-12 z-30 bg-background/95 backdrop-blur-md py-3 px-4 border-b border-border/20 flex gap-2 overflow-x-auto scrollbar-none">
@@ -192,9 +196,16 @@ function ProductsPage() {
               className="group block rounded-xl overflow-hidden bg-neutral-900/60 border border-border/30 p-2"
             >
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-black/40">
-                <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-cover" />
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
               </div>
-              <p className="mt-2 text-xs font-medium text-foreground truncate">{p.name}</p>
+              <p className="mt-2 text-xs font-medium text-foreground truncate">
+                {p.name}
+              </p>
               <span className="mt-1 inline-flex text-[9px] uppercase tracking-wider text-[--gold]">
                 Tap to Inquire →
               </span>
@@ -210,7 +221,9 @@ function ProductsPage() {
           >
             Prev
           </button>
-          <span className="text-muted-foreground">{page} / {totalPages}</span>
+          <span className="text-muted-foreground">
+            {page} / {totalPages}
+          </span>
           <button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
@@ -221,8 +234,8 @@ function ProductsPage() {
         </div>
       </div>
 
-      {/* 💻 PC 桌面端 (保持原有的大图 Banner + 左侧边栏 + 多列网格) */}
-    <div className="hidden md:block">
+      {/* 💻 PC 桌面端 */}
+      <div className="hidden md:block">
         <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
           <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
             {/* 左侧导航 */}
@@ -240,13 +253,17 @@ function ProductsPage() {
 
             {/* 中间 LOGO */}
             <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-foreground">
-              <span className="text-[10px] tracking-[0.4em] text-muted-foreground">MORE PHILOSOPHY</span>
-              <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
+              <span className="text-[10px] tracking-[0.4em] text-muted-foreground">
+                MORE PHILOSOPHY
+              </span>
+              <span className="font-display text-3xl tracking-[0.35em]">
+                &nbsp;FMANAR
+              </span>
             </Link>
-            
-            {/* 右侧导航（已补全） */}
+
+            {/* 右侧导航 */}
             <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
-              {typeof navRight !== "undefined" && navRight.map((n) => (
+              {navRight.map((n) => (
                 <Link
                   key={n}
                   to={n === "Products" ? "/products" : "/"}
@@ -258,4 +275,107 @@ function ProductsPage() {
             </nav>
           </div>
         </header>
+
+        {/* PC 端内容主体 */}
+        <main className="mx-auto max-w-[1600px] px-8 pt-32 pb-24">
+          <div className="flex gap-12">
+            {/* 左侧分类导航 */}
+            <aside className="w-64 shrink-0">
+              <div className="sticky top-32 space-y-6">
+                <div>
+                  <h3 className="text-xs uppercase tracking-[0.2em] text-[--gold] mb-4 font-semibold">
+                    Categories
+                  </h3>
+                  <div className="space-y-2">
+                    {["Living Room", "Dining Room", "Bedroom", "Office Room"].map(
+                      (cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => {
+                            setActiveCategory(cat);
+                            setPage(1);
+                          }}
+                          className={`block w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+                            activeCategory === cat
+                              ? "bg-neutral-800 text-[--gold] font-medium"
+                              : "text-muted-foreground hover:text-foreground hover:bg-neutral-900/50"
+                          }`}
+                        >
+                          {cat}
+                        </button>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            {/* 右侧商品网格 */}
+            <div className="flex-1">
+              <div className="mb-8 flex items-center justify-between border-b border-border/30 pb-4">
+                <h1 className="text-2xl font-light tracking-wider font-display">
+                  {activeCategory}
+                </h1>
+                <span className="text-xs text-muted-foreground">
+                  Showing {products.length} pieces
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-6">
+                {pageProducts.map((p) => (
+                  <a
+                    key={p.name}
+                    href={`https://wa.me/8613679767530?text=${encodeURIComponent(`Hi FMANAR, I want to inquire about the ${p.name} (${activeCategory}).`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block overflow-hidden rounded-lg border border-border/30 bg-neutral-950/40 p-3 transition-all hover:border-[--gold]/50"
+                  >
+                    <div className="aspect-[4/3] overflow-hidden rounded bg-black/40">
+                      <img
+                        src={p.img}
+                        alt={p.name}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="mt-3 flex items-center justify-between">
+                      <p className="text-sm font-medium text-foreground truncate">
+                        {p.name}
+                      </p>
+                      <span className="text-xs text-[--gold] opacity-0 transition-opacity group-hover:opacity-100">
+                        Inquire →
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* PC 分页 */}
+              {totalPages > 1 && (
+                <div className="mt-12 flex items-center justify-center gap-4 text-sm">
+                  <button
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={page === 1}
+                    className="rounded border border-border/40 px-5 py-2 transition-colors hover:bg-neutral-800 disabled:opacity-30"
+                  >
+                    Previous
+                  </button>
+                  <span className="text-muted-foreground">
+                    Page {page} of {totalPages}
+                  </span>
+                  <button
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    disabled={page === totalPages}
+                    className="rounded border border-border/40 px-5 py-2 transition-colors hover:bg-neutral-800 disabled:opacity-30"
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </main>
       </div>
+    </div>
+  );
+}
