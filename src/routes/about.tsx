@@ -24,6 +24,24 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
+type RouteTarget = {
+  to: string;
+  search?: Record<string, string>;
+};
+
+const customerServiceRoutes: Record<string, RouteTarget> = {
+  Living: { to: "/products", search: { category: "Living Room" } },
+  Bedroom: { to: "/products", search: { category: "Bedroom" } },
+  Dining: { to: "/products", search: { category: "Dining Room" } },
+  Office: { to: "/products", search: { category: "Office Room" } },
+  Delivery: { to: "/delivery" },
+  "Privacy Policy": { to: "/privacy-policy" },
+  "Shipping Policy": { to: "/shipping-policy" },
+  "Return and Refunds": { to: "/return-and-refunds" },
+  "Important Notice": { to: "/important-notice" },
+  Feedback: { to: "/contact" },
+};
+
 const navLeft = ["Home", "Products"];
 const navRight = ["About us", "Contact us"];
 
@@ -40,10 +58,9 @@ function AboutPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* =========================================================================
-          📱 1. 移动端专属布局 (完全复刻 B&B Italia 杂志画报叙事页)
+          📱 1. 移动端专属布局 (B&B Italia 风格)
           ========================================================================= */}
       <div className="block md:hidden bg-white text-black min-h-screen">
-        {/* 顶部黑色主页同款 Header */}
         <header className="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-3.5 text-white">
           <Link to="/" className="flex flex-col">
             <span className="text-[7px] tracking-[0.35em] text-neutral-400">MORE PHILOSOPHY</span>
@@ -78,7 +95,6 @@ function AboutPage() {
           </div>
         </header>
 
-        {/* 移动端汉堡菜单下拉抽屉 */}
         {menuOpen && (
           <div className="fixed inset-x-0 top-[53px] z-40 bg-black/95 px-6 py-8 backdrop-blur-xl border-b border-neutral-800 space-y-6 text-white">
             <nav className="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.25em]">
@@ -98,7 +114,6 @@ function AboutPage() {
           </div>
         )}
 
-        {/* 顶部 Hero 满版大图 */}
         <section className="relative aspect-[16/11] w-full overflow-hidden bg-neutral-900">
           <img
             src="/about/gongchang.jpg"
@@ -114,9 +129,7 @@ function AboutPage() {
           </div>
         </section>
 
-        {/* 杂志式画报正文流 (Editorial Narrative Stream) */}
         <div className="divide-y divide-neutral-200">
-          {/* 第 1 节：品牌起源与规模 */}
           <article className="px-5 py-8 space-y-4">
             <p className="text-xs leading-relaxed text-neutral-700">
               Established in 2015, Foshan Fmanar Furniture is situated in Longjiang Town, Shunde District, Foshan City—the recognized epicenter of furniture manufacturing. As an integrated modern maison combining R&D, bespoke craftsmanship, and global logistics, the company operates an independent production base of over 20,000 m² alongside an expansive 12,000 m² high-end showroom.
@@ -134,7 +147,6 @@ function AboutPage() {
             </p>
           </article>
 
-          {/* 第 2 节：实木内架与榫卯工艺 */}
           <article className="px-5 py-8 space-y-4">
             <h2 className="font-display text-2xl font-normal text-black">
               The Inner Architecture
@@ -155,7 +167,6 @@ function AboutPage() {
             </p>
           </article>
 
-          {/* 第 3 节：材质与高定面料 */}
           <article className="px-5 py-8 space-y-4">
             <h2 className="font-display text-2xl font-normal text-black">
               Your Palette, Our Craft
@@ -176,7 +187,6 @@ function AboutPage() {
             </p>
           </article>
 
-          {/* 第 4 节：出口打包与全球海运 */}
           <article className="px-5 py-8 space-y-4">
             <h2 className="font-display text-2xl font-normal text-black">
               White-Glove Export Packaging
@@ -197,7 +207,6 @@ function AboutPage() {
             </p>
           </article>
 
-          {/* 第 5 节：全球清关与门到门物流 */}
           <article className="px-5 py-8 space-y-4">
             <h2 className="font-display text-2xl font-normal text-black">
               Global Ocean Logistics
@@ -219,7 +228,6 @@ function AboutPage() {
           </article>
         </div>
 
-        {/* 预约咨询 / 工程对接 CTA 模块 */}
         <section className="bg-[#1c1e20] px-6 py-10 text-center text-white">
           <h3 className="font-display text-2xl">Bespoke Architectural Project?</h3>
           <p className="mt-2 text-xs text-neutral-400 leading-relaxed">
@@ -237,7 +245,6 @@ function AboutPage() {
           </div>
         </section>
 
-        {/* 深灰极简多层级页脚 */}
         <footer className="bg-[#24272a] px-6 py-12 text-white">
           <div className="text-center space-y-6">
             <div className="flex flex-col items-center">
@@ -267,7 +274,7 @@ function AboutPage() {
       </div>
 
       {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (保持原有的大图 Hero + SiteSections 组件)
+          💻 2. PC 桌面端专属布局 (已添加回 4 列富文本页脚)
           ========================================================================= */}
       <div className="hidden md:block">
         <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
@@ -325,9 +332,48 @@ function AboutPage() {
         <Customization />
         <WhyChooseUs />
 
-        <footer className="border-t border-border/40 px-8 py-12">
-          <p className="mx-auto max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
-            © 2026 Fmanar Maison — All rights reserved
+        {/* 4 列 PC 端页脚 */}
+        <footer className="border-t border-border/40 px-8 py-16 bg-background">
+          <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+            <div>
+              <p className="font-display text-2xl tracking-[0.3em]">F M A N A R</p>
+              <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
+                <p>Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China</p>
+                <p>Business hours: 09:00 - 18:00 (UTC+8)</p>
+              </div>
+            </div>
+
+            {[
+              { h: "COLLECTIONS", l: ["Living", "Bedroom", "Dining", "Office"] },
+              {
+                h: "CUSTOMER SERVICE",
+                l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
+              },
+              { h: "CONTACT US", l: ["Feedback"] },
+            ].map((col) => (
+              <div key={col.h}>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {col.l.map((x) => {
+                    const route = customerServiceRoutes[x];
+                    return (
+                      <li key={x}>
+                        {route ? (
+                          <Link to={route.to} search={route.search} className="transition-colors hover:text-foreground">
+                            {x}
+                          </Link>
+                        ) : (
+                          <a href="#" className="hover:text-foreground">{x}</a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
+            © 2026 FMANAR MAISON — ALL RIGHTS RESERVED
           </p>
         </footer>
       </div>
