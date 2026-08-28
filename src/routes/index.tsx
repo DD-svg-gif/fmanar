@@ -42,7 +42,7 @@ function HomePage() {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://wa.me/8613679767530"
+              href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20inquire%20about%20your%20bespoke%20furniture%20collection."
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contact"
