@@ -50,14 +50,14 @@ function ShippingPolicyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* =========================================================================
-          📱 1. 移动端专属布局 (B&B Italia 风格极简阅读流)
+          📱 1. 移动端专属布局 (无 Hero 大图，直接阅读政策正文)
           ========================================================================= */}
       <div className="block md:hidden bg-white text-black min-h-screen flex flex-col justify-between">
-        {/* 移动端顶部黑色 Header */}
+        {/* 顶部黑色 Header */}
         <header className="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-3.5 text-white">
           <Link to="/" className="flex flex-col">
-            <span className="text-[7px] tracking-[0.35em] text-neutral-400">MORE PHILOSOPHY</span>
-            <span className="font-display text-xl font-bold tracking-[0.25em] text-white">FMANAR</span>
+            <span className="text-[7px] tracking-[0.35em] text-neutral-400 font-medium">MORE PHILOSOPHY</span>
+            <span className="font-display text-xl tracking-[0.3em] text-white">F M A N A R</span>
           </Link>
 
           <div className="flex items-center gap-4">
@@ -88,7 +88,7 @@ function ShippingPolicyPage() {
           </div>
         </header>
 
-        {/* 移动端抽屉式导航菜单 */}
+        {/* 移动端抽屉折叠导航 */}
         {menuOpen && (
           <div className="fixed inset-x-0 top-[53px] z-40 bg-black/95 px-6 py-8 backdrop-blur-xl border-b border-neutral-800 space-y-6 text-white">
             <nav className="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.25em]">
@@ -108,7 +108,7 @@ function ShippingPolicyPage() {
           </div>
         )}
 
-        {/* 移动端主体内容 */}
+        {/* 移动端正文内容 */}
         <main className="px-5 py-8 flex-1 space-y-8">
           <div className="border-b border-neutral-200 pb-4">
             <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400 font-semibold">
@@ -139,6 +139,7 @@ function ShippingPolicyPage() {
               <p>
                 If your delivery requires room-of-choice placement, stair carry, product assembly, or specialized handling (collectively referred to as "White-Glove Services"), please contact our Customer Care team at least 3 business days in advance.
               </p>
+
               <div className="bg-neutral-50 p-4 rounded-lg border border-neutral-200 space-y-2.5">
                 <p className="font-medium text-neutral-900 uppercase text-[10px] tracking-wider">
                   Important Terms for White-Glove Services:
@@ -164,7 +165,7 @@ function ShippingPolicyPage() {
           </div>
         </main>
 
-        {/* 移动端统一专属页脚 */}
+        {/* 移动端页脚 */}
         <footer className="bg-[#24272a] px-6 py-12 text-white">
           <div className="text-center space-y-6">
             <div className="flex flex-col items-center">
@@ -261,4 +262,176 @@ function ShippingPolicyPage() {
       </div>
 
       {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (保持
+          💻 2. PC 桌面端专属布局 (保持你原有的完整大屏设计一字不改)
+          ========================================================================= */}
+      <div className="hidden md:flex min-h-screen flex-col justify-between">
+        <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
+          <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
+            <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
+              {navLeft.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className="whitespace-nowrap transition-colors hover:text-[--gold]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-foreground">
+              <span className="text-[10px] tracking-[0.4em] text-muted-foreground">
+                MORE PHILOSOPHY
+              </span>
+              <span className="font-display text-3xl tracking-[0.35em]">
+                &nbsp;FMANAR
+              </span>
+            </Link>
+
+            <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
+              {navRight.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className="whitespace-nowrap transition-colors hover:text-[--gold]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="ml-8 flex shrink-0 items-center gap-4 text-foreground/80 md:ml-12">
+              <button aria-label="Search" className="transition hover:text-[--gold]">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.5-3.5" />
+                </svg>
+              </button>
+              <span className="text-[11px] tracking-widest">EN</span>
+              <span className="text-[11px] tracking-widest text-muted-foreground">AR</span>
+            </div>
+          </div>
+        </header>
+
+        <main className="mx-auto w-full max-w-4xl px-8 pt-36 pb-20 flex-1">
+          <h1 className="font-display text-4xl md:text-5xl text-foreground text-center mb-12 tracking-wide">
+            Shipping Policy
+          </h1>
+          <div className="space-y-10 text-sm leading-relaxed text-muted-foreground">
+            <section className="space-y-3">
+              <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
+                Global Logistics & White-Glove Transport
+              </h2>
+              <p>
+                FMANAR crafts bespoke luxury furniture for prestigious residential and commercial clients worldwide. In partnership with elite white-glove logistics specialists, we meticulously manage every aspect of transit with uncompromised precision.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
+                Shipping & White-Glove Services
+              </h2>
+              <p>
+                All orders dispatched via our partnered carriers include standard door-to-door (threshold) delivery by default. Standard delivery does not include room-of-choice placement, uncrating, in-home assembly, installation, or removal of packaging materials.
+                <br /><br />
+                If your delivery requires room-of-choice placement, stair carry, product assembly, or specialized handling (collectively referred to as "White-Glove Services"), please contact our Customer Care team at least 3 business days in advance. We will coordinate with our logistics partners to arrange tailored solutions for you.
+                <br /><br />
+                Important Terms for White-Glove Services:
+                <br /><br />
+                •&nbsp;Optional Add-On: White-Glove Service is an optional, paid add-on service.
+                <br /><br />
+                •&nbsp;Potential Additional Fees: Supplemental charges may apply under certain circumstances, including but not limited to:
+                <br /><br />
+                &nbsp; • &nbsp; Delivery to remote or difficult-to-access regions
+                <br /><br />
+                &nbsp; • &nbsp; Stair-carry services
+                <br /><br />
+                &nbsp; • &nbsp; Specialized handling of oversized or heavy items
+                <br /><br />
+                &nbsp; • &nbsp; Deliveries with restricted building access or specific entry protocols
+                <br /><br />
+                •&nbsp;On-Site Presence Required: You or a designated authorized representative (aged 18 or older) must be present during the entire delivery and sign off upon completion of the White-Glove Service.
+                <br /><br />
+                •&nbsp;Service Scope & Access Conditions: White-Glove Service includes placement in your room of choice, assembly (where applicable), and complete removal of packaging materials. Additional fees may be incurred based on delivery conditions, such as multiple flights of stairs, restricted pathways, lack of elevator access, narrow stairwells, or oversized items.
+                <br /><br />
+                •&nbsp;Safety & Right of Refusal: To protect our personnel and your property, we reserve the right to decline or suspend White-Glove Services if delivery conditions are deemed unsafe (e.g., icy steps, blocked passageways).
+                <br /><br />
+                •&nbsp;Health & Hygiene Policy: For health and safety reasons, our White-Glove Service will not handle, move, or haul away any existing items that are stained, soiled, or contaminated.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-medium text-foreground tracking-wider uppercase border-b border-border/30 pb-2">
+                Freight Insurance
+              </h2>
+              <p>
+                Every single order is fully insured against theft, loss, or damage during international transit up until the moment it is signed for and inspected at your designated location.
+              </p>
+            </section>
+          </div>
+        </main>
+
+        <footer className="border-t border-border/40 px-8 py-16">
+          <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+            <div>
+              <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
+              <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
+                <p>
+                  Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China
+                </p>
+                <p>Business hours: 09:00 – 18:00 (UTC+8)</p>
+              </div>
+            </div>
+
+            {[
+              { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
+              {
+                h: "Customer Service",
+                l: [
+                  "Delivery",
+                  "Privacy Policy",
+                  "Shipping Policy",
+                  "Return and Refunds",
+                  "Important Notice",
+                ],
+              },
+              { h: "Contact Us", l: ["Feedback"] },
+            ].map((col) => (
+              <div key={col.h}>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">
+                  {col.h}
+                </p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {col.l.map((x) => {
+                    const route = customerServiceRoutes[x];
+                    return (
+                      <li key={x}>
+                        {route ? (
+                          <Link
+                            to={route.to}
+                            search={route.search}
+                            className="transition-colors hover:text-foreground"
+                          >
+                            {x}
+                          </Link>
+                        ) : (
+                          <a href="#" className="hover:text-foreground">
+                            {x}
+                          </a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
+            © 2026 Fmanar Maison — All rights reserved
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
+}
