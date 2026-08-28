@@ -40,17 +40,33 @@ const customerServiceRoutes: Record<string, RouteTarget> = {
   Feedback: { to: "/contact" },
 };
 
-type Product = {
+export type Product = {
   name: string;
   img: string;
+  images?: string[]; // 可选：若未填，系统会自动根据主图寻找 -1 和 -2 细节图
   tag?: string;
   desc?: string;
 };
 
+// 自动生成该产品的所有图片列表（主图 + 2张细节图）
+export function getProductImages(product: Product): string[] {
+  if (product.images && product.images.length > 0) {
+    return product.images;
+  }
+  const mainImg = product.img;
+  const lastDotIndex = mainImg.lastIndexOf(".");
+  if (lastDotIndex === -1) return [mainImg];
+
+  const basePath = mainImg.substring(0, lastDotIndex);
+  const ext = mainImg.substring(lastDotIndex);
+
+  return [mainImg, `${basePath}-1${ext}`, `${basePath}-2${ext}`];
+}
+
 const productsByCategory: Record<string, Product[]> = {
   "Living Room": [
-    { name: "Newert Sofa", img: "/PRODUCTS/living%20room/Newert.jpg", tag: "NEW", desc: "Curved Solid Beech Wood Frame" },
-    { name: "Babylon Curved Sofa", img: "/PRODUCTS/living%20room/Babylon%20Curved%20Sofa.jpg", tag: "ICON", desc: "Monolithic Sculptural Form" },
+    { name: "Newert Sofa", img: "/PRODUCTS/living%20room/Newert.jpg", tag: "NEW", desc: "Curved Solid Beech Wood Frame · High-density foam padding" },
+    { name: "Babylon Curved Sofa", img: "/PRODUCTS/living%20room/Babylon%20Curved%20Sofa.jpg", tag: "ICON", desc: "Monolithic Sculptural Form · Brushed stainless steel trim" },
     { name: "Bainton Sofa", img: "/PRODUCTS/living%20room/Bainton%20Sofa.jpg", desc: "Full-Grain Aniline Leather" },
     { name: "Lyman Sofa", img: "/PRODUCTS/living%20room/Lyman%20Sofa.jpg", desc: "Deep Lounge Ergonomics" },
     { name: "Havergate Sofa", img: "/PRODUCTS/living%20room/Havergate%20Sofa.jpg", desc: "Architectural Proportions" },
@@ -160,6 +176,14 @@ function ProductsPage() {
   const [pcPage, setPcPage] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // 弹窗画册状态
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+  // 触摸滑动状态
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
   useEffect(() => {
     if (search.category && search.category in productsByCategory) {
       setActiveCategory(search.category);
@@ -185,10 +209,178 @@ function ProductsPage() {
     pcPage * pcPageSize
   );
 
+  // 获取当前弹窗产品的图片列表（自动推导 3 张图片）
+  const activeImages = selectedProduct ? getProductImages(selectedProduct) : [];
+
+  const openGallery = (product: Product) => {
+    setSelectedProduct(product);
+    setCurrentImgIndex(0);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeGallery = () => {
+    setSelectedProduct(null);
+    setCurrentImgIndex(0);
+    document.body.style.overflow = "auto";
+  };
+
+  const handleNextImage = () => {
+    if (activeImages.length <= 1) return;
+    setCurrentImgIndex((prev) => (prev + 1) % activeImages.length);
+  };
+
+  const handlePrevImage = () => {
+    if (activeImages.length <= 1) return;
+    setCurrentImgIndex((prev) => (prev - 1 + activeImages.length) % activeImages.length);
+  };
+
+  // PC 端快捷键支持
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedProduct) return;
+      if (e.key === "Escape") closeGallery();
+      if (e.key === "ArrowRight") handleNextImage();
+      if (e.key === "ArrowLeft") handlePrevImage();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedProduct, activeImages.length]);
+
+  // 移动端手势支持
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 40;
+    const isRightSwipe = distance < -40;
+
+    if (isLeftSwipe) handleNextImage();
+    if (isRightSwipe) handlePrevImage();
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* =========================================================================
-          📱 1. 移动端专属布局 (B&B Italia 风格)
+          🖼️ 全屏大图画册弹窗 (支持手势滑动、左右切换与即时 WhatsApp 询价)
+          ========================================================================= */}
+      {selectedProduct && (
+        <div className="fixed inset-0 z-[100] flex flex-col justify-between bg-black/95 text-white backdrop-blur-xl animate-fadeIn">
+          {/* 1. 弹窗顶部栏 */}
+          <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+            <div>
+              <p className="text-[9px] uppercase tracking-[0.3em] text-[--gold]">
+                {activeCategory} · {currentImgIndex + 1} / {activeImages.length}
+              </p>
+              <h3 className="font-display text-lg font-light tracking-wider text-white">
+                {selectedProduct.name}
+              </h3>
+            </div>
+            <button
+              onClick={closeGallery}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 active:scale-95"
+              aria-label="Close"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* 2. 核心大图展示区 (支持触摸手势) */}
+          <div
+            className="relative flex flex-1 items-center justify-center px-4 py-2 touch-pan-y select-none"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* PC 端左箭头 */}
+            {activeImages.length > 1 && (
+              <button
+                onClick={handlePrevImage}
+                className="hidden md:flex absolute left-8 z-10 h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition-all hover:bg-white/20 hover:scale-110 active:scale-95"
+                aria-label="Previous image"
+              >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
+
+            {/* 图片主体 */}
+            <div className="relative flex h-full max-h-[68vh] w-full max-w-5xl items-center justify-center">
+              <img
+                key={activeImages[currentImgIndex]}
+                src={activeImages[currentImgIndex]}
+                alt={`${selectedProduct.name} - image ${currentImgIndex + 1}`}
+                className="h-full w-full object-contain transition-opacity duration-300"
+              />
+            </div>
+
+            {/* PC 端右箭头 */}
+            {activeImages.length > 1 && (
+              <button
+                onClick={handleNextImage}
+                className="hidden md:flex absolute right-8 z-10 h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition-all hover:bg-white/20 hover:scale-110 active:scale-95"
+                aria-label="Next image"
+              >
+                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            )}
+
+            {/* 手机端指示条 (3 张图) */}
+            {activeImages.length > 1 && (
+              <div className="md:hidden absolute bottom-3 flex gap-1.5">
+                {activeImages.map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`h-1.5 rounded-full transition-all ${
+                      currentImgIndex === idx ? "w-6 bg-[--gold]" : "w-1.5 bg-white/40"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* 3. 弹窗底部信息与询价按钮 */}
+          <div className="border-t border-white/10 bg-black/60 px-6 py-4 backdrop-blur-md">
+            <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-3 sm:flex-row">
+              <div className="text-center sm:text-left">
+                <p className="text-xs text-neutral-300">
+                  {selectedProduct.desc ?? "Curved Solid Beech Wood Frame · Hand-Crafted in Foshan"}
+                </p>
+                <p className="text-[10px] text-neutral-500 mt-0.5">
+                  Swipe left/right to browse details ({currentImgIndex + 1}/{activeImages.length}) · Bespoke sizing available
+                </p>
+              </div>
+
+              <a
+                href={`https://wa.me/8618926150696?text=${encodeURIComponent(
+                  `Hi FMANAR, I want to inquire about custom sizing/pricing for the ${selectedProduct.name} (${activeCategory}).`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto rounded bg-[#93302c] px-6 py-2.5 text-center text-xs font-medium uppercase tracking-[0.2em] text-white shadow-lg transition-all hover:bg-black active:scale-95"
+              >
+                Inquire on WhatsApp →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          📱 1. 移动端专属布局 (点击商品卡片直接打开大图画册)
           ========================================================================= */}
       <div className="block md:hidden bg-white text-black min-h-screen">
         <header className="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-3.5">
@@ -289,19 +481,18 @@ function ProductsPage() {
           </div>
           <div className="flex items-center justify-between border-t border-neutral-100 px-5 py-2 text-[10px] uppercase tracking-widest text-neutral-400">
             <span>Showing {currentProducts.length} Pieces</span>
-            <span>Hand-Crafted in Foshan</span>
+            <span>Tap to View Details</span>
           </div>
         </div>
 
+        {/* 双列商品网格 */}
         <section className="p-4">
           <div className="grid grid-cols-2 gap-x-3 gap-y-8">
             {mobileDisplayProducts.map((p) => (
-              <a
+              <div
                 key={p.name}
-                href={`https://wa.me/8618926150696?text=${encodeURIComponent(`Hi FMANAR, I want to inquire about the ${p.name} (${activeCategory}).`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col"
+                onClick={() => openGallery(p)}
+                className="group flex flex-col cursor-pointer"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#f6f6f6] border border-neutral-200/60 p-2.5 flex items-center justify-center">
                   {p.tag && (
@@ -309,6 +500,10 @@ function ProductsPage() {
                       {p.tag}
                     </span>
                   )}
+                  {/* 右上角展示“3张详情图”提示 */}
+                  <span className="absolute right-2 top-2 rounded bg-black/60 px-1.5 py-0.5 text-[8px] tracking-wider text-white">
+                    3 Photos
+                  </span>
                   <img
                     src={p.img}
                     alt={p.name}
@@ -329,11 +524,11 @@ function ProductsPage() {
                       {activeCategory}
                     </span>
                     <span className="text-[9px] uppercase tracking-wider text-[#93302c] font-medium">
-                      Inquire →
+                      View Details →
                     </span>
                   </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
 
@@ -349,120 +544,100 @@ function ProductsPage() {
           )}
         </section>
 
-        <section className="bg-[#1c1e20] px-6 py-10 text-center text-white">
-          <h3 className="font-display text-2xl">Bespoke Architectural Project?</h3>
-          <p className="mt-2 text-xs text-neutral-400 leading-relaxed">
-            Direct factory manufacturing, bespoke CAD sizing, and global ocean container delivery.
-          </p>
-          <div className="mt-5">
-            <a
-              href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20bespoke%20furniture%20manufacturing."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block w-full bg-[#93302c] py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white transition-opacity hover:opacity-90 shadow-md"
-            >
-              Consult Master Artisan
-            </a>
+        {/* 移动端页脚 */}
+        <footer className="bg-[#24272a] px-6 py-12 text-white">
+          <div className="text-center space-y-6">
+            <div className="flex flex-col items-center">
+              <span className="text-[8px] tracking-[0.4em] text-neutral-400">MORE PHILOSOPHY</span>
+              <span className="font-display text-3xl font-bold tracking-[0.3em] mt-1">FMANAR</span>
+            </div>
+
+            <nav className="flex flex-col gap-3.5 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-200">
+              <Link to="/">Home</Link>
+              <Link to="/products">Products</Link>
+              <Link to="/products" search={{ category: "Living Room" }}>Living</Link>
+              <Link to="/products" search={{ category: "Dining Room" }}>Dining</Link>
+              <Link to="/products" search={{ category: "Bedroom" }}>Bedroom</Link>
+              <Link to="/contact">Contacts</Link>
+            </nav>
+
+            <div className="pt-2 flex flex-col gap-3 text-xs uppercase tracking-[0.2em] text-neutral-300">
+              <span className="text-[10px] tracking-[0.25em] text-[--gold] font-semibold">CUSTOMER SERVICE</span>
+              <Link to="/delivery" className="hover:text-white transition-colors">Delivery</Link>
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link>
+              <Link to="/return-and-refunds" className="hover:text-white transition-colors">Return and Refunds</Link>
+              <Link to="/important-notice" className="hover:text-white transition-colors">Important Notice</Link>
+            </div>
+
+            <div className="border-t border-neutral-700 pt-6 space-y-5">
+              <div className="flex items-center justify-center gap-6 text-white/80">
+                <a
+                  href="https://www.instagram.com/foshanfmanarfurniture/?hl=en-gb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="transition-colors hover:text-[--gold]"
+                >
+                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+
+                <a
+                  href="https://www.facebook.com/profile.php?id=61592662757344&locale=en_GB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="transition-colors hover:text-[--gold]"
+                >
+                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+
+                <a
+                  href="https://www.tiktok.com/@fmanarhome"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                  className="transition-colors hover:text-[--gold]"
+                >
+                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.29 1.77-.25.99-.04 2.11.58 2.9.61.81 1.62 1.3 2.63 1.28 1.16-.01 2.27-.67 2.78-1.7.24-.48.36-1.02.35-1.56.02-4.95.01-9.91.01-14.86z"/>
+                  </svg>
+                </a>
+
+                <a
+                  href="https://wa.me/8618926150696"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp"
+                  className="transition-colors hover:text-[--gold]"
+                >
+                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.987-1.408C8.423 21.494 10.15 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 2c4.418 0 8 3.582 8 8s-3.582 8-8 8c-1.533 0-2.968-.431-4.19-1.178l-.3-.18-3.09.872.884-2.993-.195-.316C4.407 15.01 4 13.551 4 12c0-4.418 3.582-8 8-8zm4.18 11.26c-.23-.11-1.36-.67-1.57-.75-.21-.08-.36-.11-.51.11-.15.23-.59.75-.72.9-.13.15-.26.17-.49.06-.23-.11-.97-.36-1.85-1.14-.68-.61-1.14-1.36-1.28-1.59-.13-.23-.01-.35.1-.46.1-.1.23-.26.34-.39.11-.13.15-.23.23-.38.08-.15.04-.28-.02-.39-.06-.11-.51-1.23-.7-1.68-.19-.45-.37-.39-.51-.4h-.44c-.15 0-.39.06-.6.28-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.33.11.15 1.59 2.43 3.86 3.41.54.23.96.37 1.29.47.54.17 1.04.15 1.43.09.44-.07 1.36-.56 1.55-1.1.19-.54.19-1 .13-1.1-.05-.1-.2-.16-.43-.27z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+                Foshan Production Base & Showroom
+              </p>
+              <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-500">
+                © 2026 FMANAR Maison — All rights reserved
+              </p>
+            </div>
           </div>
-        </section>
-
-     <footer className="bg-[#24272a] px-6 py-12 text-white">
-  <div className="text-center space-y-6">
-    <div className="flex flex-col items-center">
-      <span className="text-[8px] tracking-[0.4em] text-neutral-400">MORE PHILOSOPHY</span>
-      <span className="font-display text-3xl font-bold tracking-[0.3em] mt-1">FMANAR</span>
-    </div>
-
-    <nav className="flex flex-col gap-3.5 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-200">
-      <Link to="/about">About</Link>
-      <Link to="/products">Products</Link>
-      <Link to="/products" search={{ category: "Living Room" }}>Living</Link>
-      <Link to="/products" search={{ category: "Dining Room" }}>Dining</Link>
-      <Link to="/products" search={{ category: "Bedroom" }}>Bedroom</Link>
-      <Link to="/contact">Contacts</Link>
-    </nav>
-
-    <div className="pt-2 flex flex-col gap-3 text-xs uppercase tracking-[0.2em] text-neutral-300">
-      <span className="text-[10px] tracking-[0.25em] text-[--gold] font-semibold">CUSTOMER SERVICE</span>
-      <Link to="/delivery" className="hover:text-white transition-colors">Delivery</Link>
-      <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-      <Link to="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link>
-      <Link to="/return-and-refunds" className="hover:text-white transition-colors">Return and Refunds</Link>
-      <Link to="/important-notice" className="hover:text-white transition-colors">Important Notice</Link>
-    </div>
-
-    <div className="border-t border-neutral-700 pt-6 space-y-5">
-      <div className="flex items-center justify-center gap-6 text-white/80">
-        {/* Instagram */}
-        <a
-          href="https://www.instagram.com/foshanfmanarfurniture/?hl=en-gb"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-          className="transition-colors hover:text-[--gold]"
-        >
-          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </a>
-
-        {/* Facebook */}
-        <a
-          href="https://www.facebook.com/profile.php?id=61592662757344&locale=en_GB"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-          className="transition-colors hover:text-[--gold]"
-        >
-          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </a>
-
-        {/* TikTok */}
-        <a
-          href="https://www.tiktok.com/@fmanarhome"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="TikTok"
-          className="transition-colors hover:text-[--gold]"
-        >
-          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.29 1.77-.25.99-.04 2.11.58 2.9.61.81 1.62 1.3 2.63 1.28 1.16-.01 2.27-.67 2.78-1.7.24-.48.36-1.02.35-1.56.02-4.95.01-9.91.01-14.86z"/>
-          </svg>
-        </a>
-
-        {/* WhatsApp (新图标样式) */}
-        <a
-          href="https://wa.me/8618926150696"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-          className="transition-colors hover:text-[--gold]"
-        >
-          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.987-1.408C8.423 21.494 10.15 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 2c4.418 0 8 3.582 8 8s-3.582 8-8 8c-1.533 0-2.968-.431-4.19-1.178l-.3-.18-3.09.872.884-2.993-.195-.316C4.407 15.01 4 13.551 4 12c0-4.418 3.582-8 8-8zm4.18 11.26c-.23-.11-1.36-.67-1.57-.75-.21-.08-.36-.11-.51.11-.15.23-.59.75-.72.9-.13.15-.26.17-.49.06-.23-.11-.97-.36-1.85-1.14-.68-.61-1.14-1.36-1.28-1.59-.13-.23-.01-.35.1-.46.1-.1.23-.26.34-.39.11-.13.15-.23.23-.38.08-.15.04-.28-.02-.39-.06-.11-.51-1.23-.7-1.68-.19-.45-.37-.39-.51-.4h-.44c-.15 0-.39.06-.6.28-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.33.11.15 1.59 2.43 3.86 3.41.54.23.96.37 1.29.47.54.17 1.04.15 1.43.09.44-.07 1.36-.56 1.55-1.1.19-.54.19-1 .13-1.1-.05-.1-.2-.16-.43-.27z"
-            />
-          </svg>
-        </a>
-      </div>
-
-      <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
-        Foshan Production Base & Showroom
-      </p>
-      <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-500">
-        © 2026 FMANAR Maison — All rights reserved
-      </p>
-    </div>
-  </div>
-</footer>
+        </footer>
       </div>
 
       {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (已添加回 4 列富文本页脚)
+          💻 2. PC 桌面端专属布局 (点击商品卡片同样支持画册大图弹窗)
           ========================================================================= */}
       <div className="hidden md:block">
         <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
@@ -540,12 +715,10 @@ function ProductsPage() {
 
               <div className="grid grid-cols-3 gap-6">
                 {pcDisplayProducts.map((p) => (
-                  <a
+                  <div
                     key={p.name}
-                    href={`https://wa.me/8618926150696?text=${encodeURIComponent(`Hi FMANAR, I want to inquire about the ${p.name} (${activeCategory}).`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block overflow-hidden rounded-lg border border-border/30 bg-neutral-950/40 p-3 transition-all hover:border-[--gold]/50"
+                    onClick={() => openGallery(p)}
+                    className="group block overflow-hidden rounded-lg border border-border/30 bg-neutral-950/40 p-3 transition-all hover:border-[--gold]/50 cursor-pointer"
                   >
                     <div className="aspect-[4/3] overflow-hidden rounded bg-black/40">
                       <img
@@ -560,10 +733,10 @@ function ProductsPage() {
                         {p.name}
                       </p>
                       <span className="text-xs text-[--gold] opacity-0 transition-opacity group-hover:opacity-100">
-                        Inquire →
+                        View Details →
                       </span>
                     </div>
-                  </a>
+                  </div>
                 ))}
               </div>
 
