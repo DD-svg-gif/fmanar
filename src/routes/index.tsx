@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { RequestInfo } from "@/components/RequestInfo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,47 +22,69 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const navLeft = ["Home", "Products"];
-const navRight = ["About us", "Contact us"];
+type RouteTarget = {
+  to: string;
+  search?: Record<string, string>;
+};
 
-const PC_COLLECTIONS = [
-  {
-    title: "Living Room",
-    subtitle: "Architectural & Monolithic",
-    img: "/PRODUCTS/living%20room/Newert.jpg",
-    desc: "Sculptural sofas crafted with solid beech wood frames and top-grain aniline leathers.",
-    cat: "Living Room",
-  },
-  {
-    title: "Dining Room",
-    subtitle: "Stone & Timber Harmony",
-    img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG",
-    desc: "Statement dining tables featuring natural marble tops and refined structural joinery.",
-    cat: "Dining Room",
-  },
-  {
-    title: "Bedroom Suites",
-    subtitle: "Sanctuary & Comfort",
-    img: "/PRODUCTS/bedroom/Gesu%20Bed.JPG",
-    desc: "Architectural headboards, wall-panel systems, and bespoke tactile upholstery.",
-    cat: "Bedroom",
-  },
-  {
-    title: "Executive Office",
-    subtitle: "Prestige & Precision",
-    img: "/PRODUCTS/office room/President Desk.jpg",
-    desc: "Hand-finished executive desks with saddle leather writing pads and integrated storage.",
-    cat: "Office Room",
-  },
+const customerServiceRoutes: Record<string, RouteTarget> = {
+  Living: { to: "/products", search: { category: "Living Room" } },
+  Bedroom: { to: "/products", search: { category: "Bedroom" } },
+  Dining: { to: "/products", search: { category: "Dining Room" } },
+  Office: { to: "/products", search: { category: "Office Room" } },
+  Delivery: { to: "/delivery" },
+  "Privacy Policy": { to: "/privacy-policy" },
+  "Shipping Policy": { to: "/shipping-policy" },
+  "Return and Refunds": { to: "/return-and-refunds" },
+  "Important Notice": { to: "/important-notice" },
+  Feedback: { to: "/contact" },
+};
+
+type Slide = {
+  src: string;
+  label: string;
+  w: number;
+  h: number;
+};
+
+const slides: Slide[] = [
+  { src: "/HOME/livingroom.jpg", label: "Living room", w: 1920, h: 1280 },
+  { src: "/HOME/diningroom.jpg", label: "Dining room", w: 1920, h: 1280 },
+  { src: "/HOME/bedroom.jpg", label: "Bedroom", w: 1920, h: 1280 },
+  { src: "/HOME/officeroom.jpg", label: "Office room", w: 1920, h: 1280 },
+];
+
+const navLeft = [
+  { label: "Home", to: "/" },
+  { label: "Products", to: "/products" },
+];
+
+const navRight = [
+  { label: "About us", to: "/about" },
+  { label: "Contact us", to: "/contact" },
+];
+
+const CATEGORIES = [
+  { src: "/HOME/living1.jpg", label: "Living", count: "24 pieces", cat: "Living Room" },
+  { src: "/HOME/bed1.jpg", label: "Bedroom", count: "18 pieces", cat: "Bedroom" },
+  { src: "/HOME/dining1.jpg", label: "Dining", count: "21 pieces", cat: "Dining Room" },
+  { src: "/HOME/office1.jpg", label: "Office", count: "12 pieces", cat: "Office Room" },
 ];
 
 function HomePage() {
+  const [i, setI] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // PC 端 Hero 轮播计时器
+  useEffect(() => {
+    const t = setInterval(() => setI((p) => (p + 1) % slides.length), 6000);
+    return () => clearInterval(t);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* =========================================================================
-          📱 1. 移动端专属布局 (B&B Italia 沉浸式风格)
+          📱 1. 移动端专属布局 (B&B Italia 风格：画报大图流 + 沉浸式叙事)
           ========================================================================= */}
       <div className="block md:hidden bg-[#0d0d0d] text-white">
         {/* 顶部黑色顶栏 */}
@@ -94,7 +117,7 @@ function HomePage() {
           </div>
         </header>
 
-        {/* 移动端下拉菜单 */}
+        {/* 移动端汉堡菜单折叠抽屉 */}
         {menuOpen && (
           <div className="fixed inset-x-0 top-[53px] z-40 bg-black/95 px-6 py-8 backdrop-blur-xl border-b border-neutral-800 space-y-6">
             <nav className="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.25em]">
@@ -114,7 +137,7 @@ function HomePage() {
           </div>
         )}
 
-        {/* Hero 满版大图 */}
+        {/* Hero 满版通栏主大图 */}
         <section className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900">
           <img
             src="/PRODUCTS/living%20room/Newert.jpg"
@@ -139,7 +162,7 @@ function HomePage() {
           </div>
         </section>
 
-        {/* 极简通知条 */}
+        {/* 极简通知横条 */}
         <div className="border-y border-neutral-800 bg-neutral-950 py-3.5 text-center">
           <a
             href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20bespoke%20furniture."
@@ -151,7 +174,7 @@ function HomePage() {
           </a>
         </div>
 
-        {/* 通栏大图：Living & Dining */}
+        {/* 通栏大图流：Indoor / Living Spaces */}
         <section className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900 mt-2">
           <img
             src="/PRODUCTS/living%20room/Babylon%20Curved%20Sofa.jpg"
@@ -159,7 +182,7 @@ function HomePage() {
             loading="lazy"
             className="h-full w-full object-cover brightness-[0.85]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
           <div className="absolute bottom-8 left-5 space-y-2">
             <h2 className="font-display text-3xl font-light text-white">Living & Dining</h2>
             <Link
@@ -172,7 +195,7 @@ function HomePage() {
           </div>
         </section>
 
-        {/* 通栏大图：Bedroom Suite */}
+        {/* 通栏大图流：Bedroom & Suites */}
         <section className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900 mt-2">
           <img
             src="/PRODUCTS/bedroom/Gesu%20Bed.JPG"
@@ -241,7 +264,7 @@ function HomePage() {
           </div>
         </section>
 
-        {/* 咨询 CTA */}
+        {/* 咨询模块 */}
         <section className="bg-[#1c1e20] px-6 py-10 text-center text-white">
           <h3 className="font-display text-2xl">Bespoke Inquiries</h3>
           <p className="mt-2 text-xs text-neutral-400">
@@ -259,7 +282,7 @@ function HomePage() {
           </div>
         </section>
 
-        {/* 移动端深灰极简页脚 */}
+        {/* 移动端页脚 */}
         <footer className="bg-[#24272a] px-6 py-12 text-white">
           <div className="text-center space-y-6">
             <div className="flex flex-col items-center">
@@ -289,199 +312,214 @@ function HomePage() {
       </div>
 
       {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (完整大屏向下滚动画卷)
+          💻 2. PC 桌面端专属布局 (100% 还原你的原版 PC 效果与所有向下滚动组件)
           ========================================================================= */}
       <div className="hidden md:block">
-        {/* 顶部悬浮导航 */}
-        <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
-          <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
-            <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
-              {navLeft.map((n) => (
+        {/* 1. 原版 PC 端 Hero 多图轮播与顶栏 */}
+        <section className="relative h-screen w-full overflow-hidden">
+          {slides.map((s, idx) => (
+            <div
+              key={idx}
+              className="absolute inset-0 transition-opacity duration-[1400ms] ease-out"
+              style={{ opacity: i === idx ? 1 : 0 }}
+            >
+              <img
+                src={s.src}
+                alt={s.label}
+                width={s.w}
+                height={s.h}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/70" />
+            </div>
+          ))}
+
+          <header className="relative z-20 mx-auto flex max-w-[1600px] items-center justify-between px-8 py-6">
+            <nav className="hidden flex-1 basis-0 items-center justify-end gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+              {navLeft.map((item) => (
                 <Link
-                  key={n}
-                  to={n === "Products" ? "/products" : "/"}
+                  key={item.label}
+                  to={item.to}
                   className="whitespace-nowrap transition-colors hover:text-[--gold]"
                 >
-                  {n}
+                  {item.label}
                 </Link>
               ))}
             </nav>
-
-            <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-foreground">
-              <span className="text-[10px] tracking-[0.4em] text-muted-foreground">MORE PHILOSOPHY</span>
+            <Link to="/" className="flex shrink-0 flex-col items-center px-10 text-white">
+              <span className="text-[10px] tracking-[0.4em] text-white/60">MORE PHILOSOPHY</span>
               <span className="font-display text-3xl tracking-[0.35em]">&nbsp;FMANAR</span>
             </Link>
-
-            <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85 md:flex">
-              {navRight.map((n) => (
+            <nav className="hidden flex-1 basis-0 items-center justify-start gap-10 text-xs font-medium uppercase tracking-[0.18em] text-white/85 md:flex">
+              {navRight.map((item) => (
                 <Link
-                  key={n}
-                  to={n === "About us" ? "/about" : "/contact"}
+                  key={item.label}
+                  to={item.to}
                   className="whitespace-nowrap transition-colors hover:text-[--gold]"
                 >
-                  {n}
+                  {item.label}
                 </Link>
               ))}
             </nav>
-          </div>
-        </header>
-
-        {/* 1. PC 首屏 Hero 区域 */}
-        <section className="relative h-screen w-full overflow-hidden">
-          <img
-            src="/PRODUCTS/living%20room/Newert.jpg"
-            alt="FMANAR Maison"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-          <div className="absolute bottom-20 left-16 max-w-2xl space-y-4 text-white">
-            <p className="text-xs uppercase tracking-[0.4em] text-[--gold]">Bespoke Italian Maison</p>
-            <h1 className="font-display text-6xl font-light leading-tight">
-              Architectural Living & Italian Craftsmanship
-            </h1>
-            <p className="text-sm text-white/70 max-w-lg leading-relaxed">
-              Direct factory manufacturing base in Foshan with 20,000+ m² independent facility. Tailored for private villas and luxury hospitality worldwide.
-            </p>
-            <div className="pt-4 flex gap-4">
-              <Link
-                to="/products"
-                className="inline-block border border-white/40 px-8 py-3.5 text-xs uppercase tracking-[0.25em] text-white transition-all hover:bg-white hover:text-black"
-              >
-                Explore Catalog
-              </Link>
-              <a
-                href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20bespoke%20furniture."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-[--gold] px-8 py-3.5 text-xs uppercase tracking-[0.25em] font-semibold text-black transition-all hover:bg-white"
-              >
-                Inquire on WhatsApp
-              </a>
+            <div className="ml-8 flex shrink-0 items-center gap-4 text-white/80 md:ml-12">
+              <span className="text-[11px] tracking-widest">EN</span>
+              <span className="text-[11px] tracking-widest text-white/40">AR</span>
             </div>
+          </header>
+
+          <div className="absolute inset-x-0 bottom-24 z-10 flex flex-col items-center text-center">
+            <h1 className="font-display text-5xl text-white drop-shadow md:text-7xl">
+              {slides[i].label}
+            </h1>
+            <a
+              href="#categories"
+              className="mt-6 inline-flex items-center gap-3 border-b border-[--gold] pb-1 text-[11px] uppercase tracking-[0.3em] text-[--gold-soft] transition hover:text-[--gold]"
+            >
+              Explore rooms{" "}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+
+          <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-3">
+            {slides.map((_, idx) => (
+              <button
+                key={idx}
+                aria-label={`Slide ${idx + 1}`}
+                onClick={() => setI(idx)}
+                className="h-[2px] w-10 bg-white/30"
+              >
+                <span
+                  className="block h-full bg-[--gold] transition-all duration-500"
+                  style={{ width: i === idx ? "100%" : "0%" }}
+                />
+              </button>
+            ))}
           </div>
         </section>
 
-        {/* 2. PC 空间系列矩阵 (Collections Grid) */}
-        <section className="mx-auto max-w-[1600px] px-8 py-28">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <p className="text-xs uppercase tracking-[0.35em] text-[--gold]">Curated Spaces</p>
-            <h2 className="font-display text-4xl md:text-5xl">Architectural Collections</h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Explore our master-crafted pieces across four essential spatial categories.
-            </p>
-          </div>
+        {/* 2. 原版 PC 端 The Philosophy 模块 */}
+        <section className="border-t border-border/40 px-8 py-28 text-center">
+          <p className="mx-auto max-w-3xl text-[11px] uppercase tracking-[0.4em] text-[--gold]">
+            The Philosophy
+          </p>
+          <h2 className="mx-auto mt-6 max-w-4xl font-display text-4xl leading-tight text-foreground md:text-5xl">
+            In the heart of Foshan, Guangdong since 2015. We bring Italian artisanal excellence into a contemporary and international way of living.
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Every collection is the result of a continuous dialogue between Italian craftsmanship and contemporary architecture, designed to age with grace inside the homes that hold them.
+          </p>
+        </section>
 
-          <div className="mt-16 grid grid-cols-2 gap-8">
-            {PC_COLLECTIONS.map((c) => (
+        {/* 3. 原版 PC 端 Categories 网格模块 */}
+        <section id="categories" className="mx-auto max-w-[1600px] px-8 pb-28">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {CATEGORIES.map((c) => (
               <Link
-                key={c.title}
+                key={c.label}
                 to="/products"
                 search={{ category: c.cat }}
-                className="group relative overflow-hidden rounded-2xl border border-border/40 bg-neutral-950/40 transition-all hover:border-[--gold]/50"
+                className="group relative block aspect-[3/4] overflow-hidden"
               >
-                <div className="aspect-[16/10] overflow-hidden">
-                  <img
-                    src={c.img}
-                    alt={c.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-8 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{c.subtitle}</span>
-                    <span className="text-xs text-[--gold] opacity-0 transition-opacity group-hover:opacity-100">
-                      Explore Collection →
-                    </span>
-                  </div>
-                  <h3 className="font-display text-3xl">{c.title}</h3>
-                  <p className="text-sm text-muted-foreground">{c.desc}</p>
+                <img
+                  src={c.src}
+                  alt={c.label}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-[--gold]">{c.count}</p>
+                  <h3 className="mt-2 font-display text-3xl text-white">{c.label}</h3>
+                  <span className="mt-3 inline-block text-[11px] uppercase tracking-[0.25em] text-white/70 transition group-hover:text-[--gold]">
+                    Discover
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* 3. PC 品牌工坊与整案服务 (Atelier & Contract) */}
-        <section className="border-t border-border/40 bg-neutral-950/60 px-8 py-28">
-          <div className="mx-auto grid max-w-[1600px] items-center gap-16 lg:grid-cols-2">
-            <div className="space-y-6">
-              <span className="inline-block rounded-full border border-[--gold]/30 px-3.5 py-1 text-[10px] uppercase tracking-[0.35em] text-[--gold]">
-                Atelier & Engineering
-              </span>
-              <h2 className="font-display text-4xl md:text-5xl leading-tight">
-                Solid Beech Wood Foundation & Full-Grain Leather Craft
-              </h2>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                Every piece originating from our Foshan production facility is built on an architectural foundation of kiln-dried solid beech wood with precision mortise-and-tenon joinery. We provide interior designers, architects, and luxury homeowners with uncompromised structural integrity and custom CAD proportioning.
-              </p>
-              <div className="grid grid-cols-3 gap-6 border-t border-border/40 pt-6">
-                <div>
-                  <p className="font-display text-3xl text-[--gold]">20,000+ m²</p>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Production Base</p>
-                </div>
-                <div>
-                  <p className="font-display text-3xl text-[--gold]">12,000+ m²</p>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Private Showroom</p>
-                </div>
-                <div>
-                  <p className="font-display text-3xl text-[--gold]">DDP Global</p>
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground mt-1">Ocean Freight</p>
-                </div>
-              </div>
-              <div className="pt-2">
-                <Link
-                  to="/about"
-                  className="inline-block border-b border-[--gold] pb-1 text-xs uppercase tracking-[0.25em] text-[--gold]"
-                >
-                  Discover the Atelier Story →
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-900 border border-border/40">
-              <img
-                src="/about/gongchang.jpg"
-                alt="FMANAR Production Base"
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </div>
+        {/* 4. 原版 PC 端 Feature Sofa 特写模块 */}
+        <section className="grid grid-cols-1 items-center gap-12 border-t border-border/40 px-8 py-24 md:grid-cols-2 md:gap-20 md:px-20">
+          <div className="relative aspect-[4/5] overflow-hidden bg-black">
+            <img
+              src="/HOME/Babylon Rack Circle sofa.png"
+              alt="Babylon Rack Circle sofa"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
           </div>
-        </section>
-
-        {/* 4. PC 底部咨询横幅 */}
-        <section className="border-t border-border/40 px-8 py-20 bg-neutral-900/30 text-center">
-          <div className="max-w-2xl mx-auto space-y-4">
-            <h2 className="font-display text-4xl">Ready to Begin Your Bespoke Project?</h2>
-            <p className="text-sm text-muted-foreground">
-              Contact our master craftsmen and export logistics engineers for CAD blueprints, leather swatches, and direct FOB/DDP quotations.
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.4em] text-[--gold]">NEW COLLECTION</p>
+            <h2 className="mt-5 font-display text-5xl leading-tight">Babylon Rack Circle sofa</h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Curved, modular sofa with a solid and multilayer wood structure, padded in polyurethane and complemented by goose feather cushions.
             </p>
-            <div className="pt-4 flex justify-center gap-4">
-              <Link
-                to="/contact"
-                className="rounded border border-border/40 px-8 py-3.5 text-xs uppercase tracking-[0.2em] hover:bg-neutral-800 transition-colors"
-              >
-                Contact Showroom
-              </Link>
-              <a
-                href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20a%20luxury%20bespoke%20furniture%20project."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded bg-[#93302c] px-8 py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white shadow-lg transition-opacity hover:opacity-90"
-              >
-                Chat on WhatsApp
-              </a>
-            </div>
+            <ul className="mt-8 space-y-2 text-sm text-muted-foreground">
+              <li>• Available in Custom Fabrics and Leathers</li>
+              <li>• Solid kiln-dried hardwood frame</li>
+              <li>• Mirror Polished Stainless Steel Finish</li>
+              <li>• Custom dimensions on request</li>
+            </ul>
+            <a
+              href="#request-info"
+              className="mt-10 inline-flex items-center gap-3 border border-[--gold] px-8 py-4 text-[11px] uppercase tracking-[0.3em] text-[--gold-soft] transition hover:bg-[--gold] hover:text-[oklch(0.14_0_0)]"
+            >
+              Request the lookbook
+            </a>
           </div>
         </section>
 
-        {/* 5. PC 桌面端页脚 */}
-        <footer className="border-t border-border/40 px-8 py-12">
-          <div className="mx-auto flex max-w-[1600px] items-center justify-between text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
-            <p>© 2026 Fmanar Maison — All rights reserved</p>
-            <p>Foshan, Guangdong, China · Luxury Bespoke Manufacturing</p>
+        {/* 5. 原版 PC 端 RequestInfo 表单 */}
+        <div id="request-info">
+          <RequestInfo />
+        </div>
+
+        {/* 6. 原版 PC 端 4 列富文本页脚 */}
+        <footer className="border-t border-border/40 px-8 py-16">
+          <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+            <div>
+              <p className="font-display text-2xl tracking-[0.3em]">FMANAR</p>
+              <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
+                <p>Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China</p>
+                <p>Business hours: 09:00 - 18:00 (UTC+8)</p>
+              </div>
+            </div>
+
+            {[
+              { h: "Collections", l: ["Living", "Bedroom", "Dining", "Office"] },
+              {
+                h: "Customer Service",
+                l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
+              },
+              { h: "Contact Us", l: ["Feedback"] },
+            ].map((col) => (
+              <div key={col.h}>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {col.l.map((x) => {
+                    const route = customerServiceRoutes[x];
+                    return (
+                      <li key={x}>
+                        {route ? (
+                          <Link to={route.to} search={route.search} className="transition-colors hover:text-foreground">
+                            {x}
+                          </Link>
+                        ) : (
+                          <a href="#" className="hover:text-foreground">{x}</a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
           </div>
+          <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
+            © 2026 Fmanar Maison — All rights reserved
+          </p>
         </footer>
       </div>
     </div>
