@@ -353,7 +353,8 @@ function AboutPage() {
       <div className="hidden md:block">
         <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
           <img
-            src="/about/gongchang.jpg"
+            src="/about-studio.jpg
+"
             alt="FMANAR maison"
             className="h-full w-full object-cover"
           />
