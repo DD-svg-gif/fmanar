@@ -22,6 +22,24 @@ export const Route = createFileRoute("/products")({
   component: ProductsPage,
 });
 
+type RouteTarget = {
+  to: string;
+  search?: Record<string, string>;
+};
+
+const customerServiceRoutes: Record<string, RouteTarget> = {
+  Living: { to: "/products", search: { category: "Living Room" } },
+  Bedroom: { to: "/products", search: { category: "Bedroom" } },
+  Dining: { to: "/products", search: { category: "Dining Room" } },
+  Office: { to: "/products", search: { category: "Office Room" } },
+  Delivery: { to: "/delivery" },
+  "Privacy Policy": { to: "/privacy-policy" },
+  "Shipping Policy": { to: "/shipping-policy" },
+  "Return and Refunds": { to: "/return-and-refunds" },
+  "Important Notice": { to: "/important-notice" },
+  Feedback: { to: "/contact" },
+};
+
 type Product = {
   name: string;
   img: string;
@@ -170,10 +188,9 @@ function ProductsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* =========================================================================
-          📱 1. 移动端专属布局（完全复刻主页同款顶栏与 B&B 风格商品页）
+          📱 1. 移动端专属布局 (B&B Italia 风格)
           ========================================================================= */}
       <div className="block md:hidden bg-white text-black min-h-screen">
-        {/* 顶部黑色主页同款 Header */}
         <header className="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-3.5">
           <Link to="/" className="flex flex-col">
             <span className="text-[7px] tracking-[0.35em] text-neutral-400">MORE PHILOSOPHY</span>
@@ -182,10 +199,10 @@ function ProductsPage() {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://wa.me/8613679767530"
+              href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20inquire%20about%20your%20products."
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Contact"
+              aria-label="Contact on WhatsApp"
               className="text-white/80 hover:text-white"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -208,7 +225,6 @@ function ProductsPage() {
           </div>
         </header>
 
-        {/* 移动端汉堡菜单下拉抽屉 */}
         {menuOpen && (
           <div className="fixed inset-x-0 top-[53px] z-40 bg-black/95 px-6 py-8 backdrop-blur-xl border-b border-neutral-800 space-y-6 text-white">
             <nav className="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.25em]">
@@ -228,7 +244,6 @@ function ProductsPage() {
           </div>
         )}
 
-        {/* 分类 Hero 大图 */}
         <section className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900">
           <img
             src={heroProduct.img}
@@ -241,7 +256,6 @@ function ProductsPage() {
           </h1>
         </section>
 
-        {/* 杂志叙事性前言介绍区 */}
         <section className="px-5 py-7 border-b border-neutral-200">
           <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400 font-semibold">
             {story.kicker}
@@ -254,7 +268,6 @@ function ProductsPage() {
           </p>
         </section>
 
-        {/* 吸顶分类与数量栏 */}
         <div className="sticky top-[53px] z-30 border-b border-neutral-200 bg-white/95 backdrop-blur-md">
           <div className="flex gap-2 overflow-x-auto px-5 py-3 scrollbar-none">
             {CATEGORIES.map((cat) => (
@@ -280,18 +293,16 @@ function ProductsPage() {
           </div>
         </div>
 
-        {/* 双列极简商品网格 */}
         <section className="p-4">
           <div className="grid grid-cols-2 gap-x-3 gap-y-8">
             {mobileDisplayProducts.map((p) => (
               <a
                 key={p.name}
-                href={`https://wa.me/8613679767530?text=${encodeURIComponent(`Hi FMANAR, I want to inquire about the ${p.name} (${activeCategory}).`)}`}
+                href={`https://wa.me/8618926150696?text=${encodeURIComponent(`Hi FMANAR, I want to inquire about the ${p.name} (${activeCategory}).`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex flex-col"
               >
-                {/* 图片展示卡片 */}
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#f6f6f6] border border-neutral-200/60 p-2.5 flex items-center justify-center">
                   {p.tag && (
                     <span className="absolute left-2 top-2 rounded bg-black px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-white">
@@ -306,7 +317,6 @@ function ProductsPage() {
                   />
                 </div>
 
-                {/* 文字信息层级 */}
                 <div className="mt-2.5 space-y-0.5">
                   <h3 className="text-xs font-semibold text-neutral-900 truncate">
                     {p.name}
@@ -327,7 +337,6 @@ function ProductsPage() {
             ))}
           </div>
 
-          {/* Show More 展开按钮 */}
           {mobileVisibleCount < currentProducts.length && (
             <div className="mt-10 mb-6 text-center">
               <button
@@ -340,7 +349,6 @@ function ProductsPage() {
           )}
         </section>
 
-        {/* 邮件/工坊咨询 CTA */}
         <section className="bg-[#1c1e20] px-6 py-10 text-center text-white">
           <h3 className="font-display text-2xl">Bespoke Architectural Project?</h3>
           <p className="mt-2 text-xs text-neutral-400 leading-relaxed">
@@ -348,7 +356,7 @@ function ProductsPage() {
           </p>
           <div className="mt-5">
             <a
-              href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20inquire%20about%20your%20products."
+              href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20bespoke%20furniture%20manufacturing."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block w-full bg-[#93302c] py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white transition-opacity hover:opacity-90 shadow-md"
@@ -358,7 +366,6 @@ function ProductsPage() {
           </div>
         </section>
 
-        {/* 深灰极简页脚 */}
         <footer className="bg-[#24272a] px-6 py-12 text-white">
           <div className="text-center space-y-6">
             <div className="flex flex-col items-center">
@@ -389,7 +396,7 @@ function ProductsPage() {
       </div>
 
       {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (保持不变)
+          💻 2. PC 桌面端专属布局 (已添加回 4 列富文本页脚)
           ========================================================================= */}
       <div className="hidden md:block">
         <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
@@ -469,7 +476,7 @@ function ProductsPage() {
                 {pcDisplayProducts.map((p) => (
                   <a
                     key={p.name}
-                    href={`https://wa.me/8613679767530?text=${encodeURIComponent(`Hi FMANAR, I want to inquire about the ${p.name} (${activeCategory}).`)}`}
+                    href={`https://wa.me/8618926150696?text=${encodeURIComponent(`Hi FMANAR, I want to inquire about the ${p.name} (${activeCategory}).`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group block overflow-hidden rounded-lg border border-border/30 bg-neutral-950/40 p-3 transition-all hover:border-[--gold]/50"
@@ -518,6 +525,51 @@ function ProductsPage() {
             </div>
           </div>
         </main>
+
+        {/* 4 列 PC 端页脚 */}
+        <footer className="border-t border-border/40 px-8 py-16 bg-background">
+          <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
+            <div>
+              <p className="font-display text-2xl tracking-[0.3em]">F M A N A R</p>
+              <div className="mt-4 max-w-xs space-y-1 text-xs leading-relaxed text-muted-foreground">
+                <p>Address: No. 9 Zhenxing Road, Mailang Village, Longjiang Town, Shunde District, Foshan City, Guangdong Province, China</p>
+                <p>Business hours: 09:00 - 18:00 (UTC+8)</p>
+              </div>
+            </div>
+
+            {[
+              { h: "COLLECTIONS", l: ["Living", "Bedroom", "Dining", "Office"] },
+              {
+                h: "CUSTOMER SERVICE",
+                l: ["Delivery", "Privacy Policy", "Shipping Policy", "Return and Refunds", "Important Notice"],
+              },
+              { h: "CONTACT US", l: ["Feedback"] },
+            ].map((col) => (
+              <div key={col.h}>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[--gold]">{col.h}</p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {col.l.map((x) => {
+                    const route = customerServiceRoutes[x];
+                    return (
+                      <li key={x}>
+                        {route ? (
+                          <Link to={route.to} search={route.search} className="transition-colors hover:text-foreground">
+                            {x}
+                          </Link>
+                        ) : (
+                          <a href="#" className="hover:text-foreground">{x}</a>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className="mx-auto mt-12 max-w-[1600px] text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
+            © 2026 FMANAR MAISON — ALL RIGHTS RESERVED
+          </p>
+        </footer>
       </div>
     </div>
   );
