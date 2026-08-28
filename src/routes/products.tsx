@@ -348,7 +348,7 @@ function ProductsPage() {
           </p>
           <div className="mt-5">
             <a
-              href="https://wa.me/8613679767530?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20bespoke%20furniture%20manufacturing."
+              href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20inquire%20about%20your%20products."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block w-full bg-[#93302c] py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white transition-opacity hover:opacity-90 shadow-md"
