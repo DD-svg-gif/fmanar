@@ -50,7 +50,7 @@ function ShippingPolicyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* =========================================================================
-          📱 1. 移动端专属布局 (无 Hero 大图，直接阅读政策正文)
+          📱 1. 移动端专属布局 (与隐私政策页保持一致的极简阅读流)
           ========================================================================= */}
       <div className="block md:hidden bg-white text-black min-h-screen flex flex-col justify-between">
         {/* 顶部黑色 Header */}
@@ -165,7 +165,7 @@ function ShippingPolicyPage() {
           </div>
         </main>
 
-        {/* 移动端页脚 */}
+        {/* 移动端统一专属页脚 */}
         <footer className="bg-[#24272a] px-6 py-12 text-white">
           <div className="text-center space-y-6">
             <div className="flex flex-col items-center">
