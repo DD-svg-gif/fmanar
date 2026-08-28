@@ -52,7 +52,7 @@ const productsByCategory: Record<string, Product[]> = {
     { name: "Jona Sofa", img: "/PRODUCTS/living%20room/Jona%20Sofa.jpg", desc: "Soft-Touch Cushioning" },
     { name: "Siena Sofa", img: "/PRODUCTS/living%20room/Siena%20Sofa.jpg", desc: "Minimalist Villa Living" },
     { name: "Annual Ring Sofa", img: "/PRODUCTS/living%20room/Annual%20Ring%20Sofa.jpg", desc: "Natural Grain Wooden Accent" },
-    { name: "Stone Sofa", img: "/PRODUCTS/living%20room/Stone%20Sofa.jpg", desc: "Monobloc Grounded Design" },
+    { name: "Stone Sofa", img: "/PRODUCTS/living%20room/Stone%20Sofa.jpg", desc: "Low-Profile Lounge" },
     { name: "Tiverton Sofa", img: "/PRODUCTS/living%20room/Tiverton%20Sofa.jpg", desc: "Feather Down Fillings" },
     { name: "Now Barton Sofa", img: "/PRODUCTS/living%20room/Now%20Barton%20Sofa.jpg", desc: "Modern Clean Lines" },
     { name: "Barton Sofa", img: "/PRODUCTS/living%20room/Barton%20Sofa.jpg", desc: "Classical Proportions" },
@@ -140,6 +140,7 @@ function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState<string>(initialCategory);
   const [mobileVisibleCount, setMobileVisibleCount] = useState(8);
   const [pcPage, setPcPage] = useState(1);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (search.category && search.category in productsByCategory) {
@@ -169,31 +170,63 @@ function ProductsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* =========================================================================
-          📱 1. 移动端专属布局（B&B Italia 产品页极简画册风格）
+          📱 1. 移动端专属布局（完全复刻主页同款顶栏与 B&B 风格商品页）
           ========================================================================= */}
       <div className="block md:hidden bg-white text-black min-h-screen">
-        {/* 顶部黑色极简 Header */}
-        <header className="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-3.5 text-white">
+        {/* 顶部黑色主页同款 Header */}
+        <header className="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-3.5">
           <Link to="/" className="flex flex-col">
-            <span className="font-display text-xl font-bold tracking-[0.2em] text-white">
-              FMANAR
-            </span>
+            <span className="text-[7px] tracking-[0.35em] text-neutral-400">MORE PHILOSOPHY</span>
+            <span className="font-display text-xl font-bold tracking-[0.25em] text-white">FMANAR</span>
           </Link>
 
-          <div className="flex items-center gap-4 text-xs">
-            <Link to="/about" className="uppercase tracking-widest text-neutral-300 hover:text-white">
-              About
-            </Link>
+          <div className="flex items-center gap-4">
             <a
               href="https://wa.me/8613679767530"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded border border-neutral-600 px-2.5 py-1 text-[10px] uppercase tracking-wider text-neutral-200"
+              aria-label="Contact"
+              className="text-white/80 hover:text-white"
             >
-              Inquire
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
             </a>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle Menu"
+              className="flex flex-col justify-center gap-1 text-white"
+            >
+              <span className="block h-0.5 w-5 bg-white transition-all" />
+              <span className="block h-0.5 w-5 bg-white transition-all" />
+            </button>
           </div>
         </header>
+
+        {/* 移动端汉堡菜单下拉抽屉 */}
+        {menuOpen && (
+          <div className="fixed inset-x-0 top-[53px] z-40 bg-black/95 px-6 py-8 backdrop-blur-xl border-b border-neutral-800 space-y-6 text-white">
+            <nav className="flex flex-col space-y-4 text-sm font-medium uppercase tracking-[0.25em]">
+              <Link to="/" onClick={() => setMenuOpen(false)} className="hover:text-[--gold]">
+                Home
+              </Link>
+              <Link to="/products" onClick={() => setMenuOpen(false)} className="text-[--gold]">
+                Products
+              </Link>
+              <Link to="/about" onClick={() => setMenuOpen(false)} className="hover:text-[--gold]">
+                About Us
+              </Link>
+              <Link to="/contact" onClick={() => setMenuOpen(false)} className="hover:text-[--gold]">
+                Contact
+              </Link>
+            </nav>
+          </div>
+        )}
 
         {/* 分类 Hero 大图 */}
         <section className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900">
@@ -208,7 +241,7 @@ function ProductsPage() {
           </h1>
         </section>
 
-        {/* 杂志叙事性前言介绍区 (Editorial Description) */}
+        {/* 杂志叙事性前言介绍区 */}
         <section className="px-5 py-7 border-b border-neutral-200">
           <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400 font-semibold">
             {story.kicker}
@@ -221,8 +254,8 @@ function ProductsPage() {
           </p>
         </section>
 
-        {/* 吸顶分类与数量栏 (Filter & Category Bar) */}
-        <div className="sticky top-[49px] z-40 border-b border-neutral-200 bg-white/95 backdrop-blur-md">
+        {/* 吸顶分类与数量栏 */}
+        <div className="sticky top-[53px] z-30 border-b border-neutral-200 bg-white/95 backdrop-blur-md">
           <div className="flex gap-2 overflow-x-auto px-5 py-3 scrollbar-none">
             {CATEGORIES.map((cat) => (
               <button
@@ -247,7 +280,7 @@ function ProductsPage() {
           </div>
         </div>
 
-        {/* 双列极简商品网格（2-Column Clean Grid） */}
+        {/* 双列极简商品网格 */}
         <section className="p-4">
           <div className="grid grid-cols-2 gap-x-3 gap-y-8">
             {mobileDisplayProducts.map((p) => (
@@ -307,7 +340,7 @@ function ProductsPage() {
           )}
         </section>
 
-        {/* 邮件/工坊咨询 CTA 条 */}
+        {/* 邮件/工坊咨询 CTA */}
         <section className="bg-[#1c1e20] px-6 py-10 text-center text-white">
           <h3 className="font-display text-2xl">Bespoke Architectural Project?</h3>
           <p className="mt-2 text-xs text-neutral-400 leading-relaxed">
@@ -325,7 +358,7 @@ function ProductsPage() {
           </div>
         </section>
 
-        {/* 深灰极简多层级页脚 */}
+        {/* 深灰极简页脚 */}
         <footer className="bg-[#24272a] px-6 py-12 text-white">
           <div className="text-center space-y-6">
             <div className="flex flex-col items-center">
@@ -356,7 +389,7 @@ function ProductsPage() {
       </div>
 
       {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (保持原有的大图 + 左侧边栏 + 三列网格 + 分页)
+          💻 2. PC 桌面端专属布局 (保持不变)
           ========================================================================= */}
       <div className="hidden md:block">
         <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
