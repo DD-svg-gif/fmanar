@@ -282,33 +282,101 @@ function HomePage() {
           </div>
         </section>
 
-        {/* 移动端页脚 */}
-        <footer className="bg-[#24272a] px-6 py-12 text-white">
-          <div className="text-center space-y-6">
-            <div className="flex flex-col items-center">
-              <span className="text-[8px] tracking-[0.4em] text-neutral-400">MORE PHILOSOPHY</span>
-              <span className="font-display text-3xl tracking-[0.3em] font-bold mt-1">FMANAR</span>
-            </div>
+      {/* 📱 移动端专属页脚 (含客户服务标签与社交媒体图标) */}
+<footer className="bg-[#24272a] px-6 py-12 text-white">
+  <div className="text-center space-y-6">
+    {/* 1. 品牌 LOGO */}
+    <div className="flex flex-col items-center">
+      <span className="text-[8px] tracking-[0.4em] text-neutral-400">MORE PHILOSOPHY</span>
+      <span className="font-display text-3xl font-bold tracking-[0.3em] mt-1">FMANAR</span>
+    </div>
 
-            <nav className="flex flex-col gap-3.5 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-200">
-              <Link to="/about">About</Link>
-              <Link to="/products">Products</Link>
-              <Link to="/products" search={{ category: "Living Room" }}>Living</Link>
-              <Link to="/products" search={{ category: "Dining Room" }}>Dining</Link>
-              <Link to="/products" search={{ category: "Bedroom" }}>Bedroom</Link>
-              <Link to="/contact">Contacts</Link>
-            </nav>
+    {/* 2. 页面主导航列表 */}
+    <nav className="flex flex-col gap-3.5 text-xs font-semibold uppercase tracking-[0.25em] text-neutral-200">
+      <Link to="/about">About</Link>
+      <Link to="/products">Products</Link>
+      <Link to="/products" search={{ category: "Living Room" }}>Living</Link>
+      <Link to="/products" search={{ category: "Dining Room" }}>Dining</Link>
+      <Link to="/products" search={{ category: "Bedroom" }}>Bedroom</Link>
+      <Link to="/contact">Contacts</Link>
+    </nav>
 
-            <div className="border-t border-neutral-700 pt-6 space-y-3">
-              <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
-                Foshan Production Base & Showroom
-              </p>
-              <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-500">
-                © 2026 FMANAR Maison — All rights reserved
-              </p>
-            </div>
-          </div>
-        </footer>
+    {/* 3. CONTACTS 下方、横线上方的 Customer Service 标签列表 */}
+    <div className="pt-2 flex flex-col gap-3 text-xs uppercase tracking-[0.2em] text-neutral-300">
+      <span className="text-[10px] tracking-[0.25em] text-[--gold] font-semibold">CUSTOMER SERVICE</span>
+      <Link to="/delivery" className="hover:text-white transition-colors">Delivery</Link>
+      <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+      <Link to="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link>
+      <Link to="/return-and-refunds" className="hover:text-white transition-colors">Return and Refunds</Link>
+      <Link to="/important-notice" className="hover:text-white transition-colors">Important Notice</Link>
+    </div>
+
+    {/* 4. 分隔横线及下方内容 */}
+    <div className="border-t border-neutral-700 pt-6 space-y-5">
+      {/* 社交媒体图标栏 (Instagram, Facebook, TikTok, WhatsApp) */}
+      <div className="flex items-center justify-center gap-6 text-white/80">
+        {/* Instagram */}
+        <a
+          href="https://www.instagram.com/foshanfmanarfurniture/?hl=en-gb"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="transition-colors hover:text-[--gold]"
+        >
+          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+
+        {/* Facebook */}
+        <a
+          href="https://www.facebook.com/profile.php?id=61592662757344&locale=en_GB"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          className="transition-colors hover:text-[--gold]"
+        >
+          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+
+        {/* TikTok */}
+        <a
+          href="https://www.tiktok.com/@fmanarhome"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+          className="transition-colors hover:text-[--gold]"
+        >
+          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.29 1.77-.25.99-.04 2.11.58 2.9.61.81 1.62 1.3 2.63 1.28 1.16-.01 2.27-.67 2.78-1.7.24-.48.36-1.02.35-1.56.02-4.95.01-9.91.01-14.86z"/>
+          </svg>
+        </a>
+
+        {/* WhatsApp */}
+        <a
+          href="https://wa.me/8618926150696"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          className="transition-colors hover:text-[--gold]"
+        >
+          <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.983.54 1.782.81 2.796.81h.002c3.18 0 5.767-2.587 5.769-5.766.001-1.543-.599-2.992-1.69-4.084-1.092-1.092-2.541-1.692-4.081-1.692zm6.657 10.741c-.269.757-1.341 1.391-2.176 1.474-.582.057-1.343.08-3.904-.979-3.275-1.353-5.385-4.665-5.549-4.882-.164-.217-1.332-1.773-1.332-3.382 0-1.609.843-2.4 1.144-2.727.301-.326.658-.408.877-.408.219 0 .438.002.63.011.203.01.474-.078.742.565.27.653.924 2.257 1.006 2.42.082.164.137.356.028.574-.11.218-.164.354-.328.546-.164.192-.345.428-.493.574-.165.163-.336.34-.145.667.191.326.85 1.401 1.821 2.266 1.25 1.114 2.304 1.458 2.632 1.621.328.163.52.136.711-.082.192-.218.821-.954 1.04-1.281.219-.327.438-.272.74-.163.301.109 1.904.898 2.233 1.062.328.163.548.245.63.381.082.136.082.79-.187 1.547zm-6.657-16.913c-6.624 0-12 5.376-12 12 0 2.115.553 4.103 1.521 5.836l-1.521 5.564 5.717-1.5c1.714.935 3.67 1.467 5.75 1.467 6.624 0 12-5.376 12-12 0-6.624-5.376-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+
+      <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+        Foshan Production Base & Showroom
+      </p>
+      <p className="text-[9px] uppercase tracking-[0.2em] text-neutral-500">
+        © 2026 FMANAR Maison — All rights reserved
+      </p>
+    </div>
+  </div>
+</footer>
       </div>
 
       {/* =========================================================================
