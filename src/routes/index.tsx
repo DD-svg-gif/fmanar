@@ -137,17 +137,18 @@ function HomePage() {
           </div>
         )}
 
-       {/* Hero 满版通栏主大图 */}
+  {/* Hero 满版通栏主大图 */}
 <section className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900">
   <img
     src="/HOME/Mxinpin.JPG"
     alt="The Living Collection 2026"
-    className="h-full w-full object-cover"
+    className="h-full w-full object-cover brightness-[0.85]"
   />
-  {/* 遮罩大幅减淡，仅在底部留轻微黑晕衬托文字 */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+  {/* 将原先的 via-black/20 改为与第二张图一致的 via-transparent */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+  
   <div className="absolute bottom-8 left-5 right-5 space-y-3">
-    <h1 className="font-display text-4xl leading-tight text-white drop-shadow-md">
+    <h1 className="font-display text-4xl leading-tight text-white">
       The Living <br />
       Collection 2026
     </h1>
