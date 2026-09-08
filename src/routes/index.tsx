@@ -137,31 +137,32 @@ function HomePage() {
           </div>
         )}
 
-        {/* Hero 满版通栏主大图 */}
-        <section className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900">
-          <img
-            src="/HOME/Mxinpin.JPG"
-            alt="The Living Collection 2026"
-            className="h-full w-full object-cover brightness-[0.85]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          <div className="absolute bottom-8 left-5 right-5 space-y-3">
-            <h1 className="font-display text-4xl leading-tight text-white">
-              The Living <br />
-              Collection 2026
-            </h1>
-            <div>
-              <Link
-                to="/products"
-                search={{ category: "Living Room" }}
-                className="inline-block border-b border-white pb-1 text-xs uppercase tracking-[0.25em] text-white hover:border-[--gold] hover:text-[--gold]"
-              >
-                Discover the Collection →
-              </Link>
-            </div>
-          </div>
-        </section>
-
+       {/* Hero 满版通栏主大图 */}
+<section className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900">
+  <img
+    src="/HOME/Mxinpin.JPG"
+    alt="The Living Collection 2026"
+    className="h-full w-full object-cover"
+  />
+  {/* 遮罩大幅减淡，仅在底部留轻微黑晕衬托文字 */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+  <div className="absolute bottom-8 left-5 right-5 space-y-3">
+    <h1 className="font-display text-4xl leading-tight text-white drop-shadow-md">
+      The Living <br />
+      Collection 2026
+    </h1>
+    <div>
+      <Link
+        to="/products"
+        search={{ category: "Living Room" }}
+        className="inline-block border-b border-white pb-1 text-xs uppercase tracking-[0.25em] text-white hover:border-[--gold] hover:text-[--gold]"
+      >
+        Discover the Collection →
+      </Link>
+    </div>
+  </div>
+</section>
+        
         {/* 极简通知横条 */}
         <div className="border-y border-neutral-800 bg-neutral-950 py-3.5 text-center">
           <a
