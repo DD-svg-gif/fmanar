@@ -116,7 +116,7 @@ function AboutPage() {
 
         <section className="relative aspect-[16/11] w-full overflow-hidden bg-neutral-900">
           <img
-            src="/about/gongchang.jpg"
+            src="/about/Mgongchang.jpg"
             alt="FMANAR Maison"
             className="h-full w-full object-cover brightness-[0.85]"
           />
