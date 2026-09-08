@@ -140,7 +140,7 @@ function HomePage() {
         {/* Hero 满版通栏主大图 */}
         <section className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-900">
           <img
-            src="/PRODUCTS/living%20room/Newert.jpg"
+            src="/HOME/Mxinpin.JPG"
             alt="The Living Collection 2026"
             className="h-full w-full object-cover brightness-[0.85]"
           />
@@ -177,7 +177,7 @@ function HomePage() {
         {/* 通栏大图流：Indoor / Living Spaces */}
         <section className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900 mt-2">
           <img
-            src="/PRODUCTS/living%20room/Babylon%20Curved%20Sofa.jpg"
+            src="/HOME/Mcanzhuo.JPG"
             alt="Living Collection"
             loading="lazy"
             className="h-full w-full object-cover brightness-[0.85]"
