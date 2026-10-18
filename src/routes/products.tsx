@@ -64,40 +64,239 @@ export function getProductImages(product: Product): string[] {
 }
 
 const productsByCategory: Record<string, Product[]> = {
-  "Living Room": [
-    { name: "Newert Sofa", img: "/PRODUCTS/living%20room/Newert.jpg", tag: "NEW", desc: "Curved Solid Beech Wood Frame · High-density foam padding" },
-    { name: "Babylon Curved Sofa", img: "/PRODUCTS/living%20room/Babylon%20Curved%20Sofa.jpg", tag: "ICON", desc: "Monolithic Sculptural Form · Brushed stainless steel trim" },
-    { name: "Bainton Sofa", img: "/PRODUCTS/living%20room/Bainton%20Sofa.jpg", desc: "Full-Grain Aniline Leather" },
-    { name: "Lyman Sofa", img: "/PRODUCTS/living%20room/Lyman%20Sofa.jpg", desc: "Deep Lounge Ergonomics" },
-    { name: "Havergate Sofa", img: "/PRODUCTS/living%20room/Havergate%20Sofa.jpg", desc: "Architectural Proportions" },
-    { name: "Babylon Sofa", img: "/PRODUCTS/living%20room/Babylon%20Sofa.jpg", desc: "Linear Minimalist Geometry" },
-    { name: "Elena Sofa", img: "/PRODUCTS/living%20room/Elena%20Sofa.jpg", desc: "Italian Tailoring Detail" },
-    { name: "Krezer Sofa", img: "/PRODUCTS/living%20room/Krezer%20Sofa.jpg", desc: "High-Resilience Dual Layer" },
-    { name: "Five Sofa", img: "/PRODUCTS/living%20room/Five%20Sofa.jpg", desc: "Modular Multi-Configuration" },
-    { name: "Leather Belt Sofa", img: "/PRODUCTS/living%20room/Leather%20Belt%20Sofa.jpg", tag: "NEW", desc: "Saddle Leather Straps & Brass" },
-    { name: "Malawi Sofa", img: "/PRODUCTS/living%20room/Malawi%20Sofa.jpg", desc: "Sculptural Curved Backrest" },
-    { name: "West Sofa", img: "/PRODUCTS/living%20room/West%20Sofa.jpg", desc: "Contemporary Italian Profile" },
-    { name: "Victorian Sofa", img: "/PRODUCTS/living%20room/Victorian%20Sofa.jpg", desc: "Heritage Master Artisan Stitch" },
-    { name: "Smile Sofa", img: "/PRODUCTS/living%20room/Smile%20Sofa.jpg", desc: "Organic Contour Seating" },
-    { name: "Rhapsody Sofa", img: "/PRODUCTS/living%20room/Rhapsody%20Sofa.jpg", desc: "Tactile Luxury Bouclé" },
-    { name: "Signature Sofa", img: "/PRODUCTS/living%20room/Signature%20Sofa.jpg", desc: "FMANAR Maison Flagship" },
-    { name: "Tiger Stripe Sofa", img: "/PRODUCTS/living%20room/Tiger%20Stripe%20Sofa.jpg", desc: "Exclusive Patterned Textile" },
-    { name: "Tucson Blues Sofa", img: "/PRODUCTS/living%20room/Tucson%20Blues%20Sofa.jpg", desc: "Nubuck Leather Finish" },
-    { name: "Jona Sofa", img: "/PRODUCTS/living%20room/Jona%20Sofa.jpg", desc: "Soft-Touch Cushioning" },
-    { name: "Siena Sofa", img: "/PRODUCTS/living%20room/Siena%20Sofa.jpg", desc: "Minimalist Villa Living" },
-    { name: "Annual Ring Sofa", img: "/PRODUCTS/living%20room/Annual%20Ring%20Sofa.jpg", desc: "Natural Grain Wooden Accent" },
-    { name: "Stone Sofa", img: "/PRODUCTS/living%20room/Stone%20Sofa.jpg", desc: "Low-Profile Lounge" },
-    { name: "Tiverton Sofa", img: "/PRODUCTS/living%20room/Tiverton%20Sofa.jpg", desc: "Feather Down Fillings" },
-    { name: "Now Barton Sofa", img: "/PRODUCTS/living%20room/Now%20Barton%20Sofa.jpg", desc: "Modern Clean Lines" },
-    { name: "Barton Sofa", img: "/PRODUCTS/living%20room/Barton%20Sofa.jpg", desc: "Classical Proportions" },
-    { name: "AM Sofa", img: "/PRODUCTS/living%20room/AM%20Sofa.jpg", desc: "Compact Penthouse Lounge" },
-    { name: "Beaumont Sofa", img: "/PRODUCTS/living%20room/Beaumont%20Sofa.jpg", desc: "Modular Corner Formation" },
-    { name: "Crescent Sofa", img: "/PRODUCTS/living%20room/Crescent%20Sofa.jpg", desc: "Soft Arc Geometry" },
-    { name: "Dina Sofa", img: "/PRODUCTS/living%20room/Dina%20Sofa.jpg", desc: "Generous Seating Depth" },
-    { name: "Ramsey Sofa", img: "/PRODUCTS/living%20room/Ramsey%20Sofa.jpg", desc: "Solid Beech Foundation" },
-    { name: "Supercar Sofa", img: "/PRODUCTS/living%20room/Supercar%20Sofa.jpg", desc: "Dynamic Aerodynamic Form" },
-    { name: "Abey Sofa", img: "/PRODUCTS/living%20room/Abey%20Sofa.jpg", desc: "Relaxed Villa Lounging" },
-    { name: "Winston Sofa", img: "/PRODUCTS/living%20room/Winston%20Sofa.jpg", desc: "Grand Hospitality Scale" },
+ "Living Room": [
+    {
+      name: "Newert Sofa",
+      img: "/PRODUCTS/4Living%20room/Newert%20safa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Newert%20safa1.jpg",
+        "/PRODUCTS/4Living%20room/Newert%20safa2.jpg",
+        "/PRODUCTS/4Living%20room/Newert%20safa3.jpg",
+        "/PRODUCTS/4Living%20room/Newert%20safa4.jpg"
+      ],
+      tag: "NEW",
+      desc: "Curved Solid Beech Wood Frame · High-density foam padding"
+    },
+    {
+      name: "Embrace Sofa",
+      img: "/PRODUCTS/4Living%20room/Embrace%20sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Embrace%20sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Embrace%20sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Embrace%20sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Embrace%20sofa4.jpg"
+      ],
+      tag: "NEW",
+      desc: "Embracing Organic Curves"
+    },
+    {
+      name: "Bainton Sofa",
+      img: "/PRODUCTS/4Living%20room/Bainton%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Bainton%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Bainton%20Sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Bainton%20Sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Bainton%20Sofa4.jpg",
+        "/PRODUCTS/4Living%20room/Bainton%20Sofa5.jpg"
+      ],
+      desc: "Full-Grain Aniline Leather"
+    },
+    {
+      name: "Lyman Sofa",
+      img: "/PRODUCTS/4Living%20room/Lyman%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Lyman%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Lyman%20Sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Lyman%20Sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Lyman%20Sofa4.jpg",
+        "/PRODUCTS/4Living%20room/Lyman%20Sofa5.jpg"
+      ],
+      desc: "Deep Lounge Ergonomics"
+    },
+    {
+      name: "Havergate Sofa",
+      img: "/PRODUCTS/4Living%20room/Havergate%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Havergate%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Havergate%20Sofa2.jpg"
+      ],
+      desc: "Architectural Proportions"
+    },
+    {
+      name: "Elena Sofa",
+      img: "/PRODUCTS/3Living%20room/Elena%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Elena%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Elena%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Elena%20Sofa3.jpg",
+        "/PRODUCTS/3Living%20room/Elena%20Sofa4.jpg",
+        "/PRODUCTS/3Living%20room/Elena%20Sofa5.jpg",
+        "/PRODUCTS/3Living%20room/Elena%20Sofa6.JPG"
+      ],
+      desc: "Italian Tailoring Detail"
+    },
+    {
+      name: "Krezer Sofa",
+      img: "/PRODUCTS/3Living%20room/Krezer%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Krezer%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Krezer%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Krezer%20Sofa3.jpg",
+        "/PRODUCTS/3Living%20room/Krezer%20Sofa4.jpg",
+        "/PRODUCTS/3Living%20room/Krezer%20Sofa5.jpg"
+      ],
+      desc: "High-Resilience Dual Layer"
+    },
+    {
+      name: "Five Sofa",
+      img: "/PRODUCTS/3Living%20room/Five%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Five%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Five%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Five%20Sofa3.jpg"
+      ],
+      desc: "Modular Multi-Configuration"
+    },
+    {
+      name: "Leather Belt Sofa",
+      img: "/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa3.jpg",
+        "/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa4.jpg",
+        "/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa5.jpg"
+      ],
+      tag: "NEW",
+      desc: "Saddle Leather Straps & Brass"
+    },
+    {
+      name: "Malawi Sofa",
+      img: "/PRODUCTS/3Living%20room/Malawi%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Malawi%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Malawi%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Malawi%20Sofa3.jpg",
+        "/PRODUCTS/3Living%20room/Malawi%20Sofa4.jpg",
+        "/PRODUCTS/3Living%20room/Malawi%20Sofa5.jpg",
+        "/PRODUCTS/3Living%20room/Malawi%20Sofa6.jpg",
+        "/PRODUCTS/3Living%20room/Malawi%20Sofa7.jpg"
+      ],
+      desc: "Sculptural Curved Backrest"
+    },
+    {
+      name: "Rhapsody Sofa",
+      img: "/PRODUCTS/3Living%20room/Rhapsody%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Rhapsody%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Rhapsody%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Rhapsody%20Sofa3.jpg",
+        "/PRODUCTS/3Living%20room/Rhapsody%20Sofa4.jpg",
+        "/PRODUCTS/3Living%20room/Rhapsody%20Sofa5.jpg"
+      ],
+      desc: "Tactile Luxury Bouclé"
+    },
+    {
+      name: "Tucson Blues Sofa",
+      img: "/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa3.jpg",
+        "/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa4.jpg",
+        "/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa5.jpg"
+      ],
+      desc: "Nubuck Leather Finish"
+    },
+    {
+      name: "Siena Sofa",
+      img: "/PRODUCTS/3Living%20room/Siena%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Siena%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Siena%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Siena%20Sofa3.jpg",
+        "/PRODUCTS/3Living%20room/Siena%20Sofa4.jpg"
+      ],
+      desc: "Minimalist Villa Living"
+    },
+    {
+      name: "Annual Ring Sofa",
+      img: "/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa1.jpg",
+        "/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa2.jpg",
+        "/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa3.jpg"
+      ],
+      desc: "Natural Grain Wooden Accent"
+    },
+    {
+      name: "Stone Sofa",
+      img: "/PRODUCTS/4Living%20room/Stone%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Stone%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Stone%20Sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Stone%20Sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Stone%20Sofa4.jpg",
+        "/PRODUCTS/4Living%20room/Stone%20Sofa5.jpg",
+        "/PRODUCTS/4Living%20room/Stone%20Sofa6.jpg",
+        "/PRODUCTS/4Living%20room/Stone%20Sofa7.jpg"
+      ],
+      desc: "Low-Profile Lounge"
+    },
+    {
+      name: "Tiverton Sofa",
+      img: "/PRODUCTS/4Living%20room/Tiverton%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Tiverton%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Tiverton%20Sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Tiverton%20Sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Tiverton%20Sofa4.jpg",
+        "/PRODUCTS/4Living%20room/Tiverton%20Sofa5.jpg",
+        "/PRODUCTS/4Living%20room/Tiverton%20Sofa6.png",
+        "/PRODUCTS/4Living%20room/Tiverton%20Sofa7.png"
+      ],
+      desc: "Feather Down Fillings"
+    },
+    {
+      name: "Now Barton Sofa",
+      img: "/PRODUCTS/4Living%20room/Now%20Barton%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Now%20Barton%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Now%20Barton%20Sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Now%20Barton%20Sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Now%20Barton%20Sofa4.jpg",
+        "/PRODUCTS/4Living%20room/Now%20Barton%20Sofa5.jpg"
+      ],
+      desc: "Modern Clean Lines"
+    },
+    {
+      name: "Ramsey Sofa",
+      img: "/PRODUCTS/4Living%20room/Ramsey%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Ramsey%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Ramsey%20Sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Ramsey%20Sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Ramsey%20Sofa4.jpg"
+      ],
+      desc: "Solid Beech Foundation"
+    },
+    {
+      name: "Supercar Sofa",
+      img: "/PRODUCTS/3Living%20room/Supercar%20Sofa.jpg",
+      desc: "Dynamic Aerodynamic Form"
+    },
+    {
+      name: "Winston Sofa",
+      img: "/PRODUCTS/4Living%20room/Winston%20Sofa1.jpg",
+      images: [
+        "/PRODUCTS/4Living%20room/Winston%20Sofa1.jpg",
+        "/PRODUCTS/4Living%20room/Winston%20Sofa2.jpg",
+        "/PRODUCTS/4Living%20room/Winston%20Sofa3.jpg",
+        "/PRODUCTS/4Living%20room/Winston%20Sofa4.jpg",
+        "/PRODUCTS/4Living%20room/Winston%20Sofa5.jpg"
+      ],
+      desc: "Grand Hospitality Scale"
+    }
   ],
   "Dining Room": [
     { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG", tag: "NEW", desc: "Handcrafted Natural Marble & Timber" },
