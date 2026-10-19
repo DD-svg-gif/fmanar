@@ -447,11 +447,7 @@ const productsByCategory: Record<string, Product[]> = {
       ],
       desc: "Padded Surround Platform"
     },
-    {
-      name: "Leather Belt Bed",
-      img: `${OSS_BASE_URL}/bed%20room3/Leather%20Belt%20Bed.JPG`,
-      desc: "Hand-Stitched Saddle Leather"
-    },
+
     {
       name: "Lyman Bed",
       img: `${OSS_BASE_URL}/bed%20room4/Lyman%20Bed1.jpg`,
