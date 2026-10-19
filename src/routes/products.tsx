@@ -43,12 +43,11 @@ const customerServiceRoutes: Record<string, RouteTarget> = {
 export type Product = {
   name: string;
   img: string;
-  images?: string[]; // 可选：若未填，系统会自动根据主图寻找 -1 和 -2 细节图
+  images?: string[];
   tag?: string;
   desc?: string;
 };
- 
-// 自动生成该产品的所有图片列表（主图 + 2张细节图）
+
 export function getProductImages(product: Product): string[] {
   if (product.images && product.images.length > 0) {
     return product.images;
@@ -63,280 +62,525 @@ export function getProductImages(product: Product): string[] {
   return [mainImg, `${basePath}-1${ext}`, `${basePath}-2${ext}`];
 }
 
-// 定义你的阿里云 OSS 访问前缀（请根据你 Bucket 所在的地域和自定义域名进行调整）
-const OSS_BASE_URL = "https://haiwaifmanarcp.oss-cn-hongkong.aliyuncs.com";
+const OSS_BASE_URL = "https://haiwaifmanarcp.oss-cn-hongkong.aliyuncs.com/Luxury";
 
 const productsByCategory: Record<string, Product[]> = {
-"Living Room": [
+  "Living Room": [
     {
       name: "Newert Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Newert%20safa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Newert%20safa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Newert%20safa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Newert%20safa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Newert%20safa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Newert%20safa4.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Newert%20safa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Newert%20safa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Newert%20safa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Newert%20safa4.jpg`
       ],
       tag: "NEW",
       desc: "Curved Solid Beech Wood Frame · High-density foam padding"
     },
     {
       name: "Embrace Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Embrace%20sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa4.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Embrace%20sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Embrace%20sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Embrace%20sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Embrace%20sofa4.jpg`
       ],
       tag: "NEW",
       desc: "Embracing Organic Curves"
     },
     {
       name: "Bainton Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Bainton%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Bainton%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Bainton%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Bainton%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Bainton%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Bainton%20Sofa5.jpg`
       ],
       desc: "Full-Grain Aniline Leather"
     },
     {
       name: "Lyman Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Lyman%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Lyman%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Lyman%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Lyman%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Lyman%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Lyman%20Sofa5.jpg`
       ],
       desc: "Deep Lounge Ergonomics"
     },
     {
       name: "Havergate Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Havergate%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Havergate%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Havergate%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Havergate%20Sofa2.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Havergate%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Havergate%20Sofa2.jpg`
       ],
       desc: "Architectural Proportions"
     },
     {
       name: "Elena Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Elena%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa6.JPG`
+        `${OSS_BASE_URL}/Living%20room3/Elena%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Elena%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Elena%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Elena%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Elena%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Elena%20Sofa6.JPG`
       ],
       desc: "Italian Tailoring Detail"
     },
     {
       name: "Krezer Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Krezer%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Krezer%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Krezer%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Krezer%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Krezer%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Krezer%20Sofa5.jpg`
       ],
       desc: "High-Resilience Dual Layer"
     },
     {
       name: "Five Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Five%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Five%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Five%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Five%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Five%20Sofa3.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Five%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Five%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Five%20Sofa3.jpg`
       ],
       desc: "Modular Multi-Configuration"
     },
     {
       name: "Leather Belt Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Leather%20Belt%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Leather%20Belt%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Leather%20Belt%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Leather%20Belt%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Leather%20Belt%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Leather%20Belt%20Sofa5.jpg`
       ],
       tag: "NEW",
       desc: "Saddle Leather Straps & Brass"
     },
     {
       name: "Malawi Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa6.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa7.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa6.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Malawi%20Sofa7.jpg`
       ],
       desc: "Sculptural Curved Backrest"
     },
     {
       name: "Rhapsody Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Rhapsody%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Rhapsody%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Rhapsody%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Rhapsody%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Rhapsody%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Rhapsody%20Sofa5.jpg`
       ],
       desc: "Tactile Luxury Bouclé"
     },
     {
       name: "Tucson Blues Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Tucson%20Blues%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Tucson%20Blues%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Tucson%20Blues%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Tucson%20Blues%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Tucson%20Blues%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Tucson%20Blues%20Sofa5.jpg`
       ],
       desc: "Nubuck Leather Finish"
     },
     {
       name: "Siena Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Siena%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa4.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Siena%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Siena%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Siena%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Siena%20Sofa4.jpg`
       ],
       desc: "Minimalist Villa Living"
     },
     {
       name: "Annual Ring Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Annual%20Ring%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa3.jpg`
+        `${OSS_BASE_URL}/Living%20room3/Annual%20Ring%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Annual%20Ring%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room3/Annual%20Ring%20Sofa3.jpg`
       ],
       desc: "Natural Grain Wooden Accent"
     },
     {
       name: "Stone Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa6.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa7.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa6.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Stone%20Sofa7.jpg`
       ],
       desc: "Low-Profile Lounge"
     },
     {
       name: "Tiverton Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa6.png`,
-        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa7.png`
+        `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa6.png`,
+        `${OSS_BASE_URL}/Living%20room4/Tiverton%20Sofa7.png`
       ],
       desc: "Feather Down Fillings"
     },
     {
       name: "Now Barton Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Now%20Barton%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Now%20Barton%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Now%20Barton%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Now%20Barton%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Now%20Barton%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Now%20Barton%20Sofa5.jpg`
       ],
       desc: "Modern Clean Lines"
     },
     {
       name: "Ramsey Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Ramsey%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa4.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Ramsey%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Ramsey%20Sofa2.jpg`
       ],
       desc: "Solid Beech Foundation"
     },
     {
       name: "Supercar Sofa",
-      img: `${OSS_BASE_URL}/3Living%20room/Supercar%20Sofa.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room3/Supercar%20Sofa.jpg`,
       desc: "Dynamic Aerodynamic Form"
     },
     {
       name: "Winston Sofa",
-      img: `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Winston%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa5.jpg`
+        `${OSS_BASE_URL}/Living%20room4/Winston%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Winston%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Winston%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Winston%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Winston%20Sofa5.jpg`
       ],
       desc: "Grand Hospitality Scale"
     }
   ],
-  // 其他分类保持原样...
   "Dining Room": [
-    { name: "Barton Dining Table", img: "/PRODUCTS/dining%20room/Barton%20Dining%20Table.JPG", tag: "NEW", desc: "Handcrafted Natural Marble & Timber" },
-    { name: "Majestic Dining Table", img: "/PRODUCTS/dining%20room/Majestic%20Dining%20Table.JPG", desc: "Sculptural Central Pedestal" },
-    { name: "Newent Dining Table", img: "/PRODUCTS/dining%20room/Newent%20Dining%20Table.JPG", desc: "Curved Solid Beech Base" },
-    { name: "Raglan Dining Table", img: "/PRODUCTS/dining%20room/Raglan%20Dining%20Table.JPG", desc: "Brushed Champagne Metal Accents" },
-    { name: "Ramsey Dining Table", img: "/PRODUCTS/dining%20room/Ramsey%20Dining%20Table.JPG", desc: "Solid Hardwood Joinery" },
-    { name: "Stamboul Dining Table", img: "/PRODUCTS/dining%20room/Stamboul%20Dining%20Teble.JPG", desc: "Exotic Wood Veneer Top" },
-    { name: "V-Dining Table", img: "/PRODUCTS/dining%20room/V-Dining%20Table.JPG", desc: "Geometric Architectural V-Leg" },
-    { name: "Vasmara Dining Table", img: "/PRODUCTS/dining%20room/Vasmara%20Dining%20Table.jpeg", desc: "Polished Quartzite Surface" },
+    {
+      name: "Barton Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room4/Barton%20Dining%20Table1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/dining%20room4/Barton%20Dining%20Table1.jpg`,
+        `${OSS_BASE_URL}/dining%20room4/Barton%20Dining%20Table2.jpg`
+      ],
+      tag: "NEW",
+      desc: "Handcrafted Natural Marble & Timber"
+    },
+    {
+      name: "Majestic Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room3/Majestic%20Dining%20Table1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/dining%20room3/Majestic%20Dining%20Table1.JPG`,
+        `${OSS_BASE_URL}/dining%20room3/Majestic%20Dining%20Table2.jpg`,
+        `${OSS_BASE_URL}/dining%20room3/Majestic%20Dining%20Table3.jpg`
+      ],
+      desc: "Sculptural Central Pedestal"
+    },
+    {
+      name: "Newent Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room4/Newent%20Dining%20Table1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/dining%20room4/Newent%20Dining%20Table1.jpg`
+      ],
+      desc: "Curved Solid Beech Base"
+    },
+    {
+      name: "Raglan Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room3/Raglan%20Dining%20Table1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/dining%20room3/Raglan%20Dining%20Table1.jpg`,
+        `${OSS_BASE_URL}/dining%20room3/Raglan%20Dining%20Table2.jpg`,
+        `${OSS_BASE_URL}/dining%20room3/Raglan%20Dining%20Table3.jpg`,
+        `${OSS_BASE_URL}/dining%20room3/Raglan%20Dining%20Table4.jpg`,
+        `${OSS_BASE_URL}/dining%20room3/Raglan%20Dining%20Table5.jpg`
+      ],
+      desc: "Brushed Champagne Metal Accents"
+    },
+    {
+      name: "Ramsey Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room4/Ramsey%20Dining%20Table1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/dining%20room4/Ramsey%20Dining%20Table1.jpg`,
+        `${OSS_BASE_URL}/dining%20room4/Ramsey%20Dining%20Table2.jpg`,
+        `${OSS_BASE_URL}/dining%20room4/Ramsey%20Dining%20Table3.jpg`
+      ],
+      desc: "Solid Hardwood Joinery"
+    },
+    {
+      name: "Stamboul Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room4/Stamboul%20Dining%20Teble1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/dining%20room4/Stamboul%20Dining%20Teble1.jpg`,
+        `${OSS_BASE_URL}/dining%20room4/Stamboul%20Dining%20Teble2.jpg`,
+        `${OSS_BASE_URL}/dining%20room4/Stamboul%20Dining%20Teble3.jpg`,
+        `${OSS_BASE_URL}/dining%20room4/Stamboul%20Dining%20Teble4.jpg`
+      ],
+      desc: "Exotic Wood Veneer Top"
+    },
+    {
+      name: "V-Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room3/V-Dining%20Table.JPG`,
+      desc: "Geometric Architectural V-Leg"
+    },
+    {
+      name: "Greca Dining Table",
+      img: `${OSS_BASE_URL}/dining%20room3/Greca%20Dining%20Table1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/dining%20room3/Greca%20Dining%20Table1.jpg`,
+        `${OSS_BASE_URL}/dining%20room3/Greca%20Dining%20Table2.jpg`,
+        `${OSS_BASE_URL}/dining%20room3/Greca%20Dining%20Table3.JPG`,
+        `${OSS_BASE_URL}/dining%20room3/Greca%20Dining%20Table4.JPG`,
+        `${OSS_BASE_URL}/dining%20room3/Greca%20Dining%20Table5.JPG`,
+        `${OSS_BASE_URL}/dining%20room3/Greca%20Dining%20Table6.JPG`
+      ],
+      desc: "Polished Quartzite Surface"
+    }
   ],
   Bedroom: [
-    { name: "Gesu Bed", img: "/PRODUCTS/bedroom/Gesu%20Bed.JPG", tag: "NEW", desc: "Architectural Curved Headboard" },
-    { name: "Havergate Bed", img: "/PRODUCTS/bedroom/Havergate%20Bed.JPG", desc: "Padded Surround Platform" },
-    { name: "Leather Belt Bed", img: "/PRODUCTS/bedroom/Leather%20Belt%20Bed.JPG", desc: "Hand-Stitched Saddle Leather" },
-    { name: "Lyman Bed", img: "/PRODUCTS/bedroom/Lyman%20Bed.jpg", desc: "Cocooning Winged Comfort" },
-    { name: "Malawi Bed", img: "/PRODUCTS/bedroom/Malawi%20Bed.JPG", desc: "Curved Minimalist Silhouette" },
-    { name: "Midas Bed", img: "/PRODUCTS/bedroom/Midas%20Bed.JPG", desc: "Brushed Gold Trim Detail" },
-    { name: "Newert Bed", img: "/PRODUCTS/bedroom/Newert%20Bed.JPG", desc: "Solid Beech Platform Base" },
-    { name: "Newert Extra-Wide Bed", img: "/PRODUCTS/bedroom/Newert%20Extra-Wide%20Bed.jpg", desc: "Integrated Extended Wall Panels" },
-    { name: "Now V-Wide Bed", img: "/PRODUCTS/bedroom/Now%20V-Wide%20Bed.JPG", desc: "Geometric Grid Upholstery" },
-    { name: "Ramsey Bed", img: "/PRODUCTS/bedroom/Ramsey%20Bed.JPG", desc: "Tailored Linen & Leather" },
-    { name: "Rhapsody-Wide Bed", img: "/PRODUCTS/bedroom/Rhapsody-Wide%20Bed.JPG", desc: "Floating Nightstand Integration" },
-    { name: "Siena Bed", img: "/PRODUCTS/bedroom/Siena%20Bed.JPG", desc: "Italian Minimalist Frame" },
-    { name: "Stamford Bed", img: "/PRODUCTS/bedroom/Stamford%20Bed.JPG", desc: "High-Density Velvet Headboard" },
-    { name: "Symphony Bed", img: "/PRODUCTS/bedroom/Symphony%20Bed.JPG", desc: "Harmonious Fluid Curves" },
-    { name: "V-Wide Bed", img: "/PRODUCTS/bedroom/V-Wide%20Bed.JPG", desc: "Wall-to-Wall Custom Panel" },
-    { name: "Wings Bed", img: "/PRODUCTS/bedroom/Wings%20Bed.JPG", desc: "Sculptural Wingback Form" },
+    {
+      name: "Gesu Bed",
+      img: `${OSS_BASE_URL}/bed%20room3/Gesu%20Bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room3/Gesu%20Bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room3/Gesu%20Bed2.jpg`,
+        `${OSS_BASE_URL}/bed%20room3/Gesu%20Bed3.jpg`,
+        `${OSS_BASE_URL}/bed%20room3/Gesu%20Bed4.jpg`,
+        `${OSS_BASE_URL}/bed%20room3/Gesu%20Bed5.jpg`
+      ],
+      tag: "NEW",
+      desc: "Architectural Curved Headboard"
+    },
+    {
+      name: "Havergate Bed",
+      img: `${OSS_BASE_URL}/bed%20room4/Havergate%20Bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room4/Havergate%20Bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Havergate%20Bed2.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Havergate%20Bed3.jpg`
+      ],
+      desc: "Padded Surround Platform"
+    },
+    {
+      name: "Leather Belt Bed",
+      img: `${OSS_BASE_URL}/bed%20room3/Leather%20Belt%20Bed.JPG`,
+      desc: "Hand-Stitched Saddle Leather"
+    },
+    {
+      name: "Lyman Bed",
+      img: `${OSS_BASE_URL}/bed%20room4/Lyman%20Bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room4/Lyman%20Bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Lyman%20Bed2.jpg`
+      ],
+      desc: "Cocooning Winged Comfort"
+    },
+    {
+      name: "Malawi Bed",
+      img: `${OSS_BASE_URL}/bed%20room3/Malawi%20Bed1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room3/Malawi%20Bed1.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Malawi%20Bed2.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Malawi%20Bed3.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Malawi%20Bed4.JPG`
+      ],
+      desc: "Curved Minimalist Silhouette"
+    },
+    {
+      name: "Midas Bed",
+      img: `${OSS_BASE_URL}/bed%20room3/Midas%20%20Bed1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room3/Midas%20%20Bed1.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Midas%20%20Bed2.JPG`
+      ],
+      desc: "Brushed Gold Trim Detail"
+    },
+    {
+      name: "Newert Bed",
+      img: `${OSS_BASE_URL}/bed%20room4/Newert%20Bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room4/Newert%20Bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Newert%20Bed2.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Newert%20Bed3.jpg`
+      ],
+      desc: "Solid Beech Platform Base"
+    },
+    {
+      name: "Newert Extra-Wide Bed",
+      img: `${OSS_BASE_URL}/bed%20room4/Newert%20Extra-Wide%20Bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room4/Newert%20Extra-Wide%20Bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Newert%20Extra-Wide%20Bed2.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Newert%20Extra-Wide%20Bed3.jpg`
+      ],
+      desc: "Integrated Extended Wall Panels"
+    },
+    {
+      name: "Now V-Wide Bed",
+      img: `${OSS_BASE_URL}/bed%20room3/Now%20V-Wide%20Bed1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room3/Now%20V-Wide%20Bed1.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Now%20V-Wide%20Bed2.jpg`,
+        `${OSS_BASE_URL}/bed%20room3/Now%20V-Wide%20Bed3.jpg`
+      ],
+      desc: "Geometric Grid Upholstery"
+    },
+    {
+      name: "Ramsey Bed",
+      img: `${OSS_BASE_URL}/bed%20room4/Ramsey%20Bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room4/Ramsey%20Bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Ramsey%20Bed2.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Ramsey%20Bed3.jpg`
+      ],
+      desc: "Tailored Linen & Leather"
+    },
+    {
+      name: "Rhapsody-Wide Bed",
+      img: `${OSS_BASE_URL}/bed%20room3/Rhapsody-Wide%20Bed1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room3/Rhapsody-Wide%20Bed1.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Rhapsody-Wide%20Bed2.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Rhapsody-Wide%20Bed3.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Rhapsody-Wide%20Bed4.JPG`,
+        `${OSS_BASE_URL}/bed%20room3/Rhapsody-Wide%20Bed5.JPG`
+      ],
+      desc: "Floating Nightstand Integration"
+    },
+    {
+      name: "Stamford Bed",
+      img: `${OSS_BASE_URL}/bed%20room4/Stamford%20Bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room4/Stamford%20Bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Stamford%20Bed2.jpg`
+      ],
+      desc: "High-Density Velvet Headboard"
+    },
+    {
+      name: "Brixton Bed",
+      img: `${OSS_BASE_URL}/bed%20room4/Brixton%20bed1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/bed%20room4/Brixton%20bed1.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Brixton%20bed2.jpg`,
+        `${OSS_BASE_URL}/bed%20room4/Brixton%20bed3.jpg`
+      ],
+      desc: "Sculptural Wingback Form"
+    }
   ],
   "Office Room": [
-    { name: "Elena Desk", img: "/PRODUCTS/office room/Elena Desk.JPG", tag: "NEW", desc: "Full-Grain Leather Writing Surface" },
-    { name: "Executive Desk", img: "/PRODUCTS/office room/Executive Desk.JPG", desc: "Concealed Cable & Drawer Unit" },
-    { name: "President Desk", img: "/PRODUCTS/office room/President Desk.jpg", desc: "Solid Beech Structure & Brass Accents" },
-    { name: "Raglan Desk", img: "/PRODUCTS/office room/Raglan Desk.JPG", desc: "Cantilevered Floating Top" },
-    { name: "Stamboul Desk", img: "/PRODUCTS/office room/Stamboul Desk.JPG", desc: "Hand-Matched Walnut Veneer" },
-    { name: "Supercar Desk", img: "/PRODUCTS/office room/Supercar Desk.jpg", desc: "Aerodynamic Luxury Executive Curve" },
+    {
+      name: "Elena Desk",
+      img: `${OSS_BASE_URL}/office%20room3/Elena%20Desk1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/office%20room3/Elena%20Desk1.JPG`,
+        `${OSS_BASE_URL}/office%20room3/Elena%20Desk2.jpg`
+      ],
+      tag: "NEW",
+      desc: "Full-Grain Leather Writing Surface"
+    },
+    {
+      name: "President Desk",
+      img: `${OSS_BASE_URL}/office%20room4/President%20Desk.jpg`,
+      images: [
+        `${OSS_BASE_URL}/office%20room4/President%20Desk.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk1.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk2.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk3.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk4.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk5.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk6.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk7.jpg`,
+        `${OSS_BASE_URL}/office%20room4/President%20writing-desk8.jpg`
+      ],
+      desc: "Solid Beech Structure & Brass Accents"
+    },
+    {
+      name: "Raglan Desk",
+      img: `${OSS_BASE_URL}/office%20room4/Styal%20desk1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/office%20room4/Styal%20desk1.jpg`,
+        `${OSS_BASE_URL}/office%20room4/Styal%20desk2.jpg`,
+        `${OSS_BASE_URL}/office%20room4/Styal%20desk3.jpg`,
+        `${OSS_BASE_URL}/office%20room4/Styal%20desk4.jpg`
+      ],
+      desc: "Cantilevered Floating Top"
+    },
+    {
+      name: "Stamboul Desk",
+      img: `${OSS_BASE_URL}/office%20room3/Antigua%20desk1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/office%20room3/Antigua%20desk1.JPG`,
+        `${OSS_BASE_URL}/office%20room3/Antigua%20desk2.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Antigua%20desk3.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Antigua%20desk4.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Antigua%20desk5.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Antigua%20desk6.jpg`
+      ],
+      desc: "Hand-Matched Walnut Veneer"
+    },
+    {
+      name: "Arrakis Desk",
+      img: `${OSS_BASE_URL}/office%20room3/Arrakis%20Desk1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/office%20room3/Arrakis%20Desk1.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Arrakis%20Desk2.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Arrakis%20Desk3.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Arrakis%20Desk4.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Arrakis%20Desk5.jpg`
+      ],
+      desc: "Aerodynamic Luxury Executive Curve"
+    },
+    {
+      name: "Medusa Desk",
+      img: `${OSS_BASE_URL}/office%20room3/Medusa%20Desk1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/office%20room3/Medusa%20Desk1.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Medusa%20Desk2.jpg`,
+        `${OSS_BASE_URL}/office%20room3/Medusa%20Desk3.jpg`
+      ],
+      desc: "Sculptural Executive Design"
+    }
   ],
 };
 
@@ -379,11 +623,9 @@ function ProductsPage() {
   const [pcPage, setPcPage] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // 弹窗画册状态
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
-  // 触摸滑动状态
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
@@ -398,13 +640,12 @@ function ProductsPage() {
   const currentProducts = productsByCategory[activeCategory] ?? [];
   const heroProduct = currentProducts[0] ?? {
     name: "Bespoke Collection",
-    img: "/PRODUCTS/living%20room/Newert.jpg",
+    img: `${OSS_BASE_URL}/Living%20room4/Newert%20safa1.jpg`,
   };
 
   const story = categoryStories[activeCategory] ?? categoryStories["Living Room"];
   const mobileDisplayProducts = currentProducts.slice(0, mobileVisibleCount);
 
-  // PC 端分页数据
   const pcPageSize = 12;
   const totalPcPages = Math.max(1, Math.ceil(currentProducts.length / pcPageSize));
   const pcDisplayProducts = currentProducts.slice(
@@ -412,7 +653,6 @@ function ProductsPage() {
     pcPage * pcPageSize
   );
 
-  // 获取当前弹窗产品的图片列表（自动推导 3 张图片）
   const activeImages = selectedProduct ? getProductImages(selectedProduct) : [];
 
   const openGallery = (product: Product) => {
@@ -437,7 +677,6 @@ function ProductsPage() {
     setCurrentImgIndex((prev) => (prev - 1 + activeImages.length) % activeImages.length);
   };
 
-  // PC 端快捷键支持
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!selectedProduct) return;
@@ -449,7 +688,6 @@ function ProductsPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedProduct, activeImages.length]);
 
-  // 移动端手势支持
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchEndX(null);
     setTouchStartX(e.targetTouches[0].clientX);
@@ -471,12 +709,8 @@ function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* =========================================================================
-          🖼️ 全屏大图画册弹窗 (支持手势滑动、左右切换与即时 WhatsApp 询价)
-          ========================================================================= */}
       {selectedProduct && (
         <div className="fixed inset-0 z-[100] flex flex-col justify-between bg-black/95 text-white backdrop-blur-xl animate-fadeIn">
-          {/* 1. 弹窗顶部栏 */}
           <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
             <div>
               <p className="text-[9px] uppercase tracking-[0.3em] text-[--gold]">
@@ -497,14 +731,12 @@ function ProductsPage() {
             </button>
           </div>
 
-          {/* 2. 核心大图展示区 (支持触摸手势) */}
           <div
             className="relative flex flex-1 items-center justify-center px-4 py-2 touch-pan-y select-none"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {/* PC 端左箭头 */}
             {activeImages.length > 1 && (
               <button
                 onClick={handlePrevImage}
@@ -517,7 +749,6 @@ function ProductsPage() {
               </button>
             )}
 
-            {/* 图片主体 */}
             <div className="relative flex h-full max-h-[68vh] w-full max-w-5xl items-center justify-center">
               <img
                 key={activeImages[currentImgIndex]}
@@ -527,7 +758,6 @@ function ProductsPage() {
               />
             </div>
 
-            {/* PC 端右箭头 */}
             {activeImages.length > 1 && (
               <button
                 onClick={handleNextImage}
@@ -540,7 +770,6 @@ function ProductsPage() {
               </button>
             )}
 
-            {/* 手机端指示条 (3 张图) */}
             {activeImages.length > 1 && (
               <div className="md:hidden absolute bottom-3 flex gap-1.5">
                 {activeImages.map((_, idx) => (
@@ -555,7 +784,6 @@ function ProductsPage() {
             )}
           </div>
 
-          {/* 3. 弹窗底部信息与询价按钮 */}
           <div className="border-t border-white/10 bg-black/60 px-6 py-4 backdrop-blur-md">
             <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-3 sm:flex-row">
               <div className="text-center sm:text-left">
@@ -582,9 +810,6 @@ function ProductsPage() {
         </div>
       )}
 
-      {/* =========================================================================
-          📱 1. 移动端专属布局 (点击商品卡片直接打开大图画册)
-          ========================================================================= */}
       <div className="block md:hidden bg-white text-black min-h-screen">
         <header className="sticky top-0 z-50 flex items-center justify-between bg-black px-5 py-3.5">
           <Link to="/" className="flex flex-col">
@@ -688,7 +913,6 @@ function ProductsPage() {
           </div>
         </div>
 
-        {/* 双列商品网格 */}
         <section className="p-4">
           <div className="grid grid-cols-2 gap-x-3 gap-y-8">
             {mobileDisplayProducts.map((p) => (
@@ -703,9 +927,8 @@ function ProductsPage() {
                       {p.tag}
                     </span>
                   )}
-                  {/* 右上角展示“3张详情图”提示 */}
                   <span className="absolute right-2 top-2 rounded bg-black/60 px-1.5 py-0.5 text-[8px] tracking-wider text-white">
-                    3 Photos
+                    Photos
                   </span>
                   <img
                     src={p.img}
@@ -747,7 +970,6 @@ function ProductsPage() {
           )}
         </section>
 
-        {/* 移动端页脚 */}
         <footer className="bg-[#24272a] px-6 py-12 text-white">
           <div className="text-center space-y-6">
             <div className="flex flex-col items-center">
@@ -786,46 +1008,6 @@ function ProductsPage() {
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                   </svg>
                 </a>
-
-                <a
-                  href="https://www.facebook.com/profile.php?id=61592662757344&locale=en_GB"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="transition-colors hover:text-[--gold]"
-                >
-                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                </a>
-
-                <a
-                  href="https://www.tiktok.com/@fmanarhome"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                  className="transition-colors hover:text-[--gold]"
-                >
-                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.29 1.77-.25.99-.04 2.11.58 2.9.61.81 1.62 1.3 2.63 1.28 1.16-.01 2.27-.67 2.78-1.7.24-.48.36-1.02.35-1.56.02-4.95.01-9.91.01-14.86z"/>
-                  </svg>
-                </a>
-
-                <a
-                  href="https://wa.me/8618926150696"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                  className="transition-colors hover:text-[--gold]"
-                >
-                  <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.987-1.408C8.423 21.494 10.15 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 2c4.418 0 8 3.582 8 8s-3.582 8-8 8c-1.533 0-2.968-.431-4.19-1.178l-.3-.18-3.09.872.884-2.993-.195-.316C4.407 15.01 4 13.551 4 12c0-4.418 3.582-8 8-8zm4.18 11.26c-.23-.11-1.36-.67-1.57-.75-.21-.08-.36-.11-.51.11-.15.23-.59.75-.72.9-.13.15-.26.17-.49.06-.23-.11-.97-.36-1.85-1.14-.68-.61-1.14-1.36-1.28-1.59-.13-.23-.01-.35.1-.46.1-.1.23-.26.34-.39.11-.13.15-.23.23-.38.08-.15.04-.28-.02-.39-.06-.11-.51-1.23-.7-1.68-.19-.45-.37-.39-.51-.4h-.44c-.15 0-.39.06-.6.28-.21.23-.79.77-.79 1.88 0 1.11.81 2.18.92 2.33.11.15 1.59 2.43 3.86 3.41.54.23.96.37 1.29.47.54.17 1.04.15 1.43.09.44-.07 1.36-.56 1.55-1.1.19-.54.19-1 .13-1.1-.05-.1-.2-.16-.43-.27z"
-                    />
-                  </svg>
-                </a>
               </div>
 
               <p className="text-[10px] uppercase tracking-[0.25em] text-neutral-400">
@@ -839,9 +1021,6 @@ function ProductsPage() {
         </footer>
       </div>
 
-      {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (点击商品卡片同样支持画册大图弹窗)
-          ========================================================================= */}
       <div className="hidden md:block">
         <header className="fixed inset-x-0 top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
           <div className="mx-auto flex max-w-[1600px] items-center justify-between px-8 py-5">
@@ -968,7 +1147,6 @@ function ProductsPage() {
           </div>
         </main>
 
-        {/* 4 列 PC 端页脚 */}
         <footer className="border-t border-border/40 px-8 py-16 bg-background">
           <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-4">
             <div>
