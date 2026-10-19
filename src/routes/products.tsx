@@ -66,6 +66,37 @@ const OSS_BASE_URL = "https://haiwaifmanarcp.oss-cn-hongkong.aliyuncs.com/Luxury
 
 const productsByCategory: Record<string, Product[]> = {
   "Living Room": [
+    // --- 新增：visio living room 系列 ---
+    {
+      name: "Babylon Curved Sofa",
+      img: `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa5.png`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa6.png`
+      ],
+      tag: "NEW",
+      desc: "Visionnaire-inspired Grand Curved Silhouette · High-Density Memory Foam"
+    },
+    {
+      name: "Babylon Standard Sofa",
+      img: `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa1.jpg`,
+      images: [
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa6.jpg`,
+        `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Sofa7.jpg`
+      ],
+      tag: "NEW",
+      desc: "Tailored Italian Upholstery · Solid Wood Foundation"
+    },
+    // --- 原有 Living 经典产品 ---
     {
       name: "Newert Sofa",
       img: `${OSS_BASE_URL}/Living%20room4/Newert%20safa1.jpg`,
@@ -379,6 +410,20 @@ const productsByCategory: Record<string, Product[]> = {
     }
   ],
   Bedroom: [
+    // --- 新增：visi bed room 系列 ---
+    {
+      name: "Land System Boiserie Bed",
+      img: `${OSS_BASE_URL}/visi%20bed%20room/Land%20System%20Boiserie%20Bed1.JPG`,
+      images: [
+        `${OSS_BASE_URL}/visi%20bed%20room/Land%20System%20Boiserie%20Bed1.JPG`,
+        `${OSS_BASE_URL}/visi%20bed%20room/Land%20System%20Boiserie%20Bed2.JPG`,
+        `${OSS_BASE_URL}/visi%20bed%20room/Land%20System%20Boiserie%20Bed3.JPG`,
+        `${OSS_BASE_URL}/visi%20bed%20room/Land%20System%20Boiserie%20Bed4.JPG`
+      ],
+      tag: "NEW",
+      desc: "Integrated Boiserie Wall Panel System · Luxurious Upholstered Headboard"
+    },
+    // --- 原有 Bedroom 经典产品 ---
     {
       name: "Gesu Bed",
       img: `${OSS_BASE_URL}/bed%20room3/Gesu%20Bed1.jpg`,
@@ -402,7 +447,11 @@ const productsByCategory: Record<string, Product[]> = {
       ],
       desc: "Padded Surround Platform"
     },
-
+    {
+      name: "Leather Belt Bed",
+      img: `${OSS_BASE_URL}/bed%20room3/Leather%20Belt%20Bed.JPG`,
+      desc: "Hand-Stitched Saddle Leather"
+    },
     {
       name: "Lyman Bed",
       img: `${OSS_BASE_URL}/bed%20room4/Lyman%20Bed1.jpg`,
@@ -636,7 +685,7 @@ function ProductsPage() {
   const currentProducts = productsByCategory[activeCategory] ?? [];
   const heroProduct = currentProducts[0] ?? {
     name: "Bespoke Collection",
-    img: `${OSS_BASE_URL}/Living%20room4/Newert%20safa1.jpg`,
+    img: `${OSS_BASE_URL}/visio%20living%20room/Babylon%20Curved%20Sofa1.jpg`,
   };
 
   const story = categoryStories[activeCategory] ?? categoryStories["Living Room"];
