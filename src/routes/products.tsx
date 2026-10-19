@@ -47,7 +47,7 @@ export type Product = {
   tag?: string;
   desc?: string;
 };
-
+ 
 // 自动生成该产品的所有图片列表（主图 + 2张细节图）
 export function getProductImages(product: Product): string[] {
   if (product.images && product.images.length > 0) {
