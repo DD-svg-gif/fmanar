@@ -67,7 +67,7 @@ export function getProductImages(product: Product): string[] {
 const OSS_BASE_URL = "https://haiwaifmanarcp.oss-cn-hongkong.aliyuncs.com";
 
 const productsByCategory: Record<string, Product[]> = {
-  "Living Room": [
+"Living Room": [
     {
       name: "Newert Sofa",
       img: `${OSS_BASE_URL}/4Living%20room/Newert%20safa1.jpg`,
@@ -82,221 +82,221 @@ const productsByCategory: Record<string, Product[]> = {
     },
     {
       name: "Embrace Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Embrace%20sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Embrace%20sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Embrace%20sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Embrace%20sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Embrace%20sofa4.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Embrace%20sofa4.jpg`
       ],
       tag: "NEW",
       desc: "Embracing Organic Curves"
     },
     {
       name: "Bainton Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Bainton%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Bainton%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Bainton%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Bainton%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Bainton%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Bainton%20Sofa5.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Bainton%20Sofa5.jpg`
       ],
       desc: "Full-Grain Aniline Leather"
     },
     {
       name: "Lyman Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Lyman%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Lyman%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Lyman%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Lyman%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Lyman%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Lyman%20Sofa5.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Lyman%20Sofa5.jpg`
       ],
       desc: "Deep Lounge Ergonomics"
     },
     {
       name: "Havergate Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Havergate%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Havergate%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Havergate%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Havergate%20Sofa2.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Havergate%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Havergate%20Sofa2.jpg`
       ],
       desc: "Architectural Proportions"
     },
     {
       name: "Elena Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Elena%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Elena%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Elena%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Elena%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Elena%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Elena%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Elena%20Sofa6.JPG`
+        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Elena%20Sofa6.JPG`
       ],
       desc: "Italian Tailoring Detail"
     },
     {
       name: "Krezer Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Krezer%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Krezer%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Krezer%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Krezer%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Krezer%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Krezer%20Sofa5.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Krezer%20Sofa5.jpg`
       ],
       desc: "High-Resilience Dual Layer"
     },
     {
       name: "Five Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Five%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Five%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Five%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Five%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Five%20Sofa3.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Five%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Five%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Five%20Sofa3.jpg`
       ],
       desc: "Modular Multi-Configuration"
     },
     {
       name: "Leather Belt Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Leather%20Belt%20Sofa5.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Leather%20Belt%20Sofa5.jpg`
       ],
       tag: "NEW",
       desc: "Saddle Leather Straps & Brass"
     },
     {
       name: "Malawi Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa6.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Malawi%20Sofa7.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa6.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Malawi%20Sofa7.jpg`
       ],
       desc: "Sculptural Curved Backrest"
     },
     {
       name: "Rhapsody Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Rhapsody%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Rhapsody%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Rhapsody%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Rhapsody%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Rhapsody%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Rhapsody%20Sofa5.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Rhapsody%20Sofa5.jpg`
       ],
       desc: "Tactile Luxury Bouclé"
     },
     {
       name: "Tucson Blues Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Tucson%20Blues%20Sofa5.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Tucson%20Blues%20Sofa5.jpg`
       ],
       desc: "Nubuck Leather Finish"
     },
     {
       name: "Siena Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Siena%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Siena%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Siena%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Siena%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Siena%20Sofa4.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Siena%20Sofa4.jpg`
       ],
       desc: "Minimalist Villa Living"
     },
     {
       name: "Annual Ring Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Annual%20Ring%20Sofa3.jpg`
+        `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/3Living%20room/Annual%20Ring%20Sofa3.jpg`
       ],
       desc: "Natural Grain Wooden Accent"
     },
     {
       name: "Stone Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa6.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Stone%20Sofa7.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa6.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Stone%20Sofa7.jpg`
       ],
       desc: "Low-Profile Lounge"
     },
     {
       name: "Tiverton Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa5.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa6.png`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Tiverton%20Sofa7.png`
+        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa5.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa6.png`,
+        `${OSS_BASE_URL}/4Living%20room/Tiverton%20Sofa7.png`
       ],
       desc: "Feather Down Fillings"
     },
     {
       name: "Now Barton Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Now%20Barton%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Now%20Barton%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Now%20Barton%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Now%20Barton%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Now%20Barton%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Now%20Barton%20Sofa5.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Now%20Barton%20Sofa5.jpg`
       ],
       desc: "Modern Clean Lines"
     },
     {
       name: "Ramsey Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Ramsey%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Ramsey%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Ramsey%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Ramsey%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Ramsey%20Sofa4.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Ramsey%20Sofa4.jpg`
       ],
       desc: "Solid Beech Foundation"
     },
     {
       name: "Supercar Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/3Living%20room/Supercar%20Sofa.jpg`,
+      img: `${OSS_BASE_URL}/3Living%20room/Supercar%20Sofa.jpg`,
       desc: "Dynamic Aerodynamic Form"
     },
     {
       name: "Winston Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Winston%20Sofa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Winston%20Sofa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Winston%20Sofa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Winston%20Sofa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Winston%20Sofa4.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Winston%20Sofa5.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa4.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Winston%20Sofa5.jpg`
       ],
       desc: "Grand Hospitality Scale"
     }
