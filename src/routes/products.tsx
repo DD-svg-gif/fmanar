@@ -921,7 +921,7 @@ function ProductsPage() {
                 onClick={() => openGallery(p)}
                 className="group flex flex-col cursor-pointer"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-[#f6f6f6] border border-neutral-200/60 p-2.5 flex items-center justify-center">
+                <div className="relative aspect-[3/2] w-full overflow-hidden rounded-md bg-[#f6f6f6] border border-neutral-200/60 p-2.5 flex items-center justify-center">
                   {p.tag && (
                     <span className="absolute left-2 top-2 rounded bg-black px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-white">
                       {p.tag}
@@ -1102,7 +1102,7 @@ function ProductsPage() {
                     onClick={() => openGallery(p)}
                     className="group block overflow-hidden rounded-lg border border-border/30 bg-neutral-950/40 p-3 transition-all hover:border-[--gold]/50 cursor-pointer"
                   >
-                    <div className="aspect-[4/3] overflow-hidden rounded bg-black/40">
+                    <div className="aspect-[3/2] overflow-hidden rounded bg-black/40">
                       <img
                         src={p.img}
                         alt={p.name}
