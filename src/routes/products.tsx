@@ -68,9 +68,9 @@ const productsByCategory: Record<string, Product[]> = {
   "Living Room": [
     {
       name: "Newert Sofa",
-      img: `${OSS_BASE_URL}/Luxury/Living%20room4/Newert%20safa1.jpg`,
+      img: `${OSS_BASE_URL}/Living%20room4/Newert%20safa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/Luxury/Living%20room4/Newert%20safa1.jpg`,
+        `${OSS_BASE_URL}/Living%20room4/Newert%20safa1.jpg`,
         `${OSS_BASE_URL}/Living%20room4/Newert%20safa2.jpg`,
         `${OSS_BASE_URL}/Living%20room4/Newert%20safa3.jpg`,
         `${OSS_BASE_URL}/Living%20room4/Newert%20safa4.jpg`
