@@ -70,12 +70,12 @@ const productsByCategory: Record<string, Product[]> = {
   "Living Room": [
     {
       name: "Newert Sofa",
-      img: `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Newert%20safa1.jpg`,
+      img: `${OSS_BASE_URL}/4Living%20room/Newert%20safa1.jpg`,
       images: [
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Newert%20safa1.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Newert%20safa2.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Newert%20safa3.jpg`,
-        `${OSS_BASE_URL}/PRODUCTS/4Living%20room/Newert%20safa4.jpg`
+        `${OSS_BASE_URL}/4Living%20room/Newert%20safa1.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Newert%20safa2.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Newert%20safa3.jpg`,
+        `${OSS_BASE_URL}/4Living%20room/Newert%20safa4.jpg`
       ],
       tag: "NEW",
       desc: "Curved Solid Beech Wood Frame · High-density foam padding"
