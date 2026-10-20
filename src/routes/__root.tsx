@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         httpEquiv: "Content-Security-Policy",
         content:
-          "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: data: blob: ws: wss:; form-action 'self' https://formspree.io; connect-src 'self' https://formspree.io https://*.supabase.co https://*.lovable.app https://*.lovable.dev wss://*.supabase.co ws: wss:; img-src 'self' data: https: blob:;",
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: data: blob: ws: wss:; form-action 'self' https://formspree.io; connect-src 'self' https://formspree.io https://*.supabase.co https://*.lovable.app https://*.lovable.dev https://*.clarity.ms https://*.bing.com wss://*.supabase.co ws: wss:; img-src 'self' data: https: blob: https://*.clarity.ms;",
       },
       { title: "FMANAR — Luxury Italian Furniture" },
       { name: "description", content: "Bespoke luxury furniture for living rooms, bedrooms, dining and office spaces. Crafted in Italy." },
@@ -102,6 +102,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" },
+    ],
+    // 在这里直接通过 TanStack Router 配置 Head 脚本
+    scripts: [
+      {
+        type: "text/javascript",
+        children: `
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "z0k9i7nxku");
+        `,
+      },
     ],
   }),
   shellComponent: RootShell,
