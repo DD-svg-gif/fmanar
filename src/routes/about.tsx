@@ -114,10 +114,10 @@ function AboutPage() {
           </div>
         )}
 
-        {/* 📱 移动端首屏横屏比例 (16:9) */}
-        <section className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-900">
+        {/* 📱 移动端首屏：统一为横屏 16:9 + gongchang.jpg */}
+        <section className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900">
           <img
-            src="/about/Mgongchang.jpg"
+            src="/about/gongchang.jpg"
             alt="FMANAR Maison"
             className="h-full w-full object-cover brightness-[0.85]"
           />
@@ -239,6 +239,7 @@ function AboutPage() {
               href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20a%20bespoke%20furniture%20project."
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Contact on WhatsApp"
               className="inline-block w-full bg-[#93302c] py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white shadow-md transition-opacity hover:opacity-90"
             >
               Consult Atelier on WhatsApp
@@ -339,12 +340,12 @@ function AboutPage() {
       </div>
 
       {/* =========================================================================
-          💻 2. PC 桌面端专属布局 (标准横幅比例与工厂图)
+          💻 2. PC 桌面端专属布局 (横屏比例 + gongchang.jpg)
           ========================================================================= */}
       <div className="hidden md:block">
         <section className="relative aspect-[16/9] max-h-[72vh] w-full overflow-hidden bg-neutral-900">
           <img
-            src="/about/Mgongchang.jpg"
+            src="/about/gongchang.jpg"
             alt="FMANAR Production Base"
             className="h-full w-full object-cover"
           />
