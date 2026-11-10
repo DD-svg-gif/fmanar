@@ -114,17 +114,17 @@ function AboutPage() {
           </div>
         )}
 
-        {/* 📱 移动端首屏：统一为横屏 16:9 + gongchang.jpg */}
-        <section className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-900">
+        {/* 📱 移动端首屏：已更新为 aspect-[4/3] */}
+        <section className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-900">
           <img
             src="/about/gongchang.jpg"
             alt="FMANAR Maison"
             className="h-full w-full object-cover brightness-[0.85]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-          <div className="absolute bottom-4 left-5 right-5">
+          <div className="absolute bottom-5 left-5 right-5">
             <p className="text-[9px] uppercase tracking-[0.3em] text-[--gold]">About Us</p>
-            <h1 className="font-display text-3xl font-light text-white tracking-wide mt-0.5">
+            <h1 className="font-display text-4xl font-light text-white tracking-wide mt-1">
               Identity
             </h1>
           </div>
@@ -239,7 +239,6 @@ function AboutPage() {
               href="https://wa.me/8618926150696?text=Hi%20FMANAR%2C%20I%20would%20like%20to%20consult%20about%20a%20bespoke%20furniture%20project."
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Contact on WhatsApp"
               className="inline-block w-full bg-[#93302c] py-3.5 text-xs uppercase tracking-[0.2em] font-medium text-white shadow-md transition-opacity hover:opacity-90"
             >
               Consult Atelier on WhatsApp
